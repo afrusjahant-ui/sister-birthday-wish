@@ -7,6 +7,11 @@
 <title>Something Special ❤️</title>
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -18,6 +23,7 @@ body {
     overflow: hidden;
     font-family: Georgia, "Times New Roman", serif;
 }
+
 
 /* =====================================================
    LOCK SCREEN
@@ -33,6 +39,7 @@ body {
     align-items: center;
 
     background-color: #ffe8ee;
+
     background-image:
         linear-gradient(#f8c8d4 1px, transparent 1px),
         linear-gradient(90deg, #f8c8d4 1px, transparent 1px);
@@ -42,6 +49,7 @@ body {
 
 .lock-card {
     width: min(90%, 390px);
+
     padding: 40px 30px;
 
     text-align: center;
@@ -57,6 +65,7 @@ body {
 }
 
 @keyframes cardIn {
+
     from {
         opacity: 0;
         transform: scale(.8) translateY(30px);
@@ -66,6 +75,7 @@ body {
         opacity: 1;
         transform: scale(1) translateY(0);
     }
+
 }
 
 .lock-icon {
@@ -118,6 +128,7 @@ body {
 .modal {
     position: fixed;
     inset: 0;
+
     z-index: 2000;
 
     display: none;
@@ -125,6 +136,7 @@ body {
     align-items: center;
 
     background: rgba(0,0,0,.6);
+
     backdrop-filter: blur(7px);
 }
 
@@ -150,6 +162,7 @@ body {
 }
 
 @keyframes modalIn {
+
     from {
         transform: scale(.8);
         opacity: 0;
@@ -159,6 +172,7 @@ body {
         transform: scale(1);
         opacity: 1;
     }
+
 }
 
 .password-box h2 {
@@ -184,9 +198,14 @@ body {
     outline: none;
 
     text-align: center;
+
     font-size: 16px;
 
     margin-bottom: 15px;
+}
+
+#passwordInput:focus {
+    border-color: #ff4d70;
 }
 
 .modal-buttons {
@@ -202,6 +221,7 @@ body {
     border-radius: 30px;
 
     font-weight: bold;
+
     cursor: pointer;
 }
 
@@ -216,17 +236,19 @@ body {
 
 #errorMessage {
     min-height: 18px;
+
     margin-top: 12px;
 
     color: #e6395b;
 
     font-family: Arial, sans-serif;
+
     font-size: 13px;
 }
 
 
 /* =====================================================
-   BIRTHDAY PAGE
+   FIRST BIRTHDAY PAGE
 ===================================================== */
 
 .birthday-page {
@@ -240,9 +262,11 @@ body {
     overflow: hidden;
 
     background:
-        radial-gradient(circle at 50% 40%,
-        rgba(255,255,255,.18),
-        transparent 35%),
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255,255,255,.18),
+            transparent 35%
+        ),
         linear-gradient(
             135deg,
             #16001f,
@@ -259,7 +283,7 @@ body {
 }
 
 
-/* glowing background circles */
+/* Glows */
 
 .glow {
     position: absolute;
@@ -269,11 +293,16 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(255, 80, 160, .13);
+    background: rgba(255,80,160,.13);
 
     filter: blur(80px);
 
-    animation: glowMove 8s infinite alternate ease-in-out;
+    animation:
+        glowMove
+        8s
+        infinite
+        alternate
+        ease-in-out;
 }
 
 .glow.one {
@@ -285,12 +314,13 @@ body {
     right: -120px;
     bottom: -150px;
 
-    background: rgba(100, 80, 255, .15);
+    background: rgba(100,80,255,.15);
 
     animation-delay: 2s;
 }
 
 @keyframes glowMove {
+
     from {
         transform: translate(0,0) scale(1);
     }
@@ -298,16 +328,16 @@ body {
     to {
         transform: translate(100px,60px) scale(1.3);
     }
+
 }
 
 
-/* =====================================================
-   STARS
-===================================================== */
+/* Stars */
 
 .stars {
     position: absolute;
     inset: 0;
+
     pointer-events: none;
 }
 
@@ -318,14 +348,20 @@ body {
     height: 3px;
 
     background: white;
+
     border-radius: 50%;
 
     opacity: .7;
 
-    animation: twinkle 2s infinite alternate;
+    animation:
+        twinkle
+        2s
+        infinite
+        alternate;
 }
 
 @keyframes twinkle {
+
     from {
         opacity: .2;
         transform: scale(.7);
@@ -335,12 +371,11 @@ body {
         opacity: 1;
         transform: scale(1.5);
     }
+
 }
 
 
-/* =====================================================
-   BALLOONS
-===================================================== */
+/* Balloons */
 
 .balloon {
     position: absolute;
@@ -354,7 +389,10 @@ body {
 
     opacity: .85;
 
-    animation: balloonUp linear infinite;
+    animation:
+        balloonUp
+        linear
+        infinite;
 }
 
 .balloon::after {
@@ -390,6 +428,7 @@ body {
 }
 
 @keyframes balloonUp {
+
     from {
         transform: translateY(0) rotate(-4deg);
     }
@@ -397,12 +436,14 @@ body {
     to {
         transform: translateY(-125vh) rotate(8deg);
     }
+
 }
 
 .balloon.b1 {
     left: 7%;
     background: #ff477e;
     color: #ff477e;
+
     animation-duration: 12s;
 }
 
@@ -410,6 +451,7 @@ body {
     left: 22%;
     background: #ffcf56;
     color: #ffcf56;
+
     animation-duration: 15s;
     animation-delay: 2s;
 }
@@ -418,6 +460,7 @@ body {
     right: 18%;
     background: #8d72ff;
     color: #8d72ff;
+
     animation-duration: 13s;
     animation-delay: 4s;
 }
@@ -426,17 +469,17 @@ body {
     right: 5%;
     background: #ff719c;
     color: #ff719c;
+
     animation-duration: 16s;
     animation-delay: 1s;
 }
 
 
-/* =====================================================
-   MAIN BIRTHDAY CARD
-===================================================== */
+/* Birthday card */
 
 .birthday-card {
     position: relative;
+
     z-index: 10;
 
     width: min(90%, 760px);
@@ -457,10 +500,14 @@ body {
         0 25px 70px rgba(0,0,0,.35),
         inset 0 1px rgba(255,255,255,.2);
 
-    animation: birthdayAppear 1.3s ease;
+    animation:
+        birthdayAppear
+        1.3s
+        ease;
 }
 
 @keyframes birthdayAppear {
+
     from {
         opacity: 0;
         transform: translateY(40px) scale(.95);
@@ -470,6 +517,7 @@ body {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
+
 }
 
 .small-title {
@@ -489,10 +537,15 @@ body {
 
     margin-bottom: 12px;
 
-    animation: cakeBounce 2s infinite ease-in-out;
+    animation:
+        cakeBounce
+        2s
+        infinite
+        ease-in-out;
 }
 
 @keyframes cakeBounce {
+
     0%,100% {
         transform: translateY(0);
     }
@@ -500,12 +553,14 @@ body {
     50% {
         transform: translateY(-8px);
     }
+
 }
 
 #typewriter {
     min-height: 130px;
 
-    font-size: clamp(27px, 5vw, 48px);
+    font-size:
+        clamp(27px,5vw,48px);
 
     line-height: 1.25;
 
@@ -530,13 +585,18 @@ body {
 
     vertical-align: middle;
 
-    animation: blink .7s infinite;
+    animation:
+        blink
+        .7s
+        infinite;
 }
 
 @keyframes blink {
+
     50% {
         opacity: 0;
     }
+
 }
 
 .divider {
@@ -560,7 +620,7 @@ body {
 
 
 /* =====================================================
-   SECOND PRANK PAGE
+   PRANK PAGE
 ===================================================== */
 
 .prank-page {
@@ -590,10 +650,14 @@ body {
 .prank-page.show {
     display: flex;
 
-    animation: prankReveal 1.2s ease;
+    animation:
+        prankReveal
+        1.2s
+        ease;
 }
 
 @keyframes prankReveal {
+
     from {
         opacity: 0;
         transform: scale(1.08);
@@ -603,10 +667,11 @@ body {
         opacity: 1;
         transform: scale(1);
     }
+
 }
 
 .prank-content {
-    width: min(90%, 700px);
+    width: min(90%,700px);
 
     padding: 45px 25px;
 }
@@ -616,10 +681,15 @@ body {
 
     margin-bottom: 15px;
 
-    animation: shocked 1.2s infinite alternate;
+    animation:
+        shocked
+        1.2s
+        infinite
+        alternate;
 }
 
 @keyframes shocked {
+
     from {
         transform: rotate(-5deg) scale(1);
     }
@@ -627,14 +697,17 @@ body {
     to {
         transform: rotate(5deg) scale(1.08);
     }
+
 }
 
 .prank-content h1 {
-    font-size: clamp(38px, 8vw, 75px);
+    font-size:
+        clamp(38px,8vw,75px);
 
     line-height: 1.05;
 
-    text-shadow: 0 5px 20px rgba(0,0,0,.3);
+    text-shadow:
+        0 5px 20px rgba(0,0,0,.3);
 
     margin-bottom: 20px;
 }
@@ -652,15 +725,19 @@ body {
 .wait-button {
     padding: 14px 30px;
 
-    border: 2px solid rgba(255,255,255,.7);
+    border:
+        2px solid
+        rgba(255,255,255,.7);
 
     border-radius: 50px;
 
-    background: rgba(255,255,255,.12);
+    background:
+        rgba(255,255,255,.12);
 
     color: white;
 
     font-size: 16px;
+
     font-weight: bold;
 
     cursor: pointer;
@@ -672,15 +749,16 @@ body {
 
 .wait-button:hover {
     background: white;
+
     color: #8b174f;
 
-    transform: translateY(-3px) scale(1.04);
+    transform:
+        translateY(-3px)
+        scale(1.04);
 }
 
 
-/* =====================================================
-   CONFETTI
-===================================================== */
+/* Confetti */
 
 .confetti {
     position: fixed;
@@ -692,15 +770,656 @@ body {
 
     z-index: 100;
 
-    animation: confettiFall linear forwards;
+    animation:
+        confettiFall
+        linear
+        forwards;
 }
 
 @keyframes confettiFall {
+
     to {
         transform:
             translateY(110vh)
             rotate(720deg);
     }
+
+}
+
+
+/* =====================================================
+   REAL SURPRISE — HEART TREE
+===================================================== */
+
+.tree-page {
+    position: fixed;
+    inset: 0;
+
+    z-index: 700;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 38%,
+            rgba(255,255,255,.12),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            #080018 0%,
+            #18002c 48%,
+            #08000f 100%
+        );
+
+    color: white;
+}
+
+.tree-page.show {
+    display: flex;
+
+    animation:
+        treePageIn
+        1.4s
+        ease;
+}
+
+@keyframes treePageIn {
+
+    from {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* Moon */
+
+.tree-moon {
+    position: absolute;
+
+    top: 8%;
+    right: 10%;
+
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    background: #fff8e8;
+
+    box-shadow:
+        0 0 35px rgba(255,248,232,.35),
+        0 0 100px rgba(255,248,232,.12);
+
+    opacity: .9;
+}
+
+.tree-moon::after {
+    content: "";
+
+    position: absolute;
+
+    top: -8px;
+    left: 18px;
+
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    background: #0d001d;
+}
+
+
+/* Tree stars */
+
+.tree-stars {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.tree-star {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .55;
+
+    animation:
+        treeTwinkle
+        var(--duration)
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes treeTwinkle {
+
+    from {
+        opacity: .15;
+        transform: scale(.6);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+
+}
+
+
+/* Ground */
+
+.tree-ground {
+    position: absolute;
+
+    bottom: -90px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 600px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,61,145,.20),
+            transparent 68%
+        );
+
+    filter: blur(12px);
+}
+
+
+/* Tree */
+
+.tree-wrapper {
+    position: absolute;
+
+    left: 50%;
+    bottom: 3%;
+
+    width: min(760px,100vw);
+    height: 73vh;
+
+    transform: translateX(-50%);
+
+    cursor: pointer;
+}
+
+
+/* Trunk */
+
+.tree-trunk {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 28px;
+    height: 45%;
+
+    transform:
+        translateX(-50%)
+        rotate(-1deg);
+
+    transform-origin: bottom center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #24100d,
+            #54241b,
+            #2a100e
+        );
+
+    border-radius:
+        45% 55% 20% 20%;
+
+    box-shadow:
+        0 0 20px rgba(0,0,0,.5);
+
+    animation:
+        treeGrow
+        1.8s
+        ease-out;
+}
+
+@keyframes treeGrow {
+
+    from {
+        height: 0;
+        opacity: 0;
+    }
+
+    to {
+        height: 45%;
+        opacity: 1;
+    }
+
+}
+
+
+/* Branches */
+
+.branch {
+    position: absolute;
+
+    height: 13px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #29120f,
+            #5b271d
+        );
+
+    border-radius: 20px;
+
+    transform-origin: left center;
+
+    animation:
+        branchGrow
+        1.5s
+        ease-out
+        backwards;
+}
+
+.branch.b1 {
+    width: 240px;
+
+    left: 49%;
+    bottom: 34%;
+
+    transform: rotate(-28deg);
+
+    animation-delay: .4s;
+}
+
+.branch.b2 {
+    width: 230px;
+
+    left: 50%;
+    bottom: 43%;
+
+    transform: rotate(28deg);
+
+    animation-delay: .55s;
+}
+
+.branch.b3 {
+    width: 170px;
+
+    left: 48%;
+    bottom: 53%;
+
+    transform: rotate(-40deg);
+
+    animation-delay: .7s;
+}
+
+.branch.b4 {
+    width: 180px;
+
+    left: 51%;
+    bottom: 57%;
+
+    transform: rotate(38deg);
+
+    animation-delay: .8s;
+}
+
+@keyframes branchGrow {
+
+    from {
+        transform:
+            scaleX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* Heart leaves */
+
+.heart-leaf {
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #ff9bbb,
+            #ff3975 65%,
+            #b90048
+        );
+
+    transform:
+        rotate(-45deg)
+        scale(0);
+
+    border-radius:
+        50% 50% 0 50%;
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(255,59,122,.55)
+        );
+
+    animation:
+        leafAppear
+        .8s
+        ease-out
+        forwards;
+
+    transition:
+        transform .25s ease,
+        filter .25s ease;
+}
+
+.heart-leaf::before,
+.heart-leaf::after {
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    background: inherit;
+
+    border-radius: 50%;
+}
+
+.heart-leaf::before {
+    top: -9px;
+    left: 0;
+}
+
+.heart-leaf::after {
+    top: 0;
+    left: 9px;
+}
+
+.heart-leaf:hover {
+    transform:
+        rotate(-45deg)
+        scale(1.5) !important;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            #ff4d91
+        );
+}
+
+@keyframes leafAppear {
+
+    to {
+        transform:
+            rotate(-45deg)
+            scale(1);
+    }
+
+}
+
+
+/* Tree message */
+
+.tree-message {
+    position: absolute;
+
+    top: 8%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(90%,750px);
+
+    text-align: center;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+.tree-message .small-line {
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    color:
+        rgba(255,255,255,.62);
+
+    margin-bottom: 16px;
+}
+
+#treeTypewriter {
+    min-height: 75px;
+
+    font-size:
+        clamp(23px,4vw,42px);
+
+    line-height: 1.25;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,78,145,.65),
+
+        0 3px 12px
+        rgba(0,0,0,.4);
+}
+
+.tree-cursor {
+    display: inline-block;
+
+    width: 3px;
+    height: .9em;
+
+    margin-left: 5px;
+
+    background: white;
+
+    vertical-align: middle;
+
+    animation:
+        blink
+        .7s
+        infinite;
+}
+
+
+/* Countdown */
+
+.countdown-box {
+    margin-top: 18px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    opacity: 0;
+
+    animation:
+        countdownAppear
+        1s
+        ease
+        2s
+        forwards;
+}
+
+@keyframes countdownAppear {
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+.time-unit {
+    min-width: 70px;
+
+    padding: 10px 8px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.2);
+}
+
+.time-number {
+    display: block;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    color: #fff;
+}
+
+.time-label {
+    display: block;
+
+    margin-top: 3px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,.55);
+}
+
+
+/* Hint */
+
+.tree-hint {
+    position: absolute;
+
+    bottom: 4%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 30;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,.42);
+
+    white-space: nowrap;
+
+    animation:
+        hintPulse
+        2s
+        infinite;
+}
+
+@keyframes hintPulse {
+
+    50% {
+        opacity: .45;
+    }
+
+}
+
+
+/* Floating hearts */
+
+.floating-heart {
+    position: fixed;
+
+    font-size: 20px;
+
+    pointer-events: none;
+
+    z-index: 1000;
+
+    animation:
+        floatingHeart
+        4s
+        ease-out
+        forwards;
+}
+
+@keyframes floatingHeart {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.4);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-150px)
+            scale(1.2);
+    }
+
 }
 
 
@@ -708,7 +1427,7 @@ body {
    MOBILE
 ===================================================== */
 
-@media(max-width: 600px) {
+@media(max-width:600px) {
 
     .birthday-card {
         padding: 40px 20px;
@@ -730,7 +1449,73 @@ body {
     .prank-content h1 {
         font-size: 43px;
     }
+
+    .tree-moon {
+        width: 70px;
+        height: 70px;
+
+        right: 7%;
+    }
+
+    .tree-moon::after {
+        width: 70px;
+        height: 70px;
+
+        left: 12px;
+    }
+
+    .tree-wrapper {
+        height: 67vh;
+    }
+
+    .tree-trunk {
+        width: 20px;
+    }
+
+    .branch {
+        height: 9px;
+    }
+
+    .branch.b1 {
+        width: 150px;
+    }
+
+    .branch.b2 {
+        width: 145px;
+    }
+
+    .branch.b3 {
+        width: 110px;
+    }
+
+    .branch.b4 {
+        width: 115px;
+    }
+
+    .countdown-box {
+        gap: 5px;
+    }
+
+    .time-unit {
+        min-width: 57px;
+
+        padding: 8px 5px;
+    }
+
+    .time-number {
+        font-size: 19px;
+    }
+
+    .time-label {
+        font-size: 7px;
+    }
+
+    .tree-hint {
+        font-size: 8px;
+    }
+
 }
+
 </style>
 </head>
 
@@ -746,17 +1531,26 @@ body {
 
     <div class="lock-card">
 
-        <div class="lock-icon">🔒</div>
+        <div class="lock-icon">
+            🔒
+        </div>
 
-        <h1>Site Locked</h1>
+        <h1>
+            Site Locked
+        </h1>
 
         <p>
-            This little surprise is only for you. ❤️<br>
+            This little surprise is only for you. ❤️
+            <br>
             Enter the password to unlock the magic.
         </p>
 
-        <button class="unlock-btn" onclick="openPassword()">
+        <button
+            class="unlock-btn"
+            onclick="openPassword()">
+
             Unlock Now
+
         </button>
 
     </div>
@@ -768,11 +1562,15 @@ body {
      PASSWORD MODAL
 ===================================================== -->
 
-<div class="modal" id="passwordModal">
+<div
+    class="modal"
+    id="passwordModal">
 
     <div class="password-box">
 
-        <h2>🔐 Secret Access</h2>
+        <h2>
+            🔐 Secret Access
+        </h2>
 
         <p>
             Only someone special knows the password. ❤️
@@ -782,6 +1580,7 @@ body {
             type="password"
             id="passwordInput"
             placeholder="Enter password..."
+            autocomplete="off"
         >
 
         <div class="modal-buttons">
@@ -789,13 +1588,17 @@ body {
             <button
                 class="modal-btn cancel-btn"
                 onclick="closePassword()">
+
                 Cancel
+
             </button>
 
             <button
                 class="modal-btn enter-btn"
                 onclick="checkPassword()">
+
                 Enter ❤️
+
             </button>
 
         </div>
@@ -811,15 +1614,18 @@ body {
      FIRST BIRTHDAY PAGE
 ===================================================== -->
 
-<div class="birthday-page" id="birthdayPage">
+<div
+    class="birthday-page"
+    id="birthdayPage">
 
     <div class="glow one"></div>
     <div class="glow two"></div>
 
-    <!-- Stars -->
-    <div class="stars" id="stars"></div>
+    <div
+        class="stars"
+        id="stars">
+    </div>
 
-    <!-- Balloons -->
     <div class="balloon b1"></div>
     <div class="balloon b2"></div>
     <div class="balloon b3"></div>
@@ -850,10 +1656,12 @@ body {
 
 
 <!-- =====================================================
-     PRANK REVEAL
+     PRANK PAGE
 ===================================================== -->
 
-<div class="prank-page" id="prankPage">
+<div
+    class="prank-page"
+    id="prankPage">
 
     <div class="prank-content">
 
@@ -862,17 +1670,24 @@ body {
         </div>
 
         <h1>
-            OHHH...<br>
-            YOU THOUGHT<br>
+            OHHH...
+            <br>
+            YOU THOUGHT
+            <br>
             THAT'S IT?!
         </h1>
 
         <p>
-            You really thought I made all this just for that? 💀
+            You really thought I made all this
+            just for that? 💀
         </p>
 
-        <button class="wait-button" onclick="continueSurprise()">
+        <button
+            class="wait-button"
+            onclick="continueSurprise()">
+
             Wait... WHAT? 👀
+
         </button>
 
     </div>
@@ -880,7 +1695,158 @@ body {
 </div>
 
 
+<!-- =====================================================
+     REAL SURPRISE — HEART TREE
+===================================================== -->
+
+<div
+    class="tree-page"
+    id="treePage">
+
+
+    <!-- Stars -->
+
+    <div
+        class="tree-stars"
+        id="treeStars">
+    </div>
+
+
+    <!-- Moon -->
+
+    <div class="tree-moon"></div>
+
+
+    <!-- Ground -->
+
+    <div class="tree-ground"></div>
+
+
+    <!-- Main Message -->
+
+    <div class="tree-message">
+
+        <div class="small-line">
+            08 • OCTOBER
+        </div>
+
+        <div id="treeTypewriter"></div>
+
+
+        <div class="countdown-box">
+
+
+            <div class="time-unit">
+
+                <span
+                    class="time-number"
+                    id="days">
+
+                    00
+
+                </span>
+
+                <span class="time-label">
+                    DAYS
+                </span>
+
+            </div>
+
+
+            <div class="time-unit">
+
+                <span
+                    class="time-number"
+                    id="hours">
+
+                    00
+
+                </span>
+
+                <span class="time-label">
+                    HOURS
+                </span>
+
+            </div>
+
+
+            <div class="time-unit">
+
+                <span
+                    class="time-number"
+                    id="minutes">
+
+                    00
+
+                </span>
+
+                <span class="time-label">
+                    MINUTES
+                </span>
+
+            </div>
+
+
+            <div class="time-unit">
+
+                <span
+                    class="time-number"
+                    id="seconds">
+
+                    00
+
+                </span>
+
+                <span class="time-label">
+                    SECONDS
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TREE -->
+
+    <div
+        class="tree-wrapper"
+        id="treeWrapper"
+        onclick="treeClicked(event)">
+
+
+        <div class="tree-trunk"></div>
+
+        <div class="branch b1"></div>
+        <div class="branch b2"></div>
+        <div class="branch b3"></div>
+        <div class="branch b4"></div>
+
+    </div>
+
+
+    <div class="tree-hint">
+        ✦ TOUCH THE TREE ✦
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<audio
+    id="birthdayMusic"
+    src="music/earrings.mp3"
+    preload="auto"
+    loop>
+</audio>
+
+
 <script>
+
 
 /* =====================================================
    PASSWORD
@@ -902,6 +1868,7 @@ function openPassword() {
             .focus();
 
     }, 200);
+
 }
 
 
@@ -918,6 +1885,7 @@ function closePassword() {
     document
         .getElementById("errorMessage")
         .textContent = "";
+
 }
 
 
@@ -930,10 +1898,15 @@ function checkPassword() {
         document.getElementById("errorMessage");
 
 
-    if (input.value === correctPassword) {
+    if (
+        input.value === correctPassword
+    ) {
 
-        error.style.color = "#16a34a";
-        error.textContent = "Access granted! ❤️";
+        error.style.color =
+            "#16a34a";
+
+        error.textContent =
+            "Access granted! ❤️";
 
 
         setTimeout(() => {
@@ -954,35 +1927,59 @@ function checkPassword() {
 
     } else {
 
-        error.style.color = "#e6395b";
+        error.style.color =
+            "#e6395b";
 
         error.textContent =
             "Wrong password! Try again. 🔒";
 
         input.value = "";
+
         input.focus();
 
     }
+
 }
 
 
+/* Enter key */
+
 document
     .getElementById("passwordInput")
-    .addEventListener("keydown", function(event) {
+    .addEventListener(
+        "keydown",
+        function(event) {
 
-        if (event.key === "Enter") {
-            checkPassword();
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+
+            if (event.key === "Escape") {
+                closePassword();
+            }
+
         }
+    );
 
-        if (event.key === "Escape") {
-            closePassword();
+
+/* Click outside modal */
+
+document
+    .getElementById("passwordModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+                closePassword();
+            }
+
         }
-
-    });
+    );
 
 
 /* =====================================================
-   CREATE STARS
+   FIRST PAGE STARS
 ===================================================== */
 
 function createStars() {
@@ -990,13 +1987,21 @@ function createStars() {
     const container =
         document.getElementById("stars");
 
+    container.innerHTML = "";
 
-    for (let i = 0; i < 90; i++) {
+
+    for (
+        let i = 0;
+        i < 90;
+        i++
+    ) {
 
         const star =
             document.createElement("div");
 
-        star.className = "star";
+        star.className =
+            "star";
+
 
         star.style.left =
             Math.random() * 100 + "%";
@@ -1004,19 +2009,24 @@ function createStars() {
         star.style.top =
             Math.random() * 100 + "%";
 
+
         star.style.animationDelay =
             Math.random() * 3 + "s";
+
 
         star.style.animationDuration =
             (1 + Math.random() * 2) + "s";
 
+
         container.appendChild(star);
+
     }
+
 }
 
 
 /* =====================================================
-   START BIRTHDAY
+   START FIRST BIRTHDAY PAGE
 ===================================================== */
 
 function startBirthday() {
@@ -1024,6 +2034,7 @@ function startBirthday() {
     document
         .getElementById("birthdayPage")
         .classList.add("active");
+
 
     createStars();
 
@@ -1035,7 +2046,7 @@ function startBirthday() {
 
 
 /* =====================================================
-   TYPEWRITER
+   FIRST TYPEWRITER
 ===================================================== */
 
 const message =
@@ -1047,49 +2058,71 @@ function startTypewriter() {
     const target =
         document.getElementById("typewriter");
 
+    target.innerHTML = "";
+
     let index = 0;
 
 
     function type() {
 
-        if (index < message.length) {
+        if (
+            index < message.length
+        ) {
 
             const character =
                 message[index];
 
 
-            if (character === "\n") {
+            if (
+                character === "\n"
+            ) {
 
-                target.innerHTML += "<br><br>";
+                target.innerHTML +=
+                    "<br><br>";
 
             } else {
 
                 target.innerHTML +=
                     character
-                    .replace(/ /g, "&nbsp;");
+                        .replace(
+                            / /g,
+                            "&nbsp;"
+                        );
 
             }
 
+
             index++;
 
-            setTimeout(type, 55);
+
+            setTimeout(
+                type,
+                55
+            );
 
         } else {
 
             target.innerHTML +=
                 '<span class="cursor"></span>';
 
+
             /*
-                Wait 10 seconds AFTER
-                the typewriter finishes.
+               10 seconds after
+               complete message.
             */
 
-            setTimeout(showPrank, 10000);
+            setTimeout(
+                showPrank,
+                10000
+            );
+
         }
+
     }
 
 
     type();
+
 }
 
 
@@ -1099,23 +2132,34 @@ function startTypewriter() {
 
 function createConfetti() {
 
-    for (let i = 0; i < 70; i++) {
+    for (
+        let i = 0;
+        i < 70;
+        i++
+    ) {
 
         setTimeout(() => {
 
             const piece =
                 document.createElement("div");
 
-            piece.className = "confetti";
+            piece.className =
+                "confetti";
+
 
             piece.style.left =
                 Math.random() * 100 + "vw";
 
+
             piece.style.animationDuration =
                 (3 + Math.random() * 4) + "s";
 
+
             piece.style.transform =
-                `rotate(${Math.random() * 360}deg)`;
+                `rotate(
+                    ${Math.random() * 360}deg
+                )`;
+
 
             piece.style.background =
                 [
@@ -1125,24 +2169,33 @@ function createConfetti() {
                     "#c77dff",
                     "#70e1f5"
                 ][
-                    Math.floor(Math.random() * 5)
+                    Math.floor(
+                        Math.random() * 5
+                    )
                 ];
 
-            document.body.appendChild(piece);
+
+            document.body.appendChild(
+                piece
+            );
 
 
             setTimeout(() => {
+
                 piece.remove();
-            }, 7000);
+
+            },7000);
+
 
         }, i * 45);
 
     }
+
 }
 
 
 /* =====================================================
-   SHOW PRANK PAGE
+   SHOW PRANK
 ===================================================== */
 
 function showPrank() {
@@ -1151,25 +2204,532 @@ function showPrank() {
         .getElementById("prankPage")
         .classList.add("show");
 
+
     createConfetti();
 
 }
 
 
 /* =====================================================
-   NEXT SURPRISE
+   CONTINUE TO REAL SURPRISE
 ===================================================== */
 
 function continueSurprise() {
 
     /*
-       NEXT STAGE WILL GO HERE.
-
-       We will replace this with
-       the actual birthday surprise.
+       Hide prank page.
     */
 
-    alert("WAITTT 😭 The real surprise is coming...");
+    document
+        .getElementById("prankPage")
+        .classList.remove("show");
+
+
+    /*
+       Show heart tree page.
+    */
+
+    document
+        .getElementById("treePage")
+        .classList.add("show");
+
+
+    /*
+       Start Earrings.
+    */
+
+    const music =
+        document.getElementById(
+            "birthdayMusic"
+        );
+
+
+    music.volume = 0.65;
+
+
+    music.play().catch(() => {
+
+        console.log(
+            "Music playback was blocked."
+        );
+
+    });
+
+
+    /*
+       Start everything.
+    */
+
+    createTreeStars();
+
+    createHeartLeaves();
+
+    startTreeTypewriter();
+
+    startBirthdayCountdown();
+
+}
+
+
+/* =====================================================
+   TREE STARS
+===================================================== */
+
+function createTreeStars() {
+
+    const container =
+        document.getElementById(
+            "treeStars"
+        );
+
+
+    container.innerHTML = "";
+
+
+    for (
+        let i = 0;
+        i < 120;
+        i++
+    ) {
+
+        const star =
+            document.createElement(
+                "div"
+            );
+
+
+        star.className =
+            "tree-star";
+
+
+        star.style.left =
+            Math.random() * 100 + "%";
+
+
+        star.style.top =
+            Math.random() * 100 + "%";
+
+
+        star.style.setProperty(
+            "--duration",
+            (1 + Math.random() * 3) + "s"
+        );
+
+
+        star.style.animationDelay =
+            Math.random() * 3 + "s";
+
+
+        container.appendChild(
+            star
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   HEART LEAVES
+===================================================== */
+
+function createHeartLeaves() {
+
+    const tree =
+        document.getElementById(
+            "treeWrapper"
+        );
+
+
+    const leaves = [
+
+        [38,31],
+        [43,26],
+        [48,32],
+        [54,27],
+        [59,34],
+
+        [34,39],
+        [40,37],
+        [47,39],
+        [55,37],
+        [63,41],
+
+        [31,48],
+        [38,45],
+        [45,46],
+        [52,44],
+        [60,47],
+        [67,50],
+
+        [35,55],
+        [42,52],
+        [49,53],
+        [57,54],
+        [63,57],
+
+        [40,61],
+        [47,59],
+        [54,61],
+
+        [45,67],
+        [51,65]
+
+    ];
+
+
+    leaves.forEach(
+        (position,index) => {
+
+            const leaf =
+                document.createElement(
+                    "div"
+                );
+
+
+            leaf.className =
+                "heart-leaf";
+
+
+            leaf.style.left =
+                position[0] + "%";
+
+
+            leaf.style.bottom =
+                position[1] + "%";
+
+
+            leaf.style.animationDelay =
+                (index * .06) + "s";
+
+
+            const size =
+                .75 +
+                Math.random() * .55;
+
+
+            leaf.style.width =
+                18 * size + "px";
+
+
+            leaf.style.height =
+                18 * size + "px";
+
+
+            leaf.addEventListener(
+                "click",
+                function(event) {
+
+                    event.stopPropagation();
+
+
+                    popHeart(
+                        event.clientX,
+                        event.clientY
+                    );
+
+                }
+            );
+
+
+            tree.appendChild(
+                leaf
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   POP HEART
+===================================================== */
+
+function popHeart(x,y) {
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+
+    heart.className =
+        "floating-heart";
+
+
+    heart.textContent =
+        [
+            "❤️",
+            "💗",
+            "💕",
+            "💖",
+            "💘"
+        ][
+            Math.floor(
+                Math.random() * 5
+            )
+        ];
+
+
+    heart.style.left =
+        x + "px";
+
+
+    heart.style.top =
+        y + "px";
+
+
+    document.body.appendChild(
+        heart
+    );
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    },4000);
+
+}
+
+
+/* =====================================================
+   CLICK TREE
+===================================================== */
+
+function treeClicked(event) {
+
+    /*
+       Clicking anywhere on the tree
+       creates floating hearts.
+    */
+
+    for (
+        let i = 0;
+        i < 5;
+        i++
+    ) {
+
+        setTimeout(() => {
+
+            popHeart(
+                event.clientX +
+                (
+                    Math.random() * 80 - 40
+                ),
+
+                event.clientY +
+                (
+                    Math.random() * 40 - 20
+                )
+            );
+
+        },i * 100);
+
+    }
+
+}
+
+
+/* =====================================================
+   TREE TYPEWRITER
+===================================================== */
+
+function startTreeTypewriter() {
+
+    const target =
+        document.getElementById(
+            "treeTypewriter"
+        );
+
+
+    target.innerHTML = "";
+
+
+    const message =
+        "The world just got luckier since you were born. ❤️";
+
+
+    let index = 0;
+
+
+    function type() {
+
+        if (
+            index < message.length
+        ) {
+
+            target.innerHTML +=
+                message[index]
+                    .replace(
+                        / /g,
+                        "&nbsp;"
+                    );
+
+
+            index++;
+
+
+            setTimeout(
+                type,
+                65
+            );
+
+        } else {
+
+            target.innerHTML +=
+                '<span class="tree-cursor"></span>';
+
+        }
+
+    }
+
+
+    type();
+
+}
+
+
+/* =====================================================
+   OCTOBER 8 COUNTDOWN
+===================================================== */
+
+function startBirthdayCountdown() {
+
+    function updateCountdown() {
+
+        const now =
+            new Date();
+
+
+        /*
+           October = month 9
+           because JavaScript starts
+           counting months from 0.
+        */
+
+        let target =
+            new Date(
+                now.getFullYear(),
+                9,
+                8,
+                0,
+                0,
+                0
+            );
+
+
+        /*
+           If October 8 has passed,
+           count toward next year's
+           October 8.
+        */
+
+        if (
+            target <= now
+        ) {
+
+            target =
+                new Date(
+                    now.getFullYear() + 1,
+                    9,
+                    8,
+                    0,
+                    0,
+                    0
+                );
+
+        }
+
+
+        const difference =
+            target - now;
+
+
+        const days =
+            Math.floor(
+                difference /
+                (
+                    1000 *
+                    60 *
+                    60 *
+                    24
+                )
+            );
+
+
+        const hours =
+            Math.floor(
+                (
+                    difference /
+                    (
+                        1000 *
+                        60 *
+                        60
+                    )
+                ) % 24
+            );
+
+
+        const minutes =
+            Math.floor(
+                (
+                    difference /
+                    (
+                        1000 *
+                        60
+                    )
+                ) % 60
+            );
+
+
+        const seconds =
+            Math.floor(
+                (
+                    difference /
+                    1000
+                ) % 60
+            );
+
+
+        document
+            .getElementById("days")
+            .textContent =
+            String(days)
+                .padStart(2,"0");
+
+
+        document
+            .getElementById("hours")
+            .textContent =
+            String(hours)
+                .padStart(2,"0");
+
+
+        document
+            .getElementById("minutes")
+            .textContent =
+            String(minutes)
+                .padStart(2,"0");
+
+
+        document
+            .getElementById("seconds")
+            .textContent =
+            String(seconds)
+                .padStart(2,"0");
+
+    }
+
+
+    updateCountdown();
+
+
+    setInterval(
+        updateCountdown,
+        1000
+    );
 
 }
 
