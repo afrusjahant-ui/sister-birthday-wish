@@ -3,1423 +3,1258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Something Special ❤️</title>
+<title>For You ❤️</title>
 
 <style>
-
-/* =====================================================
-   GLOBAL
-===================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    min-height: 100vh;
-    overflow: hidden;
-    font-family: Georgia, "Times New Roman", serif;
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    font-family:Georgia,"Times New Roman",serif;
+}
+
+/* =====================================================
+   COMMON PAGE
+===================================================== */
+
+.page{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100vh;
+    display:none;
+    overflow:hidden;
+}
+
+.page.active{
+    display:flex;
+}
+
+/* =====================================================
+   PAGE 1 — LOCK
+===================================================== */
+
+#lockPage{
+    justify-content:center;
+    align-items:center;
+
+    background:
+        radial-gradient(circle at 20% 20%,#fff 0,transparent 25%),
+        linear-gradient(135deg,#ffeef4,#ffd7e4,#fff0f5);
+}
+
+.lock-card{
+    width:min(350px,88%);
+    background:#fff;
+    padding:38px 25px 42px;
+    text-align:center;
+
+    border:4px solid #111;
+    border-radius:26px;
+
+    box-shadow:9px 11px 0 #111;
+
+    animation:cardIn 1s ease;
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:scale(.75) translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+.lock-icon{
+    font-size:34px;
+    display:inline-block;
+    animation:lockShake 2s infinite;
+}
+
+@keyframes lockShake{
+    0%,85%,100%{transform:rotate(0)}
+    88%{transform:rotate(-8deg)}
+    91%{transform:rotate(8deg)}
+    94%{transform:rotate(-5deg)}
+}
+
+.lock-title{
+    color:#ff4168;
+    font-size:25px;
+    margin-left:7px;
+}
+
+.lock-text{
+    margin:14px auto 23px;
+    max-width:275px;
+
+    color:#555;
+    font-family:Arial,sans-serif;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.unlock-btn{
+    border:3px solid #000;
+    background:#ff4b70;
+    color:#fff;
+
+    padding:13px 30px;
+    border-radius:40px;
+
+    font-size:17px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 0 #000;
+
+    transition:.2s;
+}
+
+.unlock-btn:hover{
+    transform:translateY(-3px);
+    background:#ff315c;
+}
+
+.unlock-btn:active{
+    transform:translateY(3px);
+    box-shadow:0 1px 0 #000;
 }
 
 
 /* =====================================================
-   LOCK SCREEN
+   PAGE 2 — FIRST WISH
 ===================================================== */
 
-.lock-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
+#wishPage{
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background:
+        radial-gradient(circle at 50% 30%,rgba(255,255,255,.9),transparent 30%),
+        linear-gradient(135deg,#fff0f5,#ffd6e3,#ffeaf1);
+}
 
-    background-color: #ffe8ee;
+.wish-glow{
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    background:rgba(255,80,130,.12);
+
+    filter:blur(60px);
+
+    animation:glow 5s infinite alternate;
+}
+
+@keyframes glow{
+    from{transform:scale(.8)}
+    to{transform:scale(1.2)}
+}
+
+.wish-content{
+    position:relative;
+    z-index:5;
+
+    width:min(900px,90%);
+}
+
+.wish-small{
+    margin-bottom:28px;
+
+    font-family:Arial,sans-serif;
+
+    font-size:13px;
+    letter-spacing:5px;
+
+    color:#c55a78;
+}
+
+.type-line{
+    min-height:55px;
+
+    margin:15px 0;
+
+    font-size:clamp(25px,5vw,48px);
+
+    color:#ff3f6d;
+
+    text-shadow:0 2px 15px rgba(255,50,100,.2);
+}
+
+.cursor{
+    animation:blink .7s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0}
+}
+
+.floating-heart{
+    position:absolute;
+
+    font-size:22px;
+
+    opacity:.7;
+
+    animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(110vh) rotate(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    to{
+        transform:translateY(-20vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+
+/* =====================================================
+   PAGE 3 — SURPRISE
+===================================================== */
+
+#surprisePage{
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.08),transparent 20%),
+        radial-gradient(circle at 80% 80%,rgba(255,70,130,.15),transparent 25%),
+        linear-gradient(135deg,#17091c,#3a102a,#160718);
+
+    color:#fff;
+}
+
+.surprise-stars{
+    position:absolute;
+    inset:0;
 
     background-image:
-        linear-gradient(#f8c8d4 1px, transparent 1px),
-        linear-gradient(90deg, #f8c8d4 1px, transparent 1px);
+        radial-gradient(circle,#fff 1px,transparent 1px),
+        radial-gradient(circle,rgba(255,180,210,.8) 1px,transparent 1px);
 
-    background-size: 32px 32px;
+    background-size:70px 70px,110px 110px;
+
+    animation:starMove 18s linear infinite;
+
+    opacity:.35;
 }
 
-.lock-card {
-    width: min(90%, 390px);
-
-    padding: 40px 30px;
-
-    text-align: center;
-
-    background: white;
-
-    border: 4px solid #111;
-    border-radius: 28px;
-
-    box-shadow: 10px 10px 0 #111;
-
-    animation: cardIn .8s ease;
-}
-
-@keyframes cardIn {
-
-    from {
-        opacity: 0;
-        transform: scale(.8) translateY(30px);
+@keyframes starMove{
+    to{
+        background-position:70px 100px,-110px -80px;
     }
+}
 
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+.surprise-box{
+    position:relative;
+    z-index:5;
+
+    width:min(850px,90%);
+}
+
+.surprise-title{
+    font-size:clamp(32px,7vw,65px);
+
+    text-shadow:
+        0 0 10px #ff4f83,
+        0 0 30px #ff4f83;
+
+    animation:surprisePulse 2s infinite;
+}
+
+@keyframes surprisePulse{
+    50%{
+        transform:scale(1.03);
+
+        text-shadow:
+            0 0 20px #ff4f83,
+            0 0 50px #ff4f83;
     }
-
 }
 
-.lock-icon {
-    font-size: 48px;
-    margin-bottom: 10px;
+.surprise-sub{
+    margin-top:25px;
+
+    font-family:Arial,sans-serif;
+
+    color:#ffc4d7;
+
+    font-size:16px;
 }
 
-.lock-card h1 {
-    color: #ff4168;
-    font-size: 29px;
-    margin-bottom: 12px;
+.wait-btn{
+    margin-top:40px;
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    border:2px solid #fff;
+
+    background:rgba(255,70,120,.15);
+
+    color:#fff;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s;
+
+    box-shadow:0 0 25px rgba(255,70,120,.35);
 }
 
-.lock-card p {
-    font-family: Arial, sans-serif;
-    color: #555;
-    line-height: 1.5;
-    margin-bottom: 25px;
-}
+.wait-btn:hover{
+    background:#ff4775;
 
-.unlock-btn {
-    padding: 14px 32px;
+    transform:scale(1.08);
 
-    border: 3px solid #111;
-    border-radius: 50px;
-
-    background: #ff4d70;
-    color: white;
-
-    font-size: 17px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow: 4px 5px 0 #111;
-
-    transition: .2s;
-}
-
-.unlock-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 4px 8px 0 #111;
+    box-shadow:0 0 45px rgba(255,70,120,.8);
 }
 
 
 /* =====================================================
-   PASSWORD MODAL
+   PAGE 4 — CINEMATIC TREE
 ===================================================== */
 
-.modal {
-    position: fixed;
-    inset: 0;
-
-    z-index: 2000;
-
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    background: rgba(0,0,0,.6);
-
-    backdrop-filter: blur(7px);
-}
-
-.modal.show {
-    display: flex;
-}
-
-.password-box {
-    width: min(90%, 400px);
-
-    background: white;
-
-    padding: 30px;
-
-    border: 4px solid #111;
-    border-radius: 25px;
-
-    text-align: center;
-
-    box-shadow: 8px 8px 0 #111;
-
-    animation: modalIn .3s ease;
-}
-
-@keyframes modalIn {
-
-    from {
-        transform: scale(.8);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-}
-
-.password-box h2 {
-    color: #ff4168;
-    margin-bottom: 8px;
-}
-
-.password-box p {
-    font-family: Arial, sans-serif;
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-#passwordInput {
-    width: 100%;
-
-    padding: 14px;
-
-    border: 3px solid #222;
-    border-radius: 12px;
-
-    outline: none;
-
-    text-align: center;
-
-    font-size: 16px;
-
-    margin-bottom: 15px;
-}
-
-#passwordInput:focus {
-    border-color: #ff4d70;
-}
-
-.modal-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.modal-btn {
-    padding: 10px 22px;
-
-    border: 3px solid #111;
-    border-radius: 30px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.enter-btn {
-    background: #ff4d70;
-    color: white;
-}
-
-.cancel-btn {
-    background: white;
-}
-
-#errorMessage {
-    min-height: 18px;
-
-    margin-top: 12px;
-
-    color: #e6395b;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 13px;
-}
-
-
-/* =====================================================
-   FIRST BIRTHDAY PAGE
-===================================================== */
-
-.birthday-page {
-    position: fixed;
-    inset: 0;
-
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
-
+#treePage{
     background:
-        radial-gradient(
-            circle at 50% 40%,
-            rgba(255,255,255,.18),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #16001f,
-            #41002e,
-            #8b174f,
-            #26003c
-        );
+        radial-gradient(circle at 50% 20%,rgba(77,86,150,.18),transparent 30%),
+        linear-gradient(180deg,#030513 0%,#080b20 55%,#10152c 100%);
 
-    color: white;
-}
-
-.birthday-page.active {
-    display: flex;
+    color:#fff;
 }
 
 
-/* Glows */
+/* =====================================================
+   STARS
+===================================================== */
 
-.glow {
-    position: absolute;
+#skyStars{
+    position:absolute;
+    inset:0;
 
-    width: 400px;
-    height: 400px;
-
-    border-radius: 50%;
-
-    background: rgba(255,80,160,.13);
-
-    filter: blur(80px);
-
-    animation:
-        glowMove
-        8s
-        infinite
-        alternate
-        ease-in-out;
+    pointer-events:none;
 }
 
-.glow.one {
-    top: -150px;
-    left: -100px;
+.sky-star{
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    animation:twinkle 2s infinite alternate;
 }
 
-.glow.two {
-    right: -120px;
-    bottom: -150px;
-
-    background: rgba(100,80,255,.15);
-
-    animation-delay: 2s;
-}
-
-@keyframes glowMove {
-
-    from {
-        transform: translate(0,0) scale(1);
+@keyframes twinkle{
+    from{
+        opacity:.15;
+        transform:scale(.7);
     }
 
-    to {
-        transform: translate(100px,60px) scale(1.3);
+    to{
+        opacity:1;
+        transform:scale(1.5);
     }
-
 }
 
 
-/* Stars */
+/* =====================================================
+   MOON
+===================================================== */
 
-.stars {
-    position: absolute;
-    inset: 0;
+.moon{
+    position:absolute;
 
-    pointer-events: none;
-}
+    top:8%;
+    right:8%;
 
-.star {
-    position: absolute;
+    width:82px;
+    height:82px;
 
-    width: 3px;
-    height: 3px;
+    border-radius:50%;
 
-    background: white;
-
-    border-radius: 50%;
-
-    opacity: .7;
-
-    animation:
-        twinkle
-        2s
-        infinite
-        alternate;
-}
-
-@keyframes twinkle {
-
-    from {
-        opacity: .2;
-        transform: scale(.7);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1.5);
-    }
-
-}
-
-
-/* Balloons */
-
-.balloon {
-    position: absolute;
-
-    bottom: -180px;
-
-    width: 65px;
-    height: 82px;
-
-    border-radius: 50% 50% 48% 48%;
-
-    opacity: .85;
-
-    animation:
-        balloonUp
-        linear
-        infinite;
-}
-
-.balloon::after {
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-    top: 80px;
-
-    width: 1px;
-    height: 130px;
-
-    background: rgba(255,255,255,.5);
-}
-
-.balloon::before {
-    content: "";
-
-    position: absolute;
-
-    bottom: -7px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 0;
-    height: 0;
-
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 10px solid currentColor;
-}
-
-@keyframes balloonUp {
-
-    from {
-        transform: translateY(0) rotate(-4deg);
-    }
-
-    to {
-        transform: translateY(-125vh) rotate(8deg);
-    }
-
-}
-
-.balloon.b1 {
-    left: 7%;
-    background: #ff477e;
-    color: #ff477e;
-
-    animation-duration: 12s;
-}
-
-.balloon.b2 {
-    left: 22%;
-    background: #ffcf56;
-    color: #ffcf56;
-
-    animation-duration: 15s;
-    animation-delay: 2s;
-}
-
-.balloon.b3 {
-    right: 18%;
-    background: #8d72ff;
-    color: #8d72ff;
-
-    animation-duration: 13s;
-    animation-delay: 4s;
-}
-
-.balloon.b4 {
-    right: 5%;
-    background: #ff719c;
-    color: #ff719c;
-
-    animation-duration: 16s;
-    animation-delay: 1s;
-}
-
-
-/* Birthday card */
-
-.birthday-card {
-    position: relative;
-
-    z-index: 10;
-
-    width: min(90%, 760px);
-
-    padding: 55px 35px;
-
-    text-align: center;
-
-    background: rgba(255,255,255,.09);
-
-    border: 1px solid rgba(255,255,255,.22);
-
-    border-radius: 35px;
-
-    backdrop-filter: blur(14px);
+    background:#fffbea;
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.35),
-        inset 0 1px rgba(255,255,255,.2);
+        0 0 20px #fffbea,
+        0 0 60px rgba(255,255,220,.4);
 
-    animation:
-        birthdayAppear
-        1.3s
-        ease;
+    opacity:0;
+
+    animation:moonAppear 2s ease 1s forwards;
 }
 
-@keyframes birthdayAppear {
-
-    from {
-        opacity: 0;
-        transform: translateY(40px) scale(.95);
+@keyframes moonAppear{
+    to{
+        opacity:1;
     }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
 }
 
-.small-title {
-    font-family: Arial, sans-serif;
+.moon:after{
+    content:"";
 
-    letter-spacing: 5px;
+    position:absolute;
 
-    font-size: 13px;
+    width:82px;
+    height:82px;
 
-    color: rgba(255,255,255,.75);
+    border-radius:50%;
 
-    margin-bottom: 18px;
-}
+    background:#07091b;
 
-.cake {
-    font-size: 65px;
-
-    margin-bottom: 12px;
-
-    animation:
-        cakeBounce
-        2s
-        infinite
-        ease-in-out;
-}
-
-@keyframes cakeBounce {
-
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
-
-}
-
-#typewriter {
-    min-height: 130px;
-
-    font-size:
-        clamp(27px,5vw,48px);
-
-    line-height: 1.25;
-
-    font-weight: bold;
-
-    color: white;
-
-    text-shadow:
-        0 0 15px rgba(255,100,180,.7),
-        0 3px 10px rgba(0,0,0,.3);
-}
-
-.cursor {
-    display: inline-block;
-
-    width: 3px;
-    height: 1em;
-
-    background: #fff;
-
-    margin-left: 5px;
-
-    vertical-align: middle;
-
-    animation:
-        blink
-        .7s
-        infinite;
-}
-
-@keyframes blink {
-
-    50% {
-        opacity: 0;
-    }
-
-}
-
-.divider {
-    width: 100px;
-    height: 2px;
-
-    margin: 25px auto;
-
-    background: rgba(255,255,255,.5);
-}
-
-.from-text {
-    font-family: Arial, sans-serif;
-
-    font-size: 13px;
-
-    letter-spacing: 2px;
-
-    color: rgba(255,255,255,.7);
+    left:27px;
+    top:-11px;
 }
 
 
 /* =====================================================
-   PRANK PAGE
+   TREE SCENE
 ===================================================== */
 
-.prank-page {
-    position: fixed;
-    inset: 0;
+.tree-scene{
+    position:absolute;
 
-    z-index: 500;
+    left:0;
+    bottom:0;
 
-    display: none;
+    width:58%;
+    height:82%;
 
-    justify-content: center;
-    align-items: center;
+    transition:
+        transform 2.2s cubic-bezier(.7,0,.2,1),
+        left 2.2s cubic-bezier(.7,0,.2,1);
+}
 
-    text-align: center;
+.tree-scene.move-right{
+    left:7%;
+
+    transform:scale(.82);
+}
+
+
+/* =====================================================
+   GROUND GLOW
+===================================================== */
+
+.ground-glow{
+    position:absolute;
+
+    bottom:2%;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:330px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:rgba(255,90,140,.15);
+
+    filter:blur(25px);
+
+    opacity:0;
+
+    animation:groundAppear 2s 2s forwards;
+}
+
+@keyframes groundAppear{
+    to{
+        opacity:1;
+    }
+}
+
+
+/* =====================================================
+   TREE TRUNK
+===================================================== */
+
+.tree-trunk{
+    position:absolute;
+
+    bottom:5%;
+    left:50%;
+
+    width:42px;
+    height:0;
+
+    transform:translateX(-50%);
+
+    border-radius:45px 45px 15px 15px;
 
     background:
-        radial-gradient(
-            circle at center,
-            #ff4e8a,
-            #6e174f 45%,
-            #17001e
+        linear-gradient(
+            90deg,
+            #1b0d09,
+            #4e281a,
+            #28130c
         );
 
-    color: white;
+    box-shadow:0 0 20px rgba(0,0,0,.5);
+
+    animation:growTrunk 2.2s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-.prank-page.show {
-    display: flex;
-
-    animation:
-        prankReveal
-        1.2s
-        ease;
+@keyframes growTrunk{
+    to{
+        height:53%;
+    }
 }
 
-@keyframes prankReveal {
 
-    from {
-        opacity: 0;
-        transform: scale(1.08);
+/* =====================================================
+   BRANCHES
+===================================================== */
+
+.branch{
+    position:absolute;
+
+    height:13px;
+
+    background:#3b1d13;
+
+    border-radius:30px;
+
+    opacity:0;
+
+    transform-origin:left center;
+}
+
+.branch1{
+    width:210px;
+
+    left:50%;
+    bottom:39%;
+
+    transform:rotate(-32deg) scaleX(0);
+
+    animation:branchGrow 1.3s 1.5s forwards;
+}
+
+.branch2{
+    width:210px;
+
+    right:50%;
+    bottom:45%;
+
+    transform-origin:right center;
+
+    transform:rotate(32deg) scaleX(0);
+
+    animation:branchGrowRight 1.3s 1.7s forwards;
+}
+
+.branch3{
+    width:155px;
+
+    left:50%;
+    bottom:57%;
+
+    transform:rotate(-45deg) scaleX(0);
+
+    animation:branchGrow 1s 2s forwards;
+}
+
+.branch4{
+    width:155px;
+
+    right:50%;
+    bottom:59%;
+
+    transform-origin:right center;
+
+    transform:rotate(45deg) scaleX(0);
+
+    animation:branchGrowRight 1s 2.2s forwards;
+}
+
+.branch5{
+    width:120px;
+
+    left:50%;
+    bottom:68%;
+
+    transform:rotate(-12deg) scaleX(0);
+
+    animation:branchGrow 1s 2.3s forwards;
+}
+
+.branch6{
+    width:120px;
+
+    right:50%;
+    bottom:70%;
+
+    transform-origin:right center;
+
+    transform:rotate(12deg) scaleX(0);
+
+    animation:branchGrowRight 1s 2.4s forwards;
+}
+
+@keyframes branchGrow{
+    to{
+        opacity:1;
+        transform:rotate(-32deg) scaleX(1);
+    }
+}
+
+@keyframes branchGrowRight{
+    to{
+        opacity:1;
+        transform:rotate(32deg) scaleX(1);
+    }
+}
+
+
+/* =====================================================
+   HEART LEAVES
+===================================================== */
+
+.heart-leaf{
+    position:absolute;
+
+    width:22px;
+    height:22px;
+
+    background:#ff4c80;
+
+    transform:rotate(-45deg) scale(0);
+
+    opacity:0;
+
+    cursor:pointer;
+
+    filter:
+        drop-shadow(0 0 5px rgba(255,70,130,.7));
+
+    animation:leafGrow 1s forwards,
+              leafFloat 3s ease-in-out infinite alternate;
+}
+
+.heart-leaf:before,
+.heart-leaf:after{
+    content:"";
+
+    position:absolute;
+
+    width:22px;
+    height:22px;
+
+    background:inherit;
+
+    border-radius:50%;
+}
+
+.heart-leaf:before{
+    top:-11px;
+    left:0;
+}
+
+.heart-leaf:after{
+    left:11px;
+    top:0;
+}
+
+@keyframes leafGrow{
+
+    0%{
+        opacity:0;
+        transform:rotate(-45deg) scale(0);
     }
 
-    to {
-        opacity: 1;
-        transform: scale(1);
+    70%{
+        opacity:1;
+        transform:rotate(-45deg) scale(1.25);
     }
 
+    100%{
+        opacity:1;
+        transform:rotate(-45deg) scale(1);
+    }
 }
 
-.prank-content {
-    width: min(90%,700px);
+@keyframes leafFloat{
 
-    padding: 45px 25px;
-}
-
-.prank-emoji {
-    font-size: 75px;
-
-    margin-bottom: 15px;
-
-    animation:
-        shocked
-        1.2s
-        infinite
-        alternate;
-}
-
-@keyframes shocked {
-
-    from {
-        transform: rotate(-5deg) scale(1);
+    from{
+        margin-top:-3px;
     }
 
-    to {
-        transform: rotate(5deg) scale(1.08);
+    to{
+        margin-top:4px;
     }
-
 }
 
-.prank-content h1 {
-    font-size:
-        clamp(38px,8vw,75px);
+.heart-leaf:hover{
+    transform:rotate(-45deg) scale(1.5);
 
-    line-height: 1.05;
+    filter:
+        drop-shadow(0 0 10px #ff4778)
+        drop-shadow(0 0 25px #ff4778);
+
+    z-index:20;
+}
+
+
+/* =====================================================
+   TREE POSITIONS
+===================================================== */
+
+.leaf1{left:38%;bottom:43%;animation-delay:3.3s}
+.leaf2{left:29%;bottom:50%;animation-delay:3.5s}
+.leaf3{left:23%;bottom:58%;animation-delay:3.7s}
+.leaf4{left:35%;bottom:61%;animation-delay:3.9s}
+.leaf5{left:44%;bottom:65%;animation-delay:4.1s}
+.leaf6{left:47%;bottom:74%;animation-delay:4.3s}
+.leaf7{left:31%;bottom:70%;animation-delay:4.5s}
+.leaf8{left:19%;bottom:67%;animation-delay:4.7s}
+
+.leaf9{right:38%;bottom:46%;animation-delay:3.4s}
+.leaf10{right:29%;bottom:52%;animation-delay:3.6s}
+.leaf11{right:23%;bottom:60%;animation-delay:3.8s}
+.leaf12{right:34%;bottom:63%;animation-delay:4s}
+.leaf13{right:44%;bottom:68%;animation-delay:4.2s}
+.leaf14{right:47%;bottom:75%;animation-delay:4.4s}
+.leaf15{right:31%;bottom:71%;animation-delay:4.6s}
+.leaf16{right:19%;bottom:69%;animation-delay:4.8s}
+
+
+/* =====================================================
+   TREE INTRO
+===================================================== */
+
+.tree-intro{
+    position:absolute;
+
+    left:50%;
+    top:8%;
+
+    transform:translateX(-50%);
+
+    width:90%;
+
+    text-align:center;
+
+    z-index:50;
+
+    opacity:0;
+
+    animation:introFade 1.5s 1s forwards;
+}
+
+.tree-intro span{
+    font-family:Arial,sans-serif;
+
+    font-size:11px;
+
+    letter-spacing:6px;
+
+    color:#bfc6ff;
+}
+
+@keyframes introFade{
+    to{
+        opacity:1;
+    }
+}
+
+
+/* =====================================================
+   MESSAGE AREA
+===================================================== */
+
+.message-area{
+    position:absolute;
+
+    left:53%;
+    top:25%;
+
+    width:43%;
+
+    opacity:0;
+
+    transform:translateX(30px);
+
+    text-align:left;
+
+    z-index:100;
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+}
+
+.message-area.show{
+    opacity:1;
+
+    transform:translateX(0);
+}
+
+.lucky-title{
+    font-size:clamp(25px,4vw,45px);
+
+    line-height:1.15;
+
+    color:#fff;
 
     text-shadow:
-        0 5px 20px rgba(0,0,0,.3);
+        0 0 10px rgba(255,255,255,.3),
+        0 0 30px rgba(255,90,140,.5);
 
-    margin-bottom: 20px;
+    margin-bottom:25px;
 }
 
-.prank-content p {
-    font-family: Arial, sans-serif;
-
-    font-size: 18px;
-
-    color: rgba(255,255,255,.8);
-
-    margin-bottom: 30px;
+.lucky-title .pink{
+    color:#ff739a;
 }
 
-.wait-button {
-    padding: 14px 30px;
 
-    border:
-        2px solid
-        rgba(255,255,255,.7);
+/* =====================================================
+   HANDWRITING TEXT
+===================================================== */
 
-    border-radius: 50px;
+.handwriting-box{
+    position:relative;
 
-    background:
-        rgba(255,255,255,.12);
-
-    color: white;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    backdrop-filter: blur(10px);
-
-    transition: .25s;
+    min-height:210px;
 }
 
-.wait-button:hover {
-    background: white;
+.handwriting{
+    font-family:
+        "Segoe Print",
+        "Bradley Hand",
+        "Comic Sans MS",
+        cursive;
 
-    color: #8b174f;
+    font-size:clamp(17px,2.2vw,26px);
+
+    line-height:1.65;
+
+    color:#fff5f8;
+
+    text-shadow:
+        0 0 8px rgba(255,100,150,.25);
+}
+
+.writing-cursor{
+    display:inline-block;
+
+    width:2px;
+    height:1.1em;
+
+    margin-left:4px;
+
+    vertical-align:middle;
+
+    background:#ff7b9f;
+
+    box-shadow:0 0 10px #ff7b9f;
+
+    animation:cursorBlink .7s infinite;
+}
+
+@keyframes cursorBlink{
+    50%{
+        opacity:0;
+    }
+}
+
+
+/* =====================================================
+   PEN
+===================================================== */
+
+.pen{
+    position:absolute;
+
+    width:36px;
+    height:8px;
+
+    background:linear-gradient(
+        90deg,
+        #d9d9d9,
+        #fff,
+        #aaa
+    );
+
+    border-radius:10px;
+
+    opacity:0;
 
     transform:
-        translateY(-3px)
-        scale(1.04);
+        rotate(-18deg)
+        translate(-10px,10px);
+
+    transition:
+        left .1s linear,
+        top .1s linear,
+        opacity .4s;
+}
+
+.pen:before{
+    content:"";
+
+    position:absolute;
+
+    right:-9px;
+    top:2px;
+
+    width:0;
+    height:0;
+
+    border-left:10px solid #d9d9d9;
+    border-top:2px solid transparent;
+    border-bottom:2px solid transparent;
+}
+
+.pen.active{
+    opacity:1;
 }
 
 
-/* Confetti */
+/* =====================================================
+   BALLOONS
+===================================================== */
 
-.confetti {
-    position: fixed;
+.balloon-zone{
+    position:absolute;
 
-    width: 8px;
-    height: 14px;
+    inset:0;
 
-    top: -20px;
+    pointer-events:none;
 
-    z-index: 100;
+    overflow:hidden;
+
+    z-index:15;
+}
+
+.balloon{
+    position:absolute;
+
+    bottom:-150px;
+
+    width:55px;
+    height:70px;
+
+    border-radius:
+        50%
+        50%
+        45%
+        45%;
+
+    animation:balloonUp linear infinite;
+
+    opacity:.9;
+}
+
+.balloon:before{
+    content:"";
+
+    position:absolute;
+
+    bottom:-9px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:10px;
+    height:10px;
+
+    background:inherit;
+
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+}
+
+.balloon:after{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:100%;
+
+    width:1px;
+    height:170px;
+
+    background:rgba(255,255,255,.5);
+}
+
+.b1{
+    left:4%;
+    background:#ff587f;
+    animation-duration:12s;
+    animation-delay:1s;
+}
+
+.b2{
+    left:13%;
+    background:#ffd36e;
+    animation-duration:15s;
+    animation-delay:4s;
+}
+
+.b3{
+    left:27%;
+    background:#9c8cff;
+    animation-duration:13s;
+    animation-delay:2s;
+}
+
+.b4{
+    right:17%;
+    background:#ff79b0;
+    animation-duration:14s;
+    animation-delay:5s;
+}
+
+.b5{
+    right:7%;
+    background:#6de0ce;
+    animation-duration:11s;
+    animation-delay:3s;
+}
+
+.b6{
+    right:29%;
+    background:#ffd56d;
+    animation-duration:16s;
+    animation-delay:6s;
+}
+
+@keyframes balloonUp{
+
+    0%{
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(-4deg);
+    }
+
+    25%{
+        transform:
+            translateY(-30vh)
+            translateX(25px)
+            rotate(5deg);
+    }
+
+    50%{
+        transform:
+            translateY(-60vh)
+            translateX(-20px)
+            rotate(-4deg);
+    }
+
+    75%{
+        transform:
+            translateY(-90vh)
+            translateX(20px)
+            rotate(4deg);
+    }
+
+    100%{
+        transform:
+            translateY(-125vh)
+            translateX(-10px)
+            rotate(-5deg);
+    }
+}
+
+
+/* =====================================================
+   BIRTHDAY STREAMERS / JORI
+===================================================== */
+
+.streamer-zone{
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:30;
+}
+
+.streamer{
+    position:absolute;
+
+    top:-120px;
+
+    width:8px;
+    height:180px;
+
+    border-radius:20px;
+
+    transform-origin:top center;
+
+    opacity:.85;
 
     animation:
-        confettiFall
-        linear
-        forwards;
+        streamerDrop 5s ease-in-out infinite;
 }
 
-@keyframes confettiFall {
+.s1{
+    left:5%;
+    background:#ff6f91;
+    animation-delay:.2s;
+}
 
-    to {
+.s2{
+    left:11%;
+    background:#ffd166;
+    animation-delay:1s;
+}
+
+.s3{
+    left:18%;
+    background:#7de2d1;
+    animation-delay:.5s;
+}
+
+.s4{
+    right:18%;
+    background:#a88cff;
+    animation-delay:1.5s;
+}
+
+.s5{
+    right:10%;
+    background:#ff6f91;
+    animation-delay:.8s;
+}
+
+.s6{
+    right:4%;
+    background:#ffd166;
+    animation-delay:1.2s;
+}
+
+@keyframes streamerDrop{
+
+    0%,100%{
+        transform:
+            rotate(-12deg)
+            translateY(-30px);
+    }
+
+    50%{
+        transform:
+            rotate(15deg)
+            translateY(30px);
+    }
+}
+
+
+/* =====================================================
+   BIRTHDAY CONFETTI
+===================================================== */
+
+.confetti{
+    position:absolute;
+
+    width:7px;
+    height:13px;
+
+    top:-20px;
+
+    opacity:0;
+
+    animation:confettiFall linear infinite;
+
+    z-index:40;
+}
+
+@keyframes confettiFall{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translateY(0)
+            rotate(0);
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:1;
+
         transform:
             translateY(110vh)
             rotate(720deg);
     }
-
 }
 
 
 /* =====================================================
-   REAL SURPRISE — HEART TREE
+   HEART POP
 ===================================================== */
 
-.tree-page {
-    position: fixed;
-    inset: 0;
+.pop-heart{
+    position:fixed;
 
-    z-index: 700;
+    pointer-events:none;
 
-    display: none;
+    z-index:9999;
 
-    justify-content: center;
-    align-items: center;
+    font-size:20px;
 
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 50% 38%,
-            rgba(255,255,255,.12),
-            transparent 28%
-        ),
-        linear-gradient(
-            180deg,
-            #080018 0%,
-            #18002c 48%,
-            #08000f 100%
-        );
-
-    color: white;
+    animation:popHeart 1s ease forwards;
 }
 
-.tree-page.show {
-    display: flex;
+@keyframes popHeart{
 
-    animation:
-        treePageIn
-        1.4s
-        ease;
-}
-
-@keyframes treePageIn {
-
-    from {
-        opacity: 0;
-        transform: scale(1.04);
+    0%{
+        opacity:1;
+        transform:translate(0,0) scale(.5);
     }
 
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-}
-
-
-/* Moon */
-
-.tree-moon {
-    position: absolute;
-
-    top: 8%;
-    right: 10%;
-
-    width: 105px;
-    height: 105px;
-
-    border-radius: 50%;
-
-    background: #fff8e8;
-
-    box-shadow:
-        0 0 35px rgba(255,248,232,.35),
-        0 0 100px rgba(255,248,232,.12);
-
-    opacity: .9;
-}
-
-.tree-moon::after {
-    content: "";
-
-    position: absolute;
-
-    top: -8px;
-    left: 18px;
-
-    width: 105px;
-    height: 105px;
-
-    border-radius: 50%;
-
-    background: #0d001d;
-}
-
-
-/* Tree stars */
-
-.tree-stars {
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-}
-
-.tree-star {
-    position: absolute;
-
-    width: 3px;
-    height: 3px;
-
-    border-radius: 50%;
-
-    background: white;
-
-    opacity: .55;
-
-    animation:
-        treeTwinkle
-        var(--duration)
-        ease-in-out
-        infinite alternate;
-}
-
-@keyframes treeTwinkle {
-
-    from {
-        opacity: .15;
-        transform: scale(.6);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1.5);
-    }
-
-}
-
-
-/* Ground */
-
-.tree-ground {
-    position: absolute;
-
-    bottom: -90px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 600px;
-    height: 190px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(255,61,145,.20),
-            transparent 68%
-        );
-
-    filter: blur(12px);
-}
-
-
-/* Tree */
-
-.tree-wrapper {
-    position: absolute;
-
-    left: 50%;
-    bottom: 3%;
-
-    width: min(760px,100vw);
-    height: 73vh;
-
-    transform: translateX(-50%);
-
-    cursor: pointer;
-}
-
-
-/* Trunk */
-
-.tree-trunk {
-    position: absolute;
-
-    left: 50%;
-    bottom: 0;
-
-    width: 28px;
-    height: 45%;
-
-    transform:
-        translateX(-50%)
-        rotate(-1deg);
-
-    transform-origin: bottom center;
-
-    background:
-        linear-gradient(
-            90deg,
-            #24100d,
-            #54241b,
-            #2a100e
-        );
-
-    border-radius:
-        45% 55% 20% 20%;
-
-    box-shadow:
-        0 0 20px rgba(0,0,0,.5);
-
-    animation:
-        treeGrow
-        1.8s
-        ease-out;
-}
-
-@keyframes treeGrow {
-
-    from {
-        height: 0;
-        opacity: 0;
-    }
-
-    to {
-        height: 45%;
-        opacity: 1;
-    }
-
-}
-
-
-/* Branches */
-
-.branch {
-    position: absolute;
-
-    height: 13px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #29120f,
-            #5b271d
-        );
-
-    border-radius: 20px;
-
-    transform-origin: left center;
-
-    animation:
-        branchGrow
-        1.5s
-        ease-out
-        backwards;
-}
-
-.branch.b1 {
-    width: 240px;
-
-    left: 49%;
-    bottom: 34%;
-
-    transform: rotate(-28deg);
-
-    animation-delay: .4s;
-}
-
-.branch.b2 {
-    width: 230px;
-
-    left: 50%;
-    bottom: 43%;
-
-    transform: rotate(28deg);
-
-    animation-delay: .55s;
-}
-
-.branch.b3 {
-    width: 170px;
-
-    left: 48%;
-    bottom: 53%;
-
-    transform: rotate(-40deg);
-
-    animation-delay: .7s;
-}
-
-.branch.b4 {
-    width: 180px;
-
-    left: 51%;
-    bottom: 57%;
-
-    transform: rotate(38deg);
-
-    animation-delay: .8s;
-}
-
-@keyframes branchGrow {
-
-    from {
+    100%{
+        opacity:0;
         transform:
-            scaleX(0)
-            rotate(0deg);
-
-        opacity: 0;
+            translate(var(--x),var(--y))
+            scale(1.4);
     }
-
-    to {
-        opacity: 1;
-    }
-
-}
-
-
-/* Heart leaves */
-
-.heart-leaf {
-    position: absolute;
-
-    width: 18px;
-    height: 18px;
-
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            #ff9bbb,
-            #ff3975 65%,
-            #b90048
-        );
-
-    transform:
-        rotate(-45deg)
-        scale(0);
-
-    border-radius:
-        50% 50% 0 50%;
-
-    filter:
-        drop-shadow(
-            0 0 6px
-            rgba(255,59,122,.55)
-        );
-
-    animation:
-        leafAppear
-        .8s
-        ease-out
-        forwards;
-
-    transition:
-        transform .25s ease,
-        filter .25s ease;
-}
-
-.heart-leaf::before,
-.heart-leaf::after {
-    content: "";
-
-    position: absolute;
-
-    width: 18px;
-    height: 18px;
-
-    background: inherit;
-
-    border-radius: 50%;
-}
-
-.heart-leaf::before {
-    top: -9px;
-    left: 0;
-}
-
-.heart-leaf::after {
-    top: 0;
-    left: 9px;
-}
-
-.heart-leaf:hover {
-    transform:
-        rotate(-45deg)
-        scale(1.5) !important;
-
-    filter:
-        drop-shadow(
-            0 0 15px
-            #ff4d91
-        );
-}
-
-@keyframes leafAppear {
-
-    to {
-        transform:
-            rotate(-45deg)
-            scale(1);
-    }
-
-}
-
-
-/* Tree message */
-
-.tree-message {
-    position: absolute;
-
-    top: 8%;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: min(90%,750px);
-
-    text-align: center;
-
-    z-index: 20;
-
-    pointer-events: none;
-}
-
-.tree-message .small-line {
-    font-family: Arial, sans-serif;
-
-    font-size: 12px;
-
-    letter-spacing: 5px;
-
-    color:
-        rgba(255,255,255,.62);
-
-    margin-bottom: 16px;
-}
-
-#treeTypewriter {
-    min-height: 75px;
-
-    font-size:
-        clamp(23px,4vw,42px);
-
-    line-height: 1.25;
-
-    font-weight: bold;
-
-    text-shadow:
-        0 0 20px
-        rgba(255,78,145,.65),
-
-        0 3px 12px
-        rgba(0,0,0,.4);
-}
-
-.tree-cursor {
-    display: inline-block;
-
-    width: 3px;
-    height: .9em;
-
-    margin-left: 5px;
-
-    background: white;
-
-    vertical-align: middle;
-
-    animation:
-        blink
-        .7s
-        infinite;
-}
-
-
-/* Countdown */
-
-.countdown-box {
-    margin-top: 18px;
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 12px;
-
-    opacity: 0;
-
-    animation:
-        countdownAppear
-        1s
-        ease
-        2s
-        forwards;
-}
-
-@keyframes countdownAppear {
-
-    to {
-        opacity: 1;
-    }
-
-}
-
-.time-unit {
-    min-width: 70px;
-
-    padding: 10px 8px;
-
-    border-radius: 15px;
-
-    background:
-        rgba(255,255,255,.07);
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    backdrop-filter: blur(8px);
-
-    box-shadow:
-        0 8px 30px
-        rgba(0,0,0,.2);
-}
-
-.time-number {
-    display: block;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 25px;
-
-    font-weight: bold;
-
-    color: #fff;
-}
-
-.time-label {
-    display: block;
-
-    margin-top: 3px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    color:
-        rgba(255,255,255,.55);
-}
-
-
-/* Hint */
-
-.tree-hint {
-    position: absolute;
-
-    bottom: 4%;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    z-index: 30;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 11px;
-
-    letter-spacing: 2px;
-
-    color:
-        rgba(255,255,255,.42);
-
-    white-space: nowrap;
-
-    animation:
-        hintPulse
-        2s
-        infinite;
-}
-
-@keyframes hintPulse {
-
-    50% {
-        opacity: .45;
-    }
-
-}
-
-
-/* Floating hearts */
-
-.floating-heart {
-    position: fixed;
-
-    font-size: 20px;
-
-    pointer-events: none;
-
-    z-index: 1000;
-
-    animation:
-        floatingHeart
-        4s
-        ease-out
-        forwards;
-}
-
-@keyframes floatingHeart {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translateY(20px)
-            scale(.4);
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translateY(-150px)
-            scale(1.2);
-    }
-
 }
 
 
@@ -1427,93 +1262,98 @@ body {
    MOBILE
 ===================================================== */
 
-@media(max-width:600px) {
+@media(max-width:700px){
 
-    .birthday-card {
-        padding: 40px 20px;
+    .moon{
+        width:58px;
+        height:58px;
+
+        right:7%;
     }
 
-    .cake {
-        font-size: 50px;
+    .moon:after{
+        width:58px;
+        height:58px;
+
+        left:19px;
+        top:-8px;
     }
 
-    #typewriter {
-        min-height: 160px;
+    .tree-scene{
+        width:100%;
+        height:58%;
+
+        bottom:0;
     }
 
-    .balloon {
-        width: 45px;
-        height: 60px;
+    .tree-scene.move-right{
+        left:-20%;
+        transform:scale(.72);
     }
 
-    .prank-content h1 {
-        font-size: 43px;
+    .tree-trunk{
+        width:31px;
     }
 
-    .tree-moon {
-        width: 70px;
-        height: 70px;
-
-        right: 7%;
+    .branch{
+        height:9px;
     }
 
-    .tree-moon::after {
-        width: 70px;
-        height: 70px;
-
-        left: 12px;
+    .branch1,
+    .branch2{
+        width:150px;
     }
 
-    .tree-wrapper {
-        height: 67vh;
+    .branch3,
+    .branch4{
+        width:105px;
     }
 
-    .tree-trunk {
-        width: 20px;
+    .branch5,
+    .branch6{
+        width:80px;
     }
 
-    .branch {
-        height: 9px;
+    .heart-leaf,
+    .heart-leaf:before,
+    .heart-leaf:after{
+        width:17px;
+        height:17px;
     }
 
-    .branch.b1 {
-        width: 150px;
+    .heart-leaf:before{
+        top:-8px;
     }
 
-    .branch.b2 {
-        width: 145px;
+    .heart-leaf:after{
+        left:8px;
     }
 
-    .branch.b3 {
-        width: 110px;
+    .message-area{
+        left:42%;
+        top:17%;
+
+        width:53%;
     }
 
-    .branch.b4 {
-        width: 115px;
+    .lucky-title{
+        font-size:25px;
     }
 
-    .countdown-box {
-        gap: 5px;
+    .handwriting{
+        font-size:15px;
+        line-height:1.55;
     }
 
-    .time-unit {
-        min-width: 57px;
-
-        padding: 8px 5px;
+    .balloon{
+        width:38px;
+        height:50px;
     }
 
-    .time-number {
-        font-size: 19px;
+    .streamer{
+        width:5px;
+        height:130px;
     }
-
-    .time-label {
-        font-size: 7px;
-    }
-
-    .tree-hint {
-        font-size: 8px;
-    }
-
 }
 
 </style>
@@ -1524,313 +1364,242 @@ body {
 
 
 <!-- =====================================================
-     LOCK SCREEN
+     PAGE 1 — LOCK
 ===================================================== -->
 
-<div class="lock-screen" id="lockScreen">
+<section id="lockPage" class="page active">
 
     <div class="lock-card">
 
-        <div class="lock-icon">
-            🔒
+        <div>
+            <span class="lock-icon">🔒</span>
+
+            <span class="lock-title">
+                Site Locked
+            </span>
         </div>
 
-        <h1>
-            Site Locked
-        </h1>
-
-        <p>
-            This little surprise is only for you. ❤️
-            <br>
-            Enter the password to unlock the magic.
+        <p class="lock-text">
+            Enter the password to unlock this
+            little birthday surprise ❤️
         </p>
 
         <button
             class="unlock-btn"
-            onclick="openPassword()">
-
+            onclick="unlockSite()"
+        >
             Unlock Now
-
         </button>
 
     </div>
 
-</div>
+</section>
 
-
-<!-- =====================================================
-     PASSWORD MODAL
-===================================================== -->
-
-<div
-    class="modal"
-    id="passwordModal">
-
-    <div class="password-box">
-
-        <h2>
-            🔐 Secret Access
-        </h2>
-
-        <p>
-            Only someone special knows the password. ❤️
-        </p>
-
-        <input
-            type="password"
-            id="passwordInput"
-            placeholder="Enter password..."
-            autocomplete="off"
-        >
-
-        <div class="modal-buttons">
-
-            <button
-                class="modal-btn cancel-btn"
-                onclick="closePassword()">
-
-                Cancel
-
-            </button>
-
-            <button
-                class="modal-btn enter-btn"
-                onclick="checkPassword()">
-
-                Enter ❤️
-
-            </button>
-
-        </div>
-
-        <div id="errorMessage"></div>
-
-    </div>
-
-</div>
 
 
 <!-- =====================================================
-     FIRST BIRTHDAY PAGE
+     PAGE 2 — FIRST WISH
 ===================================================== -->
 
-<div
-    class="birthday-page"
-    id="birthdayPage">
+<section id="wishPage" class="page">
 
-    <div class="glow one"></div>
-    <div class="glow two"></div>
+    <div class="wish-glow"></div>
 
-    <div
-        class="stars"
-        id="stars">
-    </div>
+    <div class="wish-content">
 
-    <div class="balloon b1"></div>
-    <div class="balloon b2"></div>
-    <div class="balloon b3"></div>
-    <div class="balloon b4"></div>
-
-
-    <div class="birthday-card">
-
-        <div class="small-title">
-            A LITTLE SOMETHING FOR YOU
+        <div class="wish-small">
+            A LITTLE SOMETHING FOR YOU ❤️
         </div>
 
-        <div class="cake">
-            🎂
-        </div>
+        <div
+            id="wishLine1"
+            class="type-line"
+        ></div>
 
-        <div id="typewriter"></div>
+        <div
+            id="wishLine2"
+            class="type-line"
+        ></div>
 
-        <div class="divider"></div>
-
-        <div class="from-text">
-            MADE WITH LOVE & A LITTLE BIT OF CHAOS ❤️
-        </div>
+        <div
+            id="wishLine3"
+            class="type-line"
+        ></div>
 
     </div>
 
-</div>
+</section>
+
 
 
 <!-- =====================================================
-     PRANK PAGE
+     PAGE 3 — PRANK
 ===================================================== -->
 
-<div
-    class="prank-page"
-    id="prankPage">
+<section id="surprisePage" class="page">
 
-    <div class="prank-content">
+    <div class="surprise-stars"></div>
 
-        <div class="prank-emoji">
-            😭
+    <div class="surprise-box">
+
+        <div class="surprise-title">
+            OHHH... YOU THOUGHT THAT'S IT?? 👀
         </div>
 
-        <h1>
-            OHHH...
-            <br>
-            YOU THOUGHT
-            <br>
-            THAT'S IT?!
-        </h1>
-
-        <p>
-            You really thought I made all this
-            just for that? 💀
-        </p>
+        <div class="surprise-sub">
+            You really thought I was gonna stop there? 😭❤️
+        </div>
 
         <button
-            class="wait-button"
-            onclick="continueSurprise()">
-
-            Wait... WHAT? 👀
-
+            class="wait-btn"
+            onclick="continueSurprise()"
+        >
+            WAIT... WHAT? 👀
         </button>
 
     </div>
 
-</div>
+</section>
+
 
 
 <!-- =====================================================
-     REAL SURPRISE — HEART TREE
+     PAGE 4 — MAIN CINEMATIC SURPRISE
 ===================================================== -->
 
-<div
-    class="tree-page"
-    id="treePage">
+<section id="treePage" class="page">
 
 
-    <!-- Stars -->
+    <!-- SKY -->
 
-    <div
-        class="tree-stars"
-        id="treeStars">
+    <div id="skyStars"></div>
+
+    <div class="moon"></div>
+
+
+
+    <!-- TOP INTRO -->
+
+    <div class="tree-intro">
+
+        <span>
+            SOMETHING SPECIAL IS GROWING...
+        </span>
+
+    </div>
+
+
+
+    <!-- BALLOONS -->
+
+    <div class="balloon-zone">
+
+        <div class="balloon b1"></div>
+        <div class="balloon b2"></div>
+        <div class="balloon b3"></div>
+        <div class="balloon b4"></div>
+        <div class="balloon b5"></div>
+        <div class="balloon b6"></div>
+
     </div>
 
 
-    <!-- Moon -->
 
-    <div class="tree-moon"></div>
+    <!-- STREAMERS / JORI -->
 
+    <div class="streamer-zone">
 
-    <!-- Ground -->
-
-    <div class="tree-ground"></div>
-
-
-    <!-- Main Message -->
-
-    <div class="tree-message">
-
-        <div class="small-line">
-            08 • OCTOBER
-        </div>
-
-        <div id="treeTypewriter"></div>
-
-
-        <div class="countdown-box">
-
-
-            <div class="time-unit">
-
-                <span
-                    class="time-number"
-                    id="days">
-
-                    00
-
-                </span>
-
-                <span class="time-label">
-                    DAYS
-                </span>
-
-            </div>
-
-
-            <div class="time-unit">
-
-                <span
-                    class="time-number"
-                    id="hours">
-
-                    00
-
-                </span>
-
-                <span class="time-label">
-                    HOURS
-                </span>
-
-            </div>
-
-
-            <div class="time-unit">
-
-                <span
-                    class="time-number"
-                    id="minutes">
-
-                    00
-
-                </span>
-
-                <span class="time-label">
-                    MINUTES
-                </span>
-
-            </div>
-
-
-            <div class="time-unit">
-
-                <span
-                    class="time-number"
-                    id="seconds">
-
-                    00
-
-                </span>
-
-                <span class="time-label">
-                    SECONDS
-                </span>
-
-            </div>
-
-        </div>
+        <div class="streamer s1"></div>
+        <div class="streamer s2"></div>
+        <div class="streamer s3"></div>
+        <div class="streamer s4"></div>
+        <div class="streamer s5"></div>
+        <div class="streamer s6"></div>
 
     </div>
+
 
 
     <!-- TREE -->
 
     <div
-        class="tree-wrapper"
-        id="treeWrapper"
-        onclick="treeClicked(event)">
+        id="treeScene"
+        class="tree-scene"
+    >
 
+        <div class="ground-glow"></div>
 
         <div class="tree-trunk"></div>
 
-        <div class="branch b1"></div>
-        <div class="branch b2"></div>
-        <div class="branch b3"></div>
-        <div class="branch b4"></div>
+        <div class="branch branch1"></div>
+        <div class="branch branch2"></div>
+        <div class="branch branch3"></div>
+        <div class="branch branch4"></div>
+        <div class="branch branch5"></div>
+        <div class="branch branch6"></div>
+
+
+        <!-- HEART LEAVES -->
+
+        <div class="heart-leaf leaf1"></div>
+        <div class="heart-leaf leaf2"></div>
+        <div class="heart-leaf leaf3"></div>
+        <div class="heart-leaf leaf4"></div>
+        <div class="heart-leaf leaf5"></div>
+        <div class="heart-leaf leaf6"></div>
+        <div class="heart-leaf leaf7"></div>
+        <div class="heart-leaf leaf8"></div>
+
+        <div class="heart-leaf leaf9"></div>
+        <div class="heart-leaf leaf10"></div>
+        <div class="heart-leaf leaf11"></div>
+        <div class="heart-leaf leaf12"></div>
+        <div class="heart-leaf leaf13"></div>
+        <div class="heart-leaf leaf14"></div>
+        <div class="heart-leaf leaf15"></div>
+        <div class="heart-leaf leaf16"></div>
 
     </div>
 
 
-    <div class="tree-hint">
-        ✦ TOUCH THE TREE ✦
+
+    <!-- MESSAGE -->
+
+    <div
+        id="messageArea"
+        class="message-area"
+    >
+
+        <div class="lucky-title">
+
+            The world got
+            <span class="pink">
+                luckier
+            </span>
+            the day you were born. ❤️
+
+        </div>
+
+
+        <div class="handwriting-box">
+
+            <div
+                id="handwriting"
+                class="handwriting"
+            ></div>
+
+            <div
+                id="pen"
+                class="pen"
+            ></div>
+
+        </div>
+
     </div>
 
-</div>
+
+</section>
+
 
 
 <!-- =====================================================
@@ -1839,184 +1608,318 @@ body {
 
 <audio
     id="birthdayMusic"
-    src="music/earrings.mp3"
+    loop
     preload="auto"
-    loop>
+>
+
+    <source
+        src="music/earrings.mp3"
+        type="audio/mpeg"
+    >
+
 </audio>
 
 
+
 <script>
+
+/* =====================================================
+   PAGE SWITCH
+===================================================== */
+
+function showPage(id){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page=>{
+            page.classList.remove("active");
+        });
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+}
 
 
 /* =====================================================
    PASSWORD
 ===================================================== */
 
-const correctPassword = "saba123";
+function unlockSite(){
 
+    const password =
+        prompt("Enter Password to Access the Website:");
 
-function openPassword() {
+    if(password === "saba123"){
 
-    document
-        .getElementById("passwordModal")
-        .classList.add("show");
+        showPage("wishPage");
 
-    setTimeout(() => {
+        createFloatingHearts();
 
-        document
-            .getElementById("passwordInput")
-            .focus();
+        startBirthdayWish();
 
-    }, 200);
+    }
 
-}
+    else if(password !== null){
 
-
-function closePassword() {
-
-    document
-        .getElementById("passwordModal")
-        .classList.remove("show");
-
-    document
-        .getElementById("passwordInput")
-        .value = "";
-
-    document
-        .getElementById("errorMessage")
-        .textContent = "";
-
-}
-
-
-function checkPassword() {
-
-    const input =
-        document.getElementById("passwordInput");
-
-    const error =
-        document.getElementById("errorMessage");
-
-
-    if (
-        input.value === correctPassword
-    ) {
-
-        error.style.color =
-            "#16a34a";
-
-        error.textContent =
-            "Access granted! ❤️";
-
-
-        setTimeout(() => {
-
-            document
-                .getElementById("lockScreen")
-                .style.display = "none";
-
-            document
-                .getElementById("passwordModal")
-                .classList.remove("show");
-
-
-            startBirthday();
-
-        }, 600);
-
-
-    } else {
-
-        error.style.color =
-            "#e6395b";
-
-        error.textContent =
-            "Wrong password! Try again. 🔒";
-
-        input.value = "";
-
-        input.focus();
+        alert("Wrong password 😭");
 
     }
 
 }
 
 
-/* Enter key */
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
 
-document
-    .getElementById("passwordInput")
-    .addEventListener(
-        "keydown",
-        function(event) {
+function createFloatingHearts(){
 
-            if (event.key === "Enter") {
-                checkPassword();
-            }
+    const symbols=[
+        "❤️",
+        "💗",
+        "💕",
+        "💖",
+        "✨"
+    ];
 
-            if (event.key === "Escape") {
-                closePassword();
-            }
+    for(let i=0;i<18;i++){
 
-        }
-    );
+        const heart=
+            document.createElement("div");
 
+        heart.className=
+            "floating-heart";
 
-/* Click outside modal */
+        heart.innerHTML=
+            symbols[
+                Math.floor(
+                    Math.random()*symbols.length
+                )
+            ];
 
-document
-    .getElementById("passwordModal")
-    .addEventListener(
-        "click",
-        function(event) {
+        heart.style.left=
+            Math.random()*100+"%";
 
-            if (event.target === this) {
-                closePassword();
-            }
+        heart.style.animationDuration=
+            (6+Math.random()*7)+"s";
 
-        }
-    );
+        heart.style.animationDelay=
+            Math.random()*6+"s";
+
+        heart.style.fontSize=
+            (15+Math.random()*15)+"px";
+
+        document
+            .getElementById("wishPage")
+            .appendChild(heart);
+
+    }
+
+}
 
 
 /* =====================================================
-   FIRST PAGE STARS
+   NORMAL TYPEWRITER
 ===================================================== */
 
-function createStars() {
+function typeWriter(element,text,speed=60){
 
-    const container =
-        document.getElementById("stars");
+    return new Promise(resolve=>{
 
-    container.innerHTML = "";
+        let index=0;
+
+        element.innerHTML=
+            '<span class="cursor">|</span>';
+
+        const timer=
+            setInterval(()=>{
+
+                if(index<text.length){
+
+                    element.innerHTML=
+                        text.substring(0,index+1)
+                        +
+                        '<span class="cursor">|</span>';
+
+                    index++;
+
+                }
+
+                else{
+
+                    clearInterval(timer);
+
+                    element.innerHTML=text;
+
+                    resolve();
+
+                }
+
+            },speed);
+
+    });
+
+}
 
 
-    for (
-        let i = 0;
-        i < 90;
-        i++
-    ) {
+/* =====================================================
+   FIRST WISH
+===================================================== */
 
-        const star =
+async function startBirthdayWish(){
+
+    await wait(700);
+
+    await typeWriter(
+        document.getElementById("wishLine1"),
+        "Happy Birthday to youu ❤️",
+        75
+    );
+
+    await wait(500);
+
+    await typeWriter(
+        document.getElementById("wishLine2"),
+        "Thank youu soo muchhh for coming into my lifeee 🥹💗",
+        55
+    );
+
+    await wait(500);
+
+    await typeWriter(
+        document.getElementById("wishLine3"),
+        "Happy Birthday againnn! 🎂✨",
+        70
+    );
+
+    await wait(10000);
+
+    showPage("surprisePage");
+
+}
+
+
+/* =====================================================
+   WAIT FUNCTION
+===================================================== */
+
+function wait(ms){
+
+    return new Promise(
+        resolve=>setTimeout(resolve,ms)
+    );
+
+}
+
+
+/* =====================================================
+   MAIN SURPRISE
+===================================================== */
+
+async function continueSurprise(){
+
+    showPage("treePage");
+
+    createStars();
+
+    createConfetti();
+
+    const music=
+        document.getElementById(
+            "birthdayMusic"
+        );
+
+    music.volume=.55;
+
+    music.play().catch(()=>{});
+
+
+    /*
+       STEP 1:
+       TREE GROWS
+    */
+
+    await wait(6500);
+
+
+    /*
+       STEP 2:
+       TREE MOVES TO SIDE
+    */
+
+    document
+        .getElementById("treeScene")
+        .classList.add("move-right");
+
+
+    await wait(1900);
+
+
+    /*
+       STEP 3:
+       MESSAGE APPEARS
+    */
+
+    document
+        .getElementById("messageArea")
+        .classList.add("show");
+
+
+    await wait(900);
+
+
+    /*
+       STEP 4:
+       HANDWRITING STARTS
+    */
+
+    startHandwriting();
+
+}
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+function createStars(){
+
+    const container=
+        document.getElementById(
+            "skyStars"
+        );
+
+    container.innerHTML="";
+
+    for(let i=0;i<100;i++){
+
+        const star=
             document.createElement("div");
 
-        star.className =
-            "star";
+        star.className=
+            "sky-star";
 
+        star.style.left=
+            Math.random()*100+"%";
 
-        star.style.left =
-            Math.random() * 100 + "%";
+        star.style.top=
+            Math.random()*100+"%";
 
-        star.style.top =
-            Math.random() * 100 + "%";
+        star.style.animationDelay=
+            Math.random()*3+"s";
 
+        star.style.animationDuration=
+            (1+Math.random()*3)+"s";
 
-        star.style.animationDelay =
-            Math.random() * 3 + "s";
+        const size=
+            1+Math.random()*3;
 
+        star.style.width=
+            size+"px";
 
-        star.style.animationDuration =
-            (1 + Math.random() * 2) + "s";
-
+        star.style.height=
+            size+"px";
 
         container.appendChild(star);
 
@@ -2026,168 +1929,52 @@ function createStars() {
 
 
 /* =====================================================
-   START FIRST BIRTHDAY PAGE
-===================================================== */
-
-function startBirthday() {
-
-    document
-        .getElementById("birthdayPage")
-        .classList.add("active");
-
-
-    createStars();
-
-    startTypewriter();
-
-    createConfetti();
-
-}
-
-
-/* =====================================================
-   FIRST TYPEWRITER
-===================================================== */
-
-const message =
-    "Happy Birthday to youu 🎂❤️\nThank you soo muchhh for coming into my lifeee. Happy birthday again! 🥹✨";
-
-
-function startTypewriter() {
-
-    const target =
-        document.getElementById("typewriter");
-
-    target.innerHTML = "";
-
-    let index = 0;
-
-
-    function type() {
-
-        if (
-            index < message.length
-        ) {
-
-            const character =
-                message[index];
-
-
-            if (
-                character === "\n"
-            ) {
-
-                target.innerHTML +=
-                    "<br><br>";
-
-            } else {
-
-                target.innerHTML +=
-                    character
-                        .replace(
-                            / /g,
-                            "&nbsp;"
-                        );
-
-            }
-
-
-            index++;
-
-
-            setTimeout(
-                type,
-                55
-            );
-
-        } else {
-
-            target.innerHTML +=
-                '<span class="cursor"></span>';
-
-
-            /*
-               10 seconds after
-               complete message.
-            */
-
-            setTimeout(
-                showPrank,
-                10000
-            );
-
-        }
-
-    }
-
-
-    type();
-
-}
-
-
-/* =====================================================
    CONFETTI
 ===================================================== */
 
-function createConfetti() {
+function createConfetti(){
 
-    for (
-        let i = 0;
-        i < 70;
-        i++
-    ) {
+    const page=
+        document.getElementById(
+            "treePage"
+        );
 
-        setTimeout(() => {
+    const colors=[
+        "#ff6f91",
+        "#ffd166",
+        "#7de2d1",
+        "#a88cff",
+        "#ffffff"
+    ];
 
-            const piece =
-                document.createElement("div");
+    for(let i=0;i<35;i++){
 
-            piece.className =
-                "confetti";
+        const piece=
+            document.createElement("div");
 
+        piece.className=
+            "confetti";
 
-            piece.style.left =
-                Math.random() * 100 + "vw";
+        piece.style.left=
+            Math.random()*100+"%";
 
+        piece.style.background=
+            colors[
+                Math.floor(
+                    Math.random()*colors.length
+                )
+            ];
 
-            piece.style.animationDuration =
-                (3 + Math.random() * 4) + "s";
+        piece.style.animationDuration=
+            (5+Math.random()*7)+"s";
 
+        piece.style.animationDelay=
+            Math.random()*7+"s";
 
-            piece.style.transform =
-                `rotate(
-                    ${Math.random() * 360}deg
-                )`;
+        piece.style.transform=
+            "rotate("+Math.random()*360+"deg)";
 
-
-            piece.style.background =
-                [
-                    "#ff4d70",
-                    "#ffd166",
-                    "#ffffff",
-                    "#c77dff",
-                    "#70e1f5"
-                ][
-                    Math.floor(
-                        Math.random() * 5
-                    )
-                ];
-
-
-            document.body.appendChild(
-                piece
-            );
-
-
-            setTimeout(() => {
-
-                piece.remove();
-
-            },7000);
-
-
-        }, i * 45);
+        page.appendChild(piece);
 
     }
 
@@ -2195,543 +1982,325 @@ function createConfetti() {
 
 
 /* =====================================================
-   SHOW PRANK
+   HANDWRITING TYPEWRITER
 ===================================================== */
 
-function showPrank() {
+async function startHandwriting(){
 
-    document
-        .getElementById("prankPage")
-        .classList.add("show");
-
-
-    createConfetti();
-
-}
-
-
-/* =====================================================
-   CONTINUE TO REAL SURPRISE
-===================================================== */
-
-function continueSurprise() {
-
-    /*
-       Hide prank page.
-    */
-
-    document
-        .getElementById("prankPage")
-        .classList.remove("show");
-
-
-    /*
-       Show heart tree page.
-    */
-
-    document
-        .getElementById("treePage")
-        .classList.add("show");
-
-
-    /*
-       Start Earrings.
-    */
-
-    const music =
+    const textElement=
         document.getElementById(
-            "birthdayMusic"
+            "handwriting"
         );
 
-
-    music.volume = 0.65;
-
-
-    music.play().catch(() => {
-
-        console.log(
-            "Music playback was blocked."
-        );
-
-    });
-
-
-    /*
-       Start everything.
-    */
-
-    createTreeStars();
-
-    createHeartLeaves();
-
-    startTreeTypewriter();
-
-    startBirthdayCountdown();
-
-}
-
-
-/* =====================================================
-   TREE STARS
-===================================================== */
-
-function createTreeStars() {
-
-    const container =
+    const pen=
         document.getElementById(
-            "treeStars"
+            "pen"
         );
 
 
-    container.innerHTML = "";
+    const lines=[
 
+        "Happy Birthday to youu ❤️",
 
-    for (
-        let i = 0;
-        i < 120;
-        i++
-    ) {
+        "The one of the sweetest and chaotic person in my lifee. 🥹",
 
-        const star =
-            document.createElement(
-                "div"
-            );
+        "Many many happy returns of the dayyy! 🎂",
 
-
-        star.className =
-            "tree-star";
-
-
-        star.style.left =
-            Math.random() * 100 + "%";
-
-
-        star.style.top =
-            Math.random() * 100 + "%";
-
-
-        star.style.setProperty(
-            "--duration",
-            (1 + Math.random() * 3) + "s"
-        );
-
-
-        star.style.animationDelay =
-            Math.random() * 3 + "s";
-
-
-        container.appendChild(
-            star
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   HEART LEAVES
-===================================================== */
-
-function createHeartLeaves() {
-
-    const tree =
-        document.getElementById(
-            "treeWrapper"
-        );
-
-
-    const leaves = [
-
-        [38,31],
-        [43,26],
-        [48,32],
-        [54,27],
-        [59,34],
-
-        [34,39],
-        [40,37],
-        [47,39],
-        [55,37],
-        [63,41],
-
-        [31,48],
-        [38,45],
-        [45,46],
-        [52,44],
-        [60,47],
-        [67,50],
-
-        [35,55],
-        [42,52],
-        [49,53],
-        [57,54],
-        [63,57],
-
-        [40,61],
-        [47,59],
-        [54,61],
-
-        [45,67],
-        [51,65]
+        "Stay exactly the way you are. ❤️"
 
     ];
 
 
-    leaves.forEach(
-        (position,index) => {
-
-            const leaf =
-                document.createElement(
-                    "div"
-                );
+    pen.classList.add("active");
 
 
-            leaf.className =
-                "heart-leaf";
+    for(let line of lines){
+
+        await writeHandLine(
+            textElement,
+            pen,
+            line
+        );
+
+        await wait(500);
+
+        textElement.innerHTML+="<br>";
+
+    }
 
 
-            leaf.style.left =
-                position[0] + "%";
+    pen.classList.remove("active");
+
+}
 
 
-            leaf.style.bottom =
-                position[1] + "%";
+/* =====================================================
+   REAL-TIME WRITING EFFECT
+===================================================== */
+
+function writeHandLine(
+    element,
+    pen,
+    text
+){
+
+    return new Promise(resolve=>{
+
+        let index=0;
+
+        const cursor=
+            document.createElement("span");
+
+        cursor.className=
+            "writing-cursor";
 
 
-            leaf.style.animationDelay =
-                (index * .06) + "s";
+        element.appendChild(cursor);
 
 
-            const size =
-                .75 +
-                Math.random() * .55;
+        const timer=
+            setInterval(()=>{
+
+                if(index<text.length){
+
+                    /*
+                       Put every new character
+                       before the cursor.
+                    */
+
+                    const char=
+                        document.createTextNode(
+                            text[index]
+                        );
+
+                    element.insertBefore(
+                        char,
+                        cursor
+                    );
+
+                    index++;
 
 
-            leaf.style.width =
-                18 * size + "px";
+                    /*
+                       Move the pen slightly
+                       while writing.
+                    */
+
+                    pen.style.transform=
+                        "rotate(-18deg) translate("
+                        +
+                        (index*2)
+                        +
+                        "px,10px)";
 
 
-            leaf.style.height =
-                18 * size + "px";
+                }
 
+                else{
+
+                    clearInterval(timer);
+
+                    cursor.remove();
+
+                    resolve();
+
+                }
+
+            },65);
+
+    });
+
+}
+
+
+/* =====================================================
+   HEART INTERACTION
+===================================================== */
+
+function activateHeartLeaves(){
+
+    document
+        .querySelectorAll(".heart-leaf")
+        .forEach(leaf=>{
 
             leaf.addEventListener(
                 "click",
-                function(event) {
+                function(){
 
-                    event.stopPropagation();
+                    const rect=
+                        leaf.getBoundingClientRect();
+
+                    const x=
+                        rect.left+
+                        rect.width/2;
+
+                    const y=
+                        rect.top+
+                        rect.height/2;
 
 
-                    popHeart(
-                        event.clientX,
-                        event.clientY
-                    );
+                    for(let i=0;i<10;i++){
+
+                        const heart=
+                            document.createElement(
+                                "div"
+                            );
+
+                        heart.className=
+                            "pop-heart";
+
+                        heart.innerHTML=
+                            Math.random()>.4
+                            ? "❤️"
+                            : "✨";
+
+                        heart.style.left=
+                            x+"px";
+
+                        heart.style.top=
+                            y+"px";
+
+                        heart.style.setProperty(
+                            "--x",
+                            (
+                                Math.random()*150-75
+                            )+"px"
+                        );
+
+                        heart.style.setProperty(
+                            "--y",
+                            (
+                                Math.random()*150-100
+                            )+"px"
+                        );
+
+                        document
+                            .body
+                            .appendChild(heart);
+
+
+                        setTimeout(
+                            ()=>heart.remove(),
+                            1000
+                        );
+
+                    }
+
+
+                    leaf.style.filter=
+                        `
+                        drop-shadow(0 0 12px #fff)
+                        drop-shadow(0 0 30px #ff4778)
+                        `;
+
+
+                    setTimeout(()=>{
+
+                        leaf.style.filter=
+                            `
+                            drop-shadow(
+                                0 0 5px
+                                rgba(255,60,120,.6)
+                            )
+                            `;
+
+                    },700);
 
                 }
             );
 
-
-            tree.appendChild(
-                leaf
-            );
-
-        }
-    );
+        });
 
 }
 
 
 /* =====================================================
-   POP HEART
+   MOUSE HEART TRAIL
 ===================================================== */
 
-function popHeart(x,y) {
+let lastTrail=0;
 
-    const heart =
-        document.createElement(
-            "div"
+document.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(
+            !document
+                .getElementById("treePage")
+                .classList
+                .contains("active")
+        ){
+            return;
+        }
+
+        const now=
+            Date.now();
+
+        if(now-lastTrail<140){
+            return;
+        }
+
+        lastTrail=now;
+
+
+        const heart=
+            document.createElement("div");
+
+        heart.className=
+            "pop-heart";
+
+        heart.innerHTML=
+            Math.random()>.5
+            ? "♡"
+            : "✨";
+
+        heart.style.left=
+            e.clientX+"px";
+
+        heart.style.top=
+            e.clientY+"px";
+
+        heart.style.fontSize="12px";
+
+        heart.style.setProperty(
+            "--x",
+            (Math.random()*30-15)+"px"
         );
 
-
-    heart.className =
-        "floating-heart";
-
-
-    heart.textContent =
-        [
-            "❤️",
-            "💗",
-            "💕",
-            "💖",
-            "💘"
-        ][
-            Math.floor(
-                Math.random() * 5
-            )
-        ];
-
-
-    heart.style.left =
-        x + "px";
-
-
-    heart.style.top =
-        y + "px";
-
-
-    document.body.appendChild(
-        heart
-    );
-
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    },4000);
-
-}
-
-
-/* =====================================================
-   CLICK TREE
-===================================================== */
-
-function treeClicked(event) {
-
-    /*
-       Clicking anywhere on the tree
-       creates floating hearts.
-    */
-
-    for (
-        let i = 0;
-        i < 5;
-        i++
-    ) {
-
-        setTimeout(() => {
-
-            popHeart(
-                event.clientX +
-                (
-                    Math.random() * 80 - 40
-                ),
-
-                event.clientY +
-                (
-                    Math.random() * 40 - 20
-                )
-            );
-
-        },i * 100);
-
-    }
-
-}
-
-
-/* =====================================================
-   TREE TYPEWRITER
-===================================================== */
-
-function startTreeTypewriter() {
-
-    const target =
-        document.getElementById(
-            "treeTypewriter"
+        heart.style.setProperty(
+            "--y",
+            (-20-Math.random()*20)+"px"
         );
 
-
-    target.innerHTML = "";
-
-
-    const message =
-        "The world just got luckier since you were born. ❤️";
+        document
+            .body
+            .appendChild(heart);
 
 
-    let index = 0;
-
-
-    function type() {
-
-        if (
-            index < message.length
-        ) {
-
-            target.innerHTML +=
-                message[index]
-                    .replace(
-                        / /g,
-                        "&nbsp;"
-                    );
-
-
-            index++;
-
-
-            setTimeout(
-                type,
-                65
-            );
-
-        } else {
-
-            target.innerHTML +=
-                '<span class="tree-cursor"></span>';
-
-        }
+        setTimeout(
+            ()=>heart.remove(),
+            1000
+        );
 
     }
-
-
-    type();
-
-}
+);
 
 
 /* =====================================================
-   OCTOBER 8 COUNTDOWN
+   START TREE INTERACTION
 ===================================================== */
 
-function startBirthdayCountdown() {
-
-    function updateCountdown() {
-
-        const now =
-            new Date();
+activateHeartLeaves();
 
 
-        /*
-           October = month 9
-           because JavaScript starts
-           counting months from 0.
-        */
+/* =====================================================
+   PREVENT DRAGGING
+===================================================== */
 
-        let target =
-            new Date(
-                now.getFullYear(),
-                9,
-                8,
-                0,
-                0,
-                0
-            );
-
-
-        /*
-           If October 8 has passed,
-           count toward next year's
-           October 8.
-        */
-
-        if (
-            target <= now
-        ) {
-
-            target =
-                new Date(
-                    now.getFullYear() + 1,
-                    9,
-                    8,
-                    0,
-                    0,
-                    0
-                );
-
-        }
-
-
-        const difference =
-            target - now;
-
-
-        const days =
-            Math.floor(
-                difference /
-                (
-                    1000 *
-                    60 *
-                    60 *
-                    24
-                )
-            );
-
-
-        const hours =
-            Math.floor(
-                (
-                    difference /
-                    (
-                        1000 *
-                        60 *
-                        60
-                    )
-                ) % 24
-            );
-
-
-        const minutes =
-            Math.floor(
-                (
-                    difference /
-                    (
-                        1000 *
-                        60
-                    )
-                ) % 60
-            );
-
-
-        const seconds =
-            Math.floor(
-                (
-                    difference /
-                    1000
-                ) % 60
-            );
-
-
-        document
-            .getElementById("days")
-            .textContent =
-            String(days)
-                .padStart(2,"0");
-
-
-        document
-            .getElementById("hours")
-            .textContent =
-            String(hours)
-                .padStart(2,"0");
-
-
-        document
-            .getElementById("minutes")
-            .textContent =
-            String(minutes)
-                .padStart(2,"0");
-
-
-        document
-            .getElementById("seconds")
-            .textContent =
-            String(seconds)
-                .padStart(2,"0");
-
-    }
-
-
-    updateCountdown();
-
-
-    setInterval(
-        updateCountdown,
-        1000
-    );
-
-}
+document.addEventListener(
+    "dragstart",
+    e=>e.preventDefault()
+);
 
 </script>
 
