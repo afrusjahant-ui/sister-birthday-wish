@@ -1,826 +1,2329 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
 <title>Birthday Surprise ❤️</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
-    overflow:hidden;
-    font-family:Georgia,serif;
 }
 
 body{
-    background:#090015;
+    overflow:hidden;
+    background:#07000d;
     color:white;
+    font-family:Georgia, "Times New Roman", serif;
 }
 
-/* =========================
-   COMMON PAGE
-========================= */
+button{
+    font-family:inherit;
+}
 
 .page{
     width:100%;
     height:100vh;
-    display:none;
+    min-height:100vh;
     position:relative;
     overflow:hidden;
+    display:none;
 }
 
 .page.active{
     display:flex;
 }
 
-/* =========================
-   PAGE 1 - LOCK
-========================= */
+
+/* =========================================================
+   GENERAL GLOW
+========================================================= */
+
+.glow-orb{
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(50px);
+    opacity:.25;
+}
+
+
+/* =========================================================
+   PAGE 1
+   LOCK / SECURITY
+========================================================= */
 
 #lockPage{
+
     align-items:center;
     justify-content:center;
+
     background:
-        radial-gradient(circle at 20% 20%,rgba(255,100,180,.25),transparent 30%),
-        radial-gradient(circle at 80% 80%,rgba(120,80,255,.3),transparent 35%),
-        linear-gradient(135deg,#12001f,#260035,#080015);
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,80,170,.25),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(100,70,255,.30),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,255,255,.05),
+            transparent 50%
+        ),
+
+        linear-gradient(
+            135deg,
+            #100018,
+            #28002f,
+            #08000f
+        );
 }
 
 .lock-glow{
     position:absolute;
-    width:500px;
-    height:500px;
-    background:radial-gradient(circle,rgba(255,80,170,.15),transparent 65%);
+
+    width:600px;
+    height:600px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,70,160,.18),
+            transparent 65%
+        );
+
     filter:blur(20px);
+
+    animation:
+        lockGlow 5s ease-in-out infinite;
+}
+
+@keyframes lockGlow{
+
+    0%{
+        transform:scale(.9);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.15);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(.9);
+        opacity:.5;
+    }
 }
 
 .lock-card{
+
     position:relative;
-    z-index:2;
-    width:min(90%,420px);
+
+    width:min(90%,430px);
+
     padding:45px 30px;
-    border-radius:30px;
+
+    border-radius:32px;
+
     text-align:center;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.2);
-    box-shadow:0 0 60px rgba(255,80,180,.25);
-    backdrop-filter:blur(15px);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.04)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+
+        0 25px 80px rgba(0,0,0,.5),
+
+        0 0 50px
+        rgba(255,70,170,.15);
+
+    z-index:10;
+
+    animation:
+        cardEntrance 1.2s ease;
+}
+
+@keyframes cardEntrance{
+
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 .lock-icon{
-    font-size:70px;
+
+    font-size:72px;
+
     margin-bottom:20px;
-    animation:lockFloat 2s ease-in-out infinite;
+
+    display:inline-block;
+
+    animation:
+        lockFloat 2.2s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(255,100,190,.6)
+        );
 }
 
 @keyframes lockFloat{
-    50%{transform:translateY(-10px) rotate(-3deg);}
+
+    0%{
+        transform:translateY(0) rotate(0);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(-4deg);
+    }
+
+    100%{
+        transform:translateY(0) rotate(0);
+    }
 }
 
 .lock-card h1{
+
     font-size:30px;
+
     margin-bottom:12px;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,100,180,.5);
 }
 
 .lock-card p{
-    opacity:.8;
-    margin-bottom:25px;
+
+    opacity:.75;
+
+    margin-bottom:28px;
+
+    line-height:1.6;
 }
 
 .unlock-btn{
+
     border:none;
-    padding:14px 30px;
-    border-radius:30px;
-    background:linear-gradient(135deg,#ff4fa3,#8c52ff);
+
+    padding:15px 34px;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4fa3,
+            #8755ff
+        );
+
     color:white;
+
     font-size:16px;
+
     cursor:pointer;
-    box-shadow:0 8px 25px rgba(255,60,170,.3);
+
+    box-shadow:
+        0 10px 35px
+        rgba(255,60,170,.3);
+
+    transition:
+        transform .3s,
+        box-shadow .3s;
 }
 
-/* =========================
-   PAGE 2 - WISH
-========================= */
+.unlock-btn:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+    box-shadow:
+        0 15px 45px
+        rgba(255,60,170,.5);
+}
+
+
+/* =========================================================
+   PAGE 2
+   FIRST BIRTHDAY WISH
+========================================================= */
 
 #wishPage{
+
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     background:
-        radial-gradient(circle at 15% 20%,#ff4fa855,transparent 28%),
-        radial-gradient(circle at 85% 70%,#7357ff55,transparent 30%),
-        linear-gradient(135deg,#17001f,#35002e,#10001e);
+
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,80,170,.25),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(110,70,255,.25),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            135deg,
+            #16001e,
+            #35002f,
+            #0b0015
+        );
+}
+
+#wishPage::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.03) 1px,
+            transparent 1px
+        );
+
+    background-size:40px 40px;
+
+    opacity:.35;
 }
 
 .wish-box{
-    width:min(90%,850px);
-    z-index:3;
+
+    width:min(90%,900px);
+
+    position:relative;
+
+    z-index:5;
 }
 
 .wish-line{
-    min-height:65px;
-    font-size:clamp(25px,4vw,45px);
+
+    min-height:70px;
+
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            46px
+        );
+
     line-height:1.5;
-    text-shadow:0 0 20px #ff6bb5;
+
+    color:#fff;
+
+    text-shadow:
+
+        0 0 10px
+        rgba(255,100,180,.6),
+
+        0 0 30px
+        rgba(255,80,180,.3);
 }
 
 .floating-heart{
+
     position:absolute;
+
     font-size:20px;
-    animation:heartFloat linear forwards;
+
     pointer-events:none;
+
+    animation:
+        heartFloat linear forwards;
+
+    z-index:2;
 }
 
 @keyframes heartFloat{
+
     from{
-        transform:translateY(110vh) scale(.5);
+
+        transform:
+            translateY(110vh)
+            scale(.4)
+            rotate(0deg);
+
         opacity:0;
     }
-    15%{opacity:1;}
+
+    15%{
+        opacity:1;
+    }
+
     to{
-        transform:translateY(-20vh) scale(1.3);
+
+        transform:
+            translateY(-20vh)
+            scale(1.3)
+            rotate(25deg);
+
         opacity:0;
     }
 }
 
-/* =========================
-   PAGE 3 - PRANK
-========================= */
+
+/* =========================================================
+   PAGE 3
+   PRANK
+========================================================= */
 
 #surprisePage{
+
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     background:
-        radial-gradient(circle at 50% 40%,rgba(255,100,180,.18),transparent 35%),
-        linear-gradient(135deg,#100018,#25002d,#090014);
+
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255,100,180,.18),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(100,80,255,.16),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #100018,
+            #25002d,
+            #08000f
+        );
 }
 
 .prank-content{
-    z-index:5;
+
+    position:relative;
+
+    z-index:10;
+
+    width:90%;
 }
 
 .prank-content h1{
-    font-size:clamp(30px,6vw,70px);
-    animation:prankGlow 2s infinite alternate;
+
+    font-size:
+        clamp(
+            30px,
+            6vw,
+            72px
+        );
+
+    line-height:1.2;
+
+    animation:
+        prankGlow 2s
+        ease-in-out
+        infinite alternate;
 }
 
 @keyframes prankGlow{
-    from{text-shadow:0 0 10px #ff4fa3;}
-    to{text-shadow:0 0 35px #ff4fa3,0 0 70px #a64dff;}
+
+    from{
+
+        text-shadow:
+            0 0 10px
+            rgba(255,80,170,.5);
+    }
+
+    to{
+
+        text-shadow:
+
+            0 0 15px
+            rgba(255,80,170,.8),
+
+            0 0 40px
+            rgba(255,70,170,.5),
+
+            0 0 80px
+            rgba(130,70,255,.3);
+    }
 }
 
 .wait-btn{
+
     margin-top:40px;
-    padding:16px 35px;
+
+    padding:17px 38px;
+
     border:none;
-    border-radius:40px;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4f9a,
+            #7952ff
+        );
+
     color:white;
-    background:linear-gradient(135deg,#ff4f9a,#7b4dff);
+
     font-size:18px;
+
     cursor:pointer;
-    box-shadow:0 0 30px #ff4f9a66;
-    transition:.3s;
+
+    box-shadow:
+        0 0 35px
+        rgba(255,70,160,.3);
+
+    transition:.35s;
 }
 
 .wait-btn:hover{
-    transform:scale(1.08);
+
+    transform:
+        scale(1.08)
+        translateY(-3px);
+
+    box-shadow:
+        0 0 50px
+        rgba(255,70,160,.5);
 }
 
-/* =========================
-   PAGE 4 - TREE
-========================= */
+
+/* =========================================================
+   PAGE 4
+   CINEMATIC TREE
+========================================================= */
 
 #treePage{
+
     background:
-        radial-gradient(circle at 50% 20%,#302052 0%,transparent 30%),
-        linear-gradient(180deg,#070013 0%,#100021 55%,#05000d 100%);
+
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(70,40,110,.65),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 20% 70%,
+            rgba(100,20,70,.12),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #05000d 0%,
+            #10001f 50%,
+            #040008 100%
+        );
 }
+
+
+/* =========================================================
+   MOON
+========================================================= */
 
 .moon{
+
     position:absolute;
-    top:8%;
-    right:9%;
-    width:100px;
-    height:100px;
+
+    top:7%;
+    right:8%;
+
+    width:105px;
+    height:105px;
+
     border-radius:50%;
-    background:#fff4cf;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #fff4cf 55%,
+            #e9dca9 100%
+        );
+
     box-shadow:
-        0 0 30px #fff3bb,
-        0 0 90px rgba(255,240,180,.35);
+
+        0 0 25px
+        rgba(255,245,200,.8),
+
+        0 0 70px
+        rgba(255,240,180,.4),
+
+        0 0 140px
+        rgba(255,240,180,.18);
+
+    z-index:1;
+
+    animation:
+        moonPulse 4s
+        ease-in-out
+        infinite;
 }
 
+@keyframes moonPulse{
+
+    0%,
+    100%{
+        box-shadow:
+            0 0 25px rgba(255,245,200,.8),
+            0 0 70px rgba(255,240,180,.4);
+    }
+
+    50%{
+        box-shadow:
+            0 0 35px rgba(255,245,200,.95),
+            0 0 100px rgba(255,240,180,.55);
+    }
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
 .star{
+
     position:absolute;
+
     width:3px;
     height:3px;
+
     border-radius:50%;
+
     background:white;
-    box-shadow:0 0 8px white;
-    animation:starTwinkle 2s infinite alternate;
+
+    box-shadow:
+        0 0 8px white;
+
+    animation:
+        starTwinkle
+        1.5s
+        ease-in-out
+        infinite
+        alternate;
+
+    z-index:1;
 }
 
 @keyframes starTwinkle{
-    from{opacity:.2;transform:scale(.7);}
-    to{opacity:1;transform:scale(1.5);}
+
+    from{
+        opacity:.2;
+        transform:scale(.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.6);
+    }
 }
 
-/* tree container */
+
+/* =========================================================
+   TREE SCENE
+========================================================= */
 
 .tree-scene{
+
     position:absolute;
+
     left:0;
+
     bottom:0;
-    width:58%;
-    height:82%;
-    transition:
-        left 2.2s cubic-bezier(.2,.8,.2,1),
-        transform 2.2s cubic-bezier(.2,.8,.2,1);
+
+    width:61%;
+
+    height:84%;
+
     z-index:5;
+
+    transition:
+
+        left 2.4s
+        cubic-bezier(.18,.85,.22,1),
+
+        transform 2.4s
+        cubic-bezier(.18,.85,.22,1);
 }
 
 .tree-scene.move-right{
-    left:25%;
-    transform:scale(.95);
+
+    left:27%;
+
+    transform:scale(.94);
 }
 
-/* ground */
+
+/* =========================================================
+   GROUND
+========================================================= */
 
 .ground{
+
     position:absolute;
-    bottom:-20px;
-    left:5%;
-    width:90%;
-    height:90px;
+
+    bottom:-25px;
+
+    left:3%;
+
+    width:94%;
+
+    height:100px;
+
     border-radius:50%;
-    background:radial-gradient(ellipse,rgba(255,75,150,.25),transparent 70%);
+
+    background:
+
+        radial-gradient(
+            ellipse,
+            rgba(255,60,150,.22),
+            transparent 68%
+        );
+
+    filter:blur(3px);
 }
 
-/* trunk */
+
+/* =========================================================
+   TREE TRUNK
+========================================================= */
 
 .trunk{
+
     position:absolute;
+
     bottom:5%;
+
     left:46%;
-    width:70px;
+
+    width:75px;
+
     height:0;
-    border-radius:45px 45px 10px 10px;
-    background:linear-gradient(90deg,#32130e,#713a1e,#3b1710);
-    box-shadow:0 0 20px rgba(255,100,60,.18);
-    transform:translateX(-50%);
-    animation:trunkGrow 3s ease forwards;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        50px 50px
+        15px 15px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #24100c,
+            #542617,
+            #8b4b25,
+            #4a2115,
+            #21100c
+        );
+
+    box-shadow:
+
+        0 0 20px
+        rgba(255,100,50,.12),
+
+        inset
+        5px 0 8px
+        rgba(255,255,255,.05);
+
     transform-origin:bottom;
+
+    animation:
+        trunkGrow
+        3s
+        ease
+        forwards;
 }
 
 @keyframes trunkGrow{
-    to{height:58%;}
+
+    from{
+        height:0;
+    }
+
+    to{
+        height:59%;
+    }
 }
 
-/* branches */
+
+/* =========================================================
+   BRANCHES
+========================================================= */
 
 .branch{
+
     position:absolute;
-    height:20px;
+
+    height:19px;
+
     width:0;
-    background:linear-gradient(90deg,#3b1710,#784020);
-    border-radius:20px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2d120c,
+            #6e361d,
+            #3b180f
+        );
+
     transform-origin:left center;
+
     z-index:2;
 }
 
 .branch.b1{
+
     left:47%;
-    bottom:40%;
-    animation:branch1 1.5s 2.7s forwards;
+    bottom:39%;
+
+    animation:
+        branch1
+        1.5s
+        2.7s
+        forwards;
 }
 
 .branch.b2{
+
     left:48%;
-    bottom:47%;
-    animation:branch2 1.5s 2.9s forwards;
+    bottom:46%;
+
+    animation:
+        branch2
+        1.5s
+        2.9s
+        forwards;
 }
 
 .branch.b3{
+
     left:46%;
-    bottom:54%;
-    animation:branch3 1.5s 3.1s forwards;
+    bottom:53%;
+
+    animation:
+        branch3
+        1.5s
+        3.1s
+        forwards;
 }
 
 .branch.b4{
+
     left:50%;
-    bottom:60%;
-    animation:branch4 1.5s 3.3s forwards;
+    bottom:59%;
+
+    animation:
+        branch4
+        1.5s
+        3.3s
+        forwards;
 }
 
 .branch.b5{
+
     left:45%;
-    bottom:65%;
-    animation:branch5 1.5s 3.5s forwards;
+    bottom:64%;
+
+    animation:
+        branch5
+        1.5s
+        3.5s
+        forwards;
 }
 
 .branch.b6{
+
     left:49%;
-    bottom:70%;
-    animation:branch6 1.5s 3.7s forwards;
+    bottom:69%;
+
+    animation:
+        branch6
+        1.5s
+        3.7s
+        forwards;
+}
+
+.branch.b7{
+
+    left:45%;
+    bottom:73%;
+
+    animation:
+        branch7
+        1.5s
+        3.9s
+        forwards;
+}
+
+.branch.b8{
+
+    left:49%;
+    bottom:76%;
+
+    animation:
+        branch8
+        1.5s
+        4.1s
+        forwards;
 }
 
 @keyframes branch1{
-    to{width:210px;transform:rotate(-28deg);}
-}
-@keyframes branch2{
-    to{width:190px;transform:rotate(28deg);}
-}
-@keyframes branch3{
-    to{width:180px;transform:rotate(-42deg);}
-}
-@keyframes branch4{
-    to{width:170px;transform:rotate(40deg);}
-}
-@keyframes branch5{
-    to{width:150px;transform:rotate(-20deg);}
-}
-@keyframes branch6{
-    to{width:140px;transform:rotate(25deg);}
+
+    to{
+        width:220px;
+        transform:rotate(-29deg);
+    }
 }
 
-/* =========================
-   MANY HEART LEAVES
-========================= */
+@keyframes branch2{
+
+    to{
+        width:205px;
+        transform:rotate(29deg);
+    }
+}
+
+@keyframes branch3{
+
+    to{
+        width:190px;
+        transform:rotate(-42deg);
+    }
+}
+
+@keyframes branch4{
+
+    to{
+        width:185px;
+        transform:rotate(42deg);
+    }
+}
+
+@keyframes branch5{
+
+    to{
+        width:170px;
+        transform:rotate(-22deg);
+    }
+}
+
+@keyframes branch6{
+
+    to{
+        width:165px;
+        transform:rotate(24deg);
+    }
+}
+
+@keyframes branch7{
+
+    to{
+        width:145px;
+        transform:rotate(-12deg);
+    }
+}
+
+@keyframes branch8{
+
+    to{
+        width:135px;
+        transform:rotate(15deg);
+    }
+}
+
+
+/* =========================================================
+   HEART LEAVES
+========================================================= */
 
 .heart-leaf{
+
     position:absolute;
-    width:27px;
-    height:27px;
-    background:linear-gradient(135deg,#ff4f9a,#ff87bd);
-    transform:rotate(-45deg) scale(0);
+
+    width:26px;
+    height:26px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ff3f91,
+            #ff75b6
+        );
+
+    transform:
+        rotate(-45deg)
+        scale(0);
+
     opacity:0;
+
     z-index:4;
-    box-shadow:0 0 15px rgba(255,80,160,.65);
-    animation:leafAppear .8s cubic-bezier(.17,.89,.32,1.49) forwards;
+
+    box-shadow:
+        0 0 13px
+        rgba(255,70,160,.75),
+
+        0 0 30px
+        rgba(255,70,160,.25);
+
+    animation:
+        leafAppear
+        .75s
+        cubic-bezier(
+            .17,
+            .89,
+            .32,
+            1.49
+        )
+        forwards;
+
+    cursor:pointer;
+
+    transition:
+        filter .2s;
+}
+
+.heart-leaf:hover{
+
+    filter:
+        brightness(1.5)
+        drop-shadow(
+            0 0 12px
+            #ff8bc8
+        );
 }
 
 .heart-leaf::before,
 .heart-leaf::after{
+
     content:"";
+
     position:absolute;
-    width:27px;
-    height:27px;
+
+    width:26px;
+    height:26px;
+
     border-radius:50%;
+
     background:inherit;
 }
 
 .heart-leaf::before{
+
     top:-13px;
     left:0;
 }
 
 .heart-leaf::after{
-    left:13px;
+
     top:0;
+    left:13px;
 }
 
 @keyframes leafAppear{
+
     0%{
-        transform:rotate(-45deg) scale(0);
+
+        transform:
+            rotate(-45deg)
+            scale(0);
+
         opacity:0;
     }
-    70%{
-        transform:rotate(-45deg) scale(1.25);
+
+    65%{
+
+        transform:
+            rotate(-45deg)
+            scale(1.3);
+
         opacity:1;
     }
+
     100%{
-        transform:rotate(-45deg) scale(1);
+
+        transform:
+            rotate(-45deg)
+            scale(1);
+
         opacity:1;
     }
 }
 
-/* lots of leaves */
 
-.l1{left:27%;top:26%;animation-delay:4.0s}
-.l2{left:36%;top:20%;animation-delay:4.08s}
-.l3{left:45%;top:16%;animation-delay:4.16s}
-.l4{left:55%;top:19%;animation-delay:4.24s}
-.l5{left:63%;top:27%;animation-delay:4.32s}
-.l6{left:22%;top:34%;animation-delay:4.40s}
-.l7{left:31%;top:31%;animation-delay:4.48s}
-.l8{left:41%;top:28%;animation-delay:4.56s}
-.l9{left:51%;top:30%;animation-delay:4.64s}
-.l10{left:61%;top:34%;animation-delay:4.72s}
-.l11{left:70%;top:37%;animation-delay:4.80s}
+/* =========================================================
+   40+ LEAF POSITIONS
+========================================================= */
 
-.l12{left:25%;top:43%;animation-delay:4.88s}
-.l13{left:34%;top:39%;animation-delay:4.96s}
-.l14{left:44%;top:37%;animation-delay:5.04s}
-.l15{left:54%;top:39%;animation-delay:5.12s}
-.l16{left:64%;top:43%;animation-delay:5.20s}
-.l17{left:73%;top:46%;animation-delay:5.28s}
+.l1{left:25%;top:22%;animation-delay:4.00s}
+.l2{left:32%;top:18%;animation-delay:4.06s}
+.l3{left:40%;top:14%;animation-delay:4.12s}
+.l4{left:48%;top:12%;animation-delay:4.18s}
+.l5{left:56%;top:15%;animation-delay:4.24s}
+.l6{left:64%;top:19%;animation-delay:4.30s}
+.l7{left:71%;top:24%;animation-delay:4.36s}
 
-.l18{left:29%;top:50%;animation-delay:5.36s}
-.l19{left:39%;top:47%;animation-delay:5.44s}
-.l20{left:49%;top:46%;animation-delay:5.52s}
-.l21{left:59%;top:49%;animation-delay:5.60s}
-.l22{left:68%;top:53%;animation-delay:5.68s}
+.l8{left:21%;top:29%;animation-delay:4.42s}
+.l9{left:29%;top:27%;animation-delay:4.48s}
+.l10{left:37%;top:24%;animation-delay:4.54s}
+.l11{left:46%;top:22%;animation-delay:4.60s}
+.l12{left:55%;top:24%;animation-delay:4.66s}
+.l13{left:63%;top:28%;animation-delay:4.72s}
+.l14{left:72%;top:31%;animation-delay:4.78s}
 
-.l23{left:35%;top:57%;animation-delay:5.76s}
-.l24{left:45%;top:55%;animation-delay:5.84s}
-.l25{left:55%;top:56%;animation-delay:5.92s}
-.l26{left:64%;top:59%;animation-delay:6.00s}
-.l27{left:40%;top:64%;animation-delay:6.08s}
-.l28{left:50%;top:62%;animation-delay:6.16s}
-.l29{left:59%;top:65%;animation-delay:6.24s}
-.l30{left:48%;top:70%;animation-delay:6.32s}
+.l15{left:18%;top:37%;animation-delay:4.84s}
+.l16{left:27%;top:34%;animation-delay:4.90s}
+.l17{left:35%;top:31%;animation-delay:4.96s}
+.l18{left:44%;top:29%;animation-delay:5.02s}
+.l19{left:53%;top:31%;animation-delay:5.08s}
+.l20{left:62%;top:34%;animation-delay:5.14s}
+.l21{left:71%;top:38%;animation-delay:5.20s}
+.l22{left:79%;top:42%;animation-delay:5.26s}
 
-/* message */
+.l23{left:22%;top:44%;animation-delay:5.32s}
+.l24{left:31%;top:41%;animation-delay:5.38s}
+.l25{left:40%;top:38%;animation-delay:5.44s}
+.l26{left:49%;top:37%;animation-delay:5.50s}
+.l27{left:58%;top:40%;animation-delay:5.56s}
+.l28{left:67%;top:44%;animation-delay:5.62s}
+.l29{left:75%;top:47%;animation-delay:5.68s}
+
+.l30{left:27%;top:51%;animation-delay:5.74s}
+.l31{left:36%;top:48%;animation-delay:5.80s}
+.l32{left:45%;top:45%;animation-delay:5.86s}
+.l33{left:54%;top:47%;animation-delay:5.92s}
+.l34{left:63%;top:51%;animation-delay:5.98s}
+.l35{left:71%;top:54%;animation-delay:6.04s}
+
+.l36{left:32%;top:58%;animation-delay:6.10s}
+.l37{left:41%;top:55%;animation-delay:6.16s}
+.l38{left:50%;top:54%;animation-delay:6.22s}
+.l39{left:59%;top:57%;animation-delay:6.28s}
+.l40{left:67%;top:60%;animation-delay:6.34s}
+
+.l41{left:39%;top:63%;animation-delay:6.40s}
+.l42{left:48%;top:61%;animation-delay:6.46s}
+.l43{left:57%;top:64%;animation-delay:6.52s}
+
+.l44{left:45%;top:69%;animation-delay:6.58s}
+.l45{left:53%;top:67%;animation-delay:6.64s}
+
+.l46{left:35%;top:28%;animation-delay:6.70s}
+.l47{left:60%;top:20%;animation-delay:6.76s}
+.l48{left:24%;top:48%;animation-delay:6.82s}
+.l49{left:76%;top:36%;animation-delay:6.88s}
+.l50{left:68%;top:25%;animation-delay:6.94s}
+
+
+/* =========================================================
+   TREE MESSAGE
+========================================================= */
 
 .tree-message{
+
     position:absolute;
+
     left:4%;
-    top:30%;
+    top:29%;
+
     width:42%;
+
     opacity:0;
-    transform:translateX(-30px);
-    transition:1.5s ease;
-    z-index:10;
+
+    transform:
+        translateX(-40px);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+
+    z-index:20;
 }
 
 .tree-message.show{
+
     opacity:1;
-    transform:translateX(0);
+
+    transform:
+        translateX(0);
 }
 
 .world-luckier{
-    font-size:clamp(28px,4vw,55px);
+
+    font-size:
+        clamp(
+            28px,
+            4vw,
+            56px
+        );
+
+    line-height:1.15;
+
     font-style:italic;
+
     color:#ffd8ed;
-    text-shadow:0 0 20px #ff4fa3;
+
+    text-shadow:
+
+        0 0 12px
+        rgba(255,100,180,.8),
+
+        0 0 35px
+        rgba(255,70,170,.4);
+
     margin-bottom:30px;
 }
 
 .handwriting{
-    font-family:"Brush Script MT","Segoe Script",cursive;
-    font-size:clamp(25px,3vw,40px);
-    line-height:1.6;
-    color:#fff;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size:
+        clamp(
+            24px,
+            3vw,
+            40px
+        );
+
+    line-height:1.65;
+
+    color:white;
+
+    text-shadow:
+        0 0 15px
+        rgba(255,255,255,.25);
+
     min-height:200px;
-    text-shadow:0 0 15px rgba(255,255,255,.4);
 }
 
 .pen{
+
     display:inline-block;
+
     width:8px;
     height:35px;
+
     margin-left:5px;
+
     vertical-align:middle;
-    background:#ff83bc;
+
+    background:#ff83bd;
+
     border-radius:5px;
-    box-shadow:0 0 12px #ff83bc;
-    animation:penBlink .5s infinite;
+
+    box-shadow:
+        0 0 12px
+        #ff83bd;
+
+    animation:
+        penBlink .5s infinite;
 }
 
 @keyframes penBlink{
-    50%{opacity:.2;}
+
+    50%{
+        opacity:.15;
+    }
 }
 
-/* balloons */
+
+/* =========================================================
+   BALLOONS
+========================================================= */
 
 .balloon{
+
     position:absolute;
-    bottom:-150px;
+
+    bottom:-160px;
+
     width:50px;
-    height:65px;
-    border-radius:50% 50% 45% 45%;
+    height:66px;
+
+    border-radius:
+        50%
+        50%
+        45%
+        45%;
+
     z-index:8;
-    animation:balloonUp linear infinite;
+
+    animation:
+        balloonUp
+        linear
+        infinite;
 }
 
 .balloon::after{
+
     content:"";
+
     position:absolute;
+
     width:1px;
-    height:100px;
-    background:rgba(255,255,255,.5);
+
+    height:110px;
+
     left:50%;
     top:100%;
+
+    background:
+        rgba(255,255,255,.45);
 }
 
-.b1b{left:8%;background:#ff5b9f;animation-duration:11s;}
-.b2b{left:18%;background:#8b6cff;animation-duration:14s;animation-delay:2s;}
-.b3b{left:76%;background:#ffcf70;animation-duration:12s;animation-delay:4s;}
-.b4b{left:88%;background:#67d9ff;animation-duration:15s;animation-delay:1s;}
+.balloon::before{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-3px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    width:0;
+    height:0;
+
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:8px solid currentColor;
+}
+
+.b1b{
+
+    left:7%;
+
+    background:#ff5a9e;
+
+    color:#ff5a9e;
+
+    animation-duration:11s;
+}
+
+.b2b{
+
+    left:17%;
+
+    background:#8068ff;
+
+    color:#8068ff;
+
+    animation-duration:14s;
+
+    animation-delay:2s;
+}
+
+.b3b{
+
+    left:78%;
+
+    background:#ffd06c;
+
+    color:#ffd06c;
+
+    animation-duration:12s;
+
+    animation-delay:4s;
+}
+
+.b4b{
+
+    left:89%;
+
+    background:#60d8ff;
+
+    color:#60d8ff;
+
+    animation-duration:15s;
+
+    animation-delay:1s;
+}
 
 @keyframes balloonUp{
+
     to{
-        transform:translateY(-125vh) rotate(15deg);
+
+        transform:
+            translateY(-125vh)
+            rotate(16deg);
     }
 }
 
-/* streamers */
+
+/* =========================================================
+   STREAMERS
+========================================================= */
 
 .streamer{
+
     position:absolute;
-    top:-20px;
-    width:10px;
-    height:180px;
+
+    top:-25px;
+
+    width:12px;
+    height:190px;
+
+    border-left:
+        4px solid
+        rgba(255,100,180,.7);
+
     border-radius:50%;
-    border-left:4px solid rgba(255,100,180,.7);
+
     transform-origin:top;
-    animation:sway 3s ease-in-out infinite;
+
+    animation:
+        streamerSway
+        3s
+        ease-in-out
+        infinite;
+
     z-index:3;
 }
 
-.s1{left:5%;transform:rotate(10deg);}
-.s2{left:12%;animation-delay:.5s;}
-.s3{right:8%;transform:rotate(-10deg);animation-delay:1s;}
-.s4{right:16%;animation-delay:1.5s;}
+.s1{
 
-@keyframes sway{
-    50%{transform:rotate(-15deg) translateX(10px);}
+    left:5%;
+
+    transform:rotate(10deg);
 }
 
-/* confetti */
+.s2{
 
-.confetti{
-    position:absolute;
-    width:7px;
-    height:14px;
-    top:-30px;
-    animation:confettiFall linear forwards;
-    z-index:20;
+    left:13%;
+
+    animation-delay:.6s;
 }
 
-@keyframes confettiFall{
-    to{
-        transform:translateY(110vh) rotate(720deg);
+.s3{
+
+    right:8%;
+
+    transform:rotate(-10deg);
+
+    animation-delay:1s;
+}
+
+.s4{
+
+    right:16%;
+
+    animation-delay:1.6s;
+}
+
+@keyframes streamerSway{
+
+    50%{
+
+        transform:
+            rotate(-15deg)
+            translateX(10px);
     }
 }
 
-/* mouse hearts */
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti{
+
+    position:absolute;
+
+    width:7px;
+    height:14px;
+
+    top:-30px;
+
+    z-index:25;
+
+    animation:
+        confettiFall
+        linear
+        forwards;
+}
+
+@keyframes confettiFall{
+
+    to{
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* =========================================================
+   MOUSE HEART TRAIL
+========================================================= */
 
 .mouse-heart{
+
     position:fixed;
+
     pointer-events:none;
+
     color:#ff73b2;
+
     font-size:18px;
-    z-index:100;
-    animation:mouseHeart .9s ease forwards;
+
+    z-index:999;
+
+    animation:
+        mouseHeart
+        .9s
+        ease
+        forwards;
 }
 
 @keyframes mouseHeart{
+
     to{
-        transform:translateY(-35px) scale(.2);
+
+        transform:
+            translateY(-35px)
+            scale(.2);
+
         opacity:0;
     }
 }
 
-/* =========================
-   PAGE 5 - PHOTO / CD
-========================= */
+
+/* =========================================================
+   PAGE 5
+   PHOTO + CD + TUM
+========================================================= */
 
 #photoPage{
+
     align-items:center;
     justify-content:center;
+
     background:
-        radial-gradient(circle at 20% 30%,rgba(255,80,160,.22),transparent 30%),
-        radial-gradient(circle at 80% 70%,rgba(90,80,255,.25),transparent 35%),
-        linear-gradient(135deg,#090014,#21002e,#080014);
+
+        radial-gradient(
+            circle at 20% 25%,
+            rgba(255,70,170,.22),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 75%,
+            rgba(90,80,255,.24),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #08000f,
+            #21002d,
+            #07000d
+        );
 }
 
-.photo-stars{
+#photoPage::before{
+
+    content:"";
+
     position:absolute;
+
     inset:0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        45px 45px;
+
+    opacity:.4;
 }
 
-.photo-content{
-    position:relative;
-    z-index:5;
-    width:min(1000px,92%);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:55px;
-}
+.photo-title{
 
-.photo-frame{
-    width:min(390px,70vw);
-    padding:13px;
-    border-radius:25px;
-    background:linear-gradient(135deg,#ff8bc4,#8f6cff,#ffcc78);
-    box-shadow:
-        0 0 25px #ff62ac77,
-        0 0 80px #8b6cff44;
-    transform:rotate(-3deg);
-    animation:photoFloat 4s ease-in-out infinite;
-}
+    position:absolute;
 
-.photo-frame img{
-    display:block;
+    top:7%;
+
     width:100%;
-    aspect-ratio:3/4;
-    object-fit:cover;
-    border-radius:17px;
+
+    text-align:center;
+
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            48px
+        );
+
+    color:#ffd9ed;
+
+    text-shadow:
+
+        0 0 15px
+        rgba(255,90,170,.7),
+
+        0 0 35px
+        rgba(255,70,170,.3);
+
+    z-index:10;
+
+    animation:
+        titleFloat
+        3s
+        ease-in-out
+        infinite;
 }
 
-@keyframes photoFloat{
+@keyframes titleFloat{
+
     50%{
-        transform:rotate(3deg) translateY(-12px);
+        transform:translateY(-5px);
     }
 }
 
-/* CD */
+.photo-stars{
 
-.cd-area{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:25px;
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
 }
 
-.cd{
-    width:min(270px,45vw);
-    aspect-ratio:1;
-    border-radius:50%;
-    background:
-        radial-gradient(circle,
-            #151515 0 8%,
-            #aaa 8.5% 10%,
-            #222 10.5% 20%,
-            #555 20.5% 21%,
-            #151515 21.5% 40%,
-            #777 40.5% 41%,
-            #191919 41.5% 60%,
-            #999 60.5% 61%,
-            #111 61.5% 100%);
-    box-shadow:
-        0 0 30px rgba(255,255,255,.2),
-        inset 0 0 35px rgba(255,255,255,.2);
+
+/* =========================================================
+   PHOTO CONTENT
+========================================================= */
+
+.photo-content{
+
     position:relative;
-    animation:spinCD 3s linear infinite;
+
+    z-index:10;
+
+    width:min(
+        1050px,
+        94%
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:65px;
+
+    margin-top:55px;
+}
+
+
+/* =========================================================
+   PHOTO FRAME
+========================================================= */
+
+.photo-frame{
+
+    width:
+        min(
+            390px,
+            42vw
+        );
+
+    padding:13px;
+
+    border-radius:26px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ff8bc4,
+            #8d69ff,
+            #ffd271,
+            #ff8bc4
+        );
+
+    background-size:
+        300% 300%;
+
+    animation:
+        borderMove
+        6s
+        ease
+        infinite,
+
+        photoFloat
+        4s
+        ease-in-out
+        infinite;
+
+    box-shadow:
+
+        0 0 30px
+        rgba(255,90,170,.35),
+
+        0 0 90px
+        rgba(130,80,255,.18);
+
+    transform:
+        rotate(-3deg);
+}
+
+@keyframes borderMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+.photo-frame img{
+
+    display:block;
+
+    width:100%;
+
+    aspect-ratio:
+        3 / 4;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    border:
+        2px solid
+        rgba(255,255,255,.2);
+
+    box-shadow:
+        inset
+        0 0 30px
+        rgba(0,0,0,.3);
+}
+
+@keyframes photoFloat{
+
+    0%,
+    100%{
+
+        transform:
+            rotate(-3deg)
+            translateY(0);
+    }
+
+    50%{
+
+        transform:
+            rotate(3deg)
+            translateY(-12px);
+    }
+}
+
+
+/* =========================================================
+   CD AREA
+========================================================= */
+
+.cd-area{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:28px;
+}
+
+
+/* =========================================================
+   CD
+========================================================= */
+
+.cd{
+
+    width:
+        min(
+            275px,
+            30vw
+        );
+
+    aspect-ratio:1;
+
+    border-radius:50%;
+
+    position:relative;
+
+    background:
+
+        radial-gradient(
+            circle,
+            #121212 0 7%,
+
+            #c7c7c7 7.5% 9%,
+
+            #242424 9.5% 18%,
+
+            #888 18.5% 19%,
+
+            #171717 19.5% 38%,
+
+            #777 38.5% 39%,
+
+            #171717 39.5% 58%,
+
+            #aaa 58.5% 59%,
+
+            #101010 59.5% 100%
+        );
+
+    box-shadow:
+
+        0 0 25px
+        rgba(255,255,255,.2),
+
+        0 0 65px
+        rgba(255,90,180,.15),
+
+        inset 0 0 45px
+        rgba(255,255,255,.18);
+
+    animation:
+        spinCD
+        3s
+        linear
+        infinite;
+
+    overflow:hidden;
 }
 
 .cd::before{
+
     content:"";
+
     position:absolute;
-    inset:15%;
+
+    inset:10%;
+
     border-radius:50%;
-    background:conic-gradient(
-        #ff5caa,
-        #ffd76b,
-        #62dfff,
-        #9c72ff,
-        #ff5caa
-    );
-    opacity:.35;
-    filter:blur(2px);
+
+    background:
+
+        conic-gradient(
+            #ff5caa,
+            #ffd76b,
+            #62dfff,
+            #9c72ff,
+            #ff5caa
+        );
+
+    opacity:.24;
+
+    filter:blur(1px);
+}
+
+.cd::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:4%;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    box-shadow:
+        inset
+        0 0 20px
+        rgba(255,255,255,.15);
 }
 
 .cd-hole{
+
     position:absolute;
-    width:28px;
-    height:28px;
+
+    width:30px;
+    height:30px;
+
     border-radius:50%;
+
     background:#100016;
+
+    border:
+        2px solid
+        rgba(255,255,255,.35);
+
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%);
-    z-index:3;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:5;
 }
 
 @keyframes spinCD{
-    to{transform:rotate(360deg);}
+
+    to{
+        transform:rotate(360deg);
+    }
 }
 
-/* music player */
+
+/* =========================================================
+   MUSIC PLAYER
+========================================================= */
 
 .music-player{
-    width:min(430px,85vw);
-    padding:20px 23px;
-    border-radius:20px;
-    background:rgba(255,255,255,.09);
-    border:1px solid rgba(255,255,255,.15);
-    backdrop-filter:blur(15px);
-    box-shadow:0 0 30px rgba(255,70,160,.15);
+
+    width:
+        min(
+            430px,
+            40vw
+        );
+
+    padding:
+        20px 23px;
+
+    border-radius:22px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.05)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    backdrop-filter:
+        blur(16px);
+
+    box-shadow:
+
+        0 15px 50px
+        rgba(0,0,0,.35),
+
+        0 0 35px
+        rgba(255,70,160,.12);
 }
 
 .music-info{
+
     display:flex;
+
     align-items:center;
+
     gap:15px;
 }
 
 .music-cover{
-    width:58px;
-    height:58px;
-    border-radius:10px;
+
+    width:60px;
+    height:60px;
+
+    border-radius:12px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
-    background:linear-gradient(135deg,#ff5b9e,#7457ff);
-    font-size:25px;
+
+    font-size:27px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ff5b9e,
+            #7457ff
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(255,80,160,.25);
 }
 
 .music-text{
+
     text-align:left;
+
+    min-width:0;
 }
 
 .song-name{
-    font-size:20px;
+
+    font-size:21px;
+
     font-weight:bold;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
 }
 
 .artist-name{
+
     margin-top:5px;
+
     opacity:.65;
+
     font-size:14px;
 }
 
-.equalizer{
+.progress-area{
+
     margin-top:18px;
-    height:25px;
+}
+
+.progress-track{
+
+    width:100%;
+
+    height:5px;
+
+    border-radius:10px;
+
+    background:
+        rgba(255,255,255,.15);
+
+    overflow:hidden;
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff65ac,
+            #9c75ff
+        );
+
+    animation:
+        fakeProgress
+        12s
+        linear
+        infinite;
+}
+
+@keyframes fakeProgress{
+
+    from{
+        width:0%;
+    }
+
+    to{
+        width:100%;
+    }
+}
+
+.progress-times{
+
     display:flex;
+
+    justify-content:space-between;
+
+    margin-top:7px;
+
+    font-size:11px;
+
+    opacity:.45;
+}
+
+.equalizer{
+
+    margin-top:17px;
+
+    height:27px;
+
+    display:flex;
+
     align-items:flex-end;
+
     gap:4px;
 }
 
 .eq{
+
     width:5px;
-    height:8px;
-    background:#ff70b2;
+
+    height:7px;
+
     border-radius:5px;
-    animation:eq 1s ease-in-out infinite alternate;
+
+    background:#ff70b2;
+
+    animation:
+        equalizerMove
+        .9s
+        ease-in-out
+        infinite
+        alternate;
 }
 
-.eq:nth-child(2){animation-delay:.1s}
-.eq:nth-child(3){animation-delay:.2s}
-.eq:nth-child(4){animation-delay:.3s}
-.eq:nth-child(5){animation-delay:.4s}
-.eq:nth-child(6){animation-delay:.5s}
-.eq:nth-child(7){animation-delay:.6s}
-
-@keyframes eq{
-    to{height:24px;}
+.eq:nth-child(2){
+    animation-delay:.1s;
 }
 
-.photo-title{
+.eq:nth-child(3){
+    animation-delay:.2s;
+}
+
+.eq:nth-child(4){
+    animation-delay:.3s;
+}
+
+.eq:nth-child(5){
+    animation-delay:.4s;
+}
+
+.eq:nth-child(6){
+    animation-delay:.5s;
+}
+
+.eq:nth-child(7){
+    animation-delay:.6s;
+}
+
+.eq:nth-child(8){
+    animation-delay:.7s;
+}
+
+@keyframes equalizerMove{
+
+    from{
+        height:5px;
+    }
+
+    to{
+        height:25px;
+    }
+}
+
+
+/* =========================================================
+   LITTLE HEARTS AROUND PHOTO PAGE
+========================================================= */
+
+.photo-heart{
+
     position:absolute;
-    top:8%;
-    width:100%;
-    text-align:center;
-    font-size:clamp(25px,4vw,48px);
-    color:#ffd9ed;
-    text-shadow:0 0 25px #ff5ca7;
+
+    color:#ff6eae;
+
+    font-size:18px;
+
+    pointer-events:none;
+
+    animation:
+        photoHeartFloat
+        5s
+        linear
+        infinite;
+
+    opacity:.65;
 }
 
-/* responsive */
+@keyframes photoHeartFloat{
+
+    from{
+
+        transform:
+            translateY(110vh)
+            scale(.5)
+            rotate(0);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.7;
+    }
+
+    to{
+
+        transform:
+            translateY(-20vh)
+            scale(1.2)
+            rotate(35deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:700px){
 
+    .lock-card{
+        padding:38px 22px;
+    }
+
+    .lock-card h1{
+        font-size:25px;
+    }
+
     .moon{
-        width:65px;
-        height:65px;
+
+        width:68px;
+        height:68px;
+
+        top:5%;
         right:7%;
     }
 
     .tree-scene{
+
         width:100%;
+
         height:70%;
+
         bottom:0;
     }
 
     .tree-scene.move-right{
+
         left:42%;
-        transform:scale(.62);
-        transform-origin:bottom center;
+
+        transform:
+            scale(.62);
+
+        transform-origin:
+            bottom center;
     }
 
     .tree-message{
+
         left:4%;
-        top:20%;
-        width:55%;
+
+        top:18%;
+
+        width:56%;
     }
 
     .world-luckier{
+
         font-size:26px;
+
+        margin-bottom:20px;
     }
 
     .handwriting{
-        font-size:22px;
+
+        font-size:21px;
+
         line-height:1.5;
     }
 
     .heart-leaf{
+
         width:21px;
         height:21px;
     }
 
     .heart-leaf::before,
     .heart-leaf::after{
+
         width:21px;
         height:21px;
     }
@@ -833,46 +2336,83 @@ body{
         left:10px;
     }
 
+    .photo-title{
+
+        top:4%;
+
+        padding:0 20px;
+
+        font-size:27px;
+    }
+
     .photo-content{
+
         flex-direction:column;
-        gap:30px;
-        padding-top:60px;
+
+        gap:27px;
+
+        margin-top:65px;
     }
 
     .photo-frame{
+
         width:220px;
     }
 
     .cd{
-        width:150px;
+
+        width:145px;
     }
 
     .music-player{
+
         width:85vw;
     }
+
+    .cd-area{
+
+        gap:20px;
+    }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- =========================
-     PAGE 1
-========================= -->
 
-<section id="lockPage" class="page active">
+<!-- =========================================================
+     PAGE 1
+     LOCK
+========================================================= -->
+
+<section
+    id="lockPage"
+    class="page active"
+>
 
     <div class="lock-glow"></div>
 
     <div class="lock-card">
 
-        <div class="lock-icon">🔐</div>
+        <div class="lock-icon">
+            🔐
+        </div>
 
-        <h1>Something is waiting...</h1>
+        <h1>
+            Something is waiting...
+        </h1>
 
-        <p>Only someone special can unlock this 💗</p>
+        <p>
+            Only someone special can unlock this 💗
+        </p>
 
-        <button class="unlock-btn" onclick="unlockSite()">
+        <button
+            class="unlock-btn"
+            onclick="unlockSite()"
+        >
             Unlock Surprise
         </button>
 
@@ -881,34 +2421,60 @@ body{
 </section>
 
 
-<!-- =========================
-     PAGE 2
-========================= -->
 
-<section id="wishPage" class="page">
+<!-- =========================================================
+     PAGE 2
+     FIRST WISH
+========================================================= -->
+
+<section
+    id="wishPage"
+    class="page"
+>
 
     <div class="wish-box">
 
-        <div id="wish1" class="wish-line"></div>
-        <div id="wish2" class="wish-line"></div>
-        <div id="wish3" class="wish-line"></div>
+        <div
+            id="wish1"
+            class="wish-line"
+        ></div>
+
+        <div
+            id="wish2"
+            class="wish-line"
+        ></div>
+
+        <div
+            id="wish3"
+            class="wish-line"
+        ></div>
 
     </div>
 
 </section>
 
 
-<!-- =========================
-     PAGE 3
-========================= -->
 
-<section id="surprisePage" class="page">
+<!-- =========================================================
+     PAGE 3
+     PRANK
+========================================================= -->
+
+<section
+    id="surprisePage"
+    class="page"
+>
 
     <div class="prank-content">
 
-        <h1>OHHH... YOU THOUGHT THAT'S IT?? 😭</h1>
+        <h1>
+            OHHH... YOU THOUGHT THAT'S IT??
+        </h1>
 
-        <button class="wait-btn" onclick="continueSurprise()">
+        <button
+            class="wait-btn"
+            onclick="continueSurprise()"
+        >
             WAIT... WHAT?
         </button>
 
@@ -917,29 +2483,52 @@ body{
 </section>
 
 
-<!-- =========================
-     PAGE 4 TREE
-========================= -->
 
-<section id="treePage" class="page">
+<!-- =========================================================
+     PAGE 4
+     TREE
+========================================================= -->
+
+<section
+    id="treePage"
+    class="page"
+>
 
     <div class="moon"></div>
+
+
+    <!-- STREAMERS -->
 
     <div class="streamer s1"></div>
     <div class="streamer s2"></div>
     <div class="streamer s3"></div>
     <div class="streamer s4"></div>
 
+
+    <!-- BALLOONS -->
+
     <div class="balloon b1b"></div>
     <div class="balloon b2b"></div>
     <div class="balloon b3b"></div>
     <div class="balloon b4b"></div>
 
-    <div class="tree-scene" id="treeScene">
+
+    <!-- TREE -->
+
+    <div
+        class="tree-scene"
+        id="treeScene"
+    >
 
         <div class="ground"></div>
 
+
+        <!-- TRUNK -->
+
         <div class="trunk"></div>
+
+
+        <!-- BRANCHES -->
 
         <div class="branch b1"></div>
         <div class="branch b2"></div>
@@ -947,8 +2536,11 @@ body{
         <div class="branch b4"></div>
         <div class="branch b5"></div>
         <div class="branch b6"></div>
+        <div class="branch b7"></div>
+        <div class="branch b8"></div>
 
-        <!-- MANY MANY HEART LEAVES -->
+
+        <!-- HEART LEAVES -->
 
         <div class="heart-leaf l1"></div>
         <div class="heart-leaf l2"></div>
@@ -980,43 +2572,87 @@ body{
         <div class="heart-leaf l28"></div>
         <div class="heart-leaf l29"></div>
         <div class="heart-leaf l30"></div>
+        <div class="heart-leaf l31"></div>
+        <div class="heart-leaf l32"></div>
+        <div class="heart-leaf l33"></div>
+        <div class="heart-leaf l34"></div>
+        <div class="heart-leaf l35"></div>
+        <div class="heart-leaf l36"></div>
+        <div class="heart-leaf l37"></div>
+        <div class="heart-leaf l38"></div>
+        <div class="heart-leaf l39"></div>
+        <div class="heart-leaf l40"></div>
+        <div class="heart-leaf l41"></div>
+        <div class="heart-leaf l42"></div>
+        <div class="heart-leaf l43"></div>
+        <div class="heart-leaf l44"></div>
+        <div class="heart-leaf l45"></div>
+        <div class="heart-leaf l46"></div>
+        <div class="heart-leaf l47"></div>
+        <div class="heart-leaf l48"></div>
+        <div class="heart-leaf l49"></div>
+        <div class="heart-leaf l50"></div>
 
     </div>
 
 
-    <!-- LEFT SIDE MESSAGE -->
+    <!-- MESSAGE -->
 
-    <div class="tree-message" id="treeMessage">
+    <div
+        class="tree-message"
+        id="treeMessage"
+    >
 
         <div class="world-luckier">
             The world got luckier... ✨
         </div>
 
-        <div class="handwriting" id="handwriting"></div>
+        <div
+            class="handwriting"
+            id="handwriting"
+        ></div>
 
     </div>
 
 </section>
 
 
-<!-- =========================
-     PAGE 5 PHOTO + CD
-========================= -->
 
-<section id="photoPage" class="page">
+<!-- =========================================================
+     PAGE 5
+     PHOTO + CD + TUM
+========================================================= -->
 
-    <div class="photo-stars" id="photoStars"></div>
+<section
+    id="photoPage"
+    class="page"
+>
+
+    <div
+        class="photo-stars"
+        id="photoStars"
+    ></div>
+
 
     <div class="photo-title">
         And here's someone very special... ❤️
     </div>
 
+
     <div class="photo-content">
+
 
         <!-- PHOTO -->
 
-        <div class="photo-frame">
-            <img src="boin.jpg" alt="Special memory">
+        <div
+            class="photo-frame"
+        >
+
+            <img
+                src="boin.jpg"
+                alt="Special birthday memory"
+            >
+
         </div>
 
 
@@ -1024,34 +2660,94 @@ body{
 
         <div class="cd-area">
 
+
+            <!-- ROTATING CD -->
+
             <div class="cd">
-                <div class="cd-hole"></div>
+
+                <div
+                    class="cd-hole"
+                ></div>
+
             </div>
 
-            <div class="music-player">
+
+            <!-- MUSIC CARD -->
+
+            <div
+                class="music-player"
+            >
 
                 <div class="music-info">
 
-                    <div class="music-cover">
+
+                    <div
+                        class="music-cover"
+                    >
                         🎵
                     </div>
 
+
                     <div class="music-text">
 
-                        <div class="song-name">
+                        <div
+                            class="song-name"
+                        >
                             Tum
                         </div>
 
-                        <div class="artist-name">
-                            Birthday soundtrack ❤️
+                        <div
+                            class="artist-name"
+                        >
+                            Murtaza Qizilbash
                         </div>
 
                     </div>
 
                 </div>
 
-                <div class="equalizer">
 
+                <!-- PROGRESS -->
+
+                <div
+                    class="progress-area"
+                >
+
+                    <div
+                        class="progress-track"
+                    >
+
+                        <div
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+
+                    <div
+                        class="progress-times"
+                    >
+
+                        <span>
+                            0:00
+                        </span>
+
+                        <span>
+                            ♫
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EQUALIZER -->
+
+                <div
+                    class="equalizer"
+                >
+
+                    <div class="eq"></div>
                     <div class="eq"></div>
                     <div class="eq"></div>
                     <div class="eq"></div>
@@ -1071,294 +2767,583 @@ body{
 </section>
 
 
-<!-- MUSIC -->
 
-<audio id="birthdayMusic" src="music/earrings.mp3"></audio>
-<audio id="tumMusic" src="music/tum.mp3"></audio>
+<!-- =========================================================
+     AUDIO FILES
+========================================================= -->
+
+<audio
+    id="birthdayMusic"
+    src="music/earrings.mp3"
+    preload="auto"
+></audio>
+
+
+<audio
+    id="tumMusic"
+    src="music/tum.mp3"
+    preload="auto"
+></audio>
+
 
 
 <script>
 
-/* =========================
-   PAGE CONTROL
-========================= */
+
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
 
 function showPage(id){
 
-    document.querySelectorAll(".page").forEach(page=>{
-        page.classList.remove("active");
-    });
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
 
-    document.getElementById(id).classList.add("active");
-}
+            page.classList.remove(
+                "active"
+            );
 
+        });
 
-/* =========================
-   PAGE 1
-========================= */
+    const target =
+        document.getElementById(id);
 
-function unlockSite(){
+    if(target){
 
-    const password = prompt("Enter the secret password 💗");
-
-    if(password === "saba123"){
-
-        showPage("wishPage");
-
-        createFloatingHearts();
-
-        startBirthdayWish();
-
-    }else{
-
-        alert("Wrong password 😭 Try again!");
+        target.classList.add(
+            "active"
+        );
 
     }
 
 }
 
 
-/* =========================
-   TYPEWRITER
-========================= */
 
-function typeWriter(element,text,speed){
+/* =========================================================
+   PAGE 1
+   PASSWORD
+========================================================= */
 
-    return new Promise(resolve=>{
+function unlockSite(){
 
-        let i=0;
+    const password =
+        prompt(
+            "Enter the secret password 💗"
+        );
 
-        function write(){
 
-            if(i < text.length){
+    if(password === "saba123"){
 
-                element.innerHTML += text.charAt(i);
+        showPage(
+            "wishPage"
+        );
 
-                i++;
+        createFloatingHearts();
 
-                setTimeout(write,speed);
+        startBirthdayWish();
 
-            }else{
+    }
 
-                resolve();
+    else{
 
-            }
+        alert(
+            "Wrong password 😭 Try again!"
+        );
 
-        }
-
-        write();
-
-    });
+    }
 
 }
 
 
-/* =========================
-   FIRST WISH
-========================= */
+
+/* =========================================================
+   TYPEWRITER
+========================================================= */
+
+function typeWriter(
+    element,
+    text,
+    speed
+){
+
+    return new Promise(
+        resolve => {
+
+            let i = 0;
+
+
+            function write(){
+
+                if(
+                    i <
+                    text.length
+                ){
+
+                    element.innerHTML +=
+                        text.charAt(i);
+
+                    i++;
+
+                    setTimeout(
+                        write,
+                        speed
+                    );
+
+                }
+
+                else{
+
+                    resolve();
+
+                }
+
+            }
+
+
+            write();
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   PAGE 2 WISH
+========================================================= */
 
 async function startBirthdayWish(){
 
     await typeWriter(
-        document.getElementById("wish1"),
+
+        document.getElementById(
+            "wish1"
+        ),
+
         "Happy Birthday to youu.. ❤️",
+
         70
+
     );
 
+
     await typeWriter(
-        document.getElementById("wish2"),
+
+        document.getElementById(
+            "wish2"
+        ),
+
         "Thank youu soo muchhh for come into my lifeee.. 🥹",
+
         65
+
     );
+
 
     await typeWriter(
-        document.getElementById("wish3"),
+
+        document.getElementById(
+            "wish3"
+        ),
+
         "Happy birthday again.. 🎂",
+
         70
+
     );
 
-    setTimeout(()=>{
 
-        showPage("surprisePage");
+    setTimeout(
 
-    },10000);
+        () => {
+
+            showPage(
+                "surprisePage"
+            );
+
+        },
+
+        10000
+
+    );
 
 }
 
 
-/* =========================
+
+/* =========================================================
    FLOATING HEARTS
-========================= */
+========================================================= */
 
 function createFloatingHearts(){
 
-    setInterval(()=>{
+    setInterval(
 
-        const heart=document.createElement("div");
+        () => {
 
-        heart.className="floating-heart";
+            const heart =
+                document.createElement(
+                    "div"
+                );
 
-        heart.innerHTML=["❤️","💗","💖","💕","💘"]
-            [Math.floor(Math.random()*5)];
 
-        heart.style.left=Math.random()*100+"%";
+            heart.className =
+                "floating-heart";
 
-        heart.style.animationDuration=
-            (5+Math.random()*5)+"s";
 
-        document.getElementById("wishPage")
-            .appendChild(heart);
+            const hearts = [
+                "❤️",
+                "💗",
+                "💖",
+                "💕",
+                "💘",
+                "💞"
+            ];
 
-        setTimeout(()=>{
-            heart.remove();
-        },10000);
 
-    },500);
+            heart.innerHTML =
+                hearts[
+                    Math.floor(
+                        Math.random() *
+                        hearts.length
+                    )
+                ];
+
+
+            heart.style.left =
+                Math.random() *
+                100 +
+                "%";
+
+
+            heart.style.animationDuration =
+                (
+                    5 +
+                    Math.random() * 5
+                ) +
+                "s";
+
+
+            document
+                .getElementById(
+                    "wishPage"
+                )
+                .appendChild(
+                    heart
+                );
+
+
+            setTimeout(
+
+                () => {
+
+                    heart.remove();
+
+                },
+
+                10000
+
+            );
+
+        },
+
+        500
+
+    );
 
 }
 
 
-/* =========================
+
+/* =========================================================
    TREE PAGE
-========================= */
+========================================================= */
 
 async function continueSurprise(){
 
-    showPage("treePage");
+    showPage(
+        "treePage"
+    );
+
 
     createStars();
 
     createConfetti();
 
-    /* EARLIER SONG STARTS */
 
-    const earrings=document.getElementById("birthdayMusic");
+    /*
+       EARRINGS STARTS
+       IMMEDIATELY WHEN
+       WAIT WHAT IS CLICKED
+    */
 
-    earrings.currentTime=0;
+    const earrings =
+        document.getElementById(
+            "birthdayMusic"
+        );
 
-    earrings.volume=.8;
 
-    earrings.play().catch(()=>{});
+    earrings.currentTime = 0;
+
+    earrings.volume = .8;
+
+
+    earrings
+        .play()
+        .catch(
+            () => {}
+        );
 
 
     /*
-       TREE ANIMATION
-       trunk -> branches -> leaves
+       TREE ANIMATION:
+       TRUNK
+       ->
+       BRANCHES
+       ->
+       MANY HEART LEAVES
     */
 
-    await wait(7000);
+    await wait(
+        7600
+    );
 
 
-    /* TREE MOVES TO THE RIGHT */
-
-    document
-        .getElementById("treeScene")
-        .classList.add("move-right");
-
-
-    await wait(1900);
-
-
-    /* MESSAGE APPEARS */
+    /*
+       TREE MOVES
+       TO THE RIGHT
+    */
 
     document
-        .getElementById("treeMessage")
-        .classList.add("show");
+        .getElementById(
+            "treeScene"
+        )
+        .classList.add(
+            "move-right"
+        );
 
 
-    await wait(900);
+    await wait(
+        1900
+    );
 
+
+    /*
+       MESSAGE APPEARS
+    */
+
+    document
+        .getElementById(
+            "treeMessage"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    await wait(
+        900
+    );
+
+
+    /*
+       HANDWRITING
+    */
 
     startHandwriting();
 
 }
 
 
-/* =========================
-   WAIT
-========================= */
+
+/* =========================================================
+   WAIT FUNCTION
+========================================================= */
 
 function wait(ms){
 
-    return new Promise(resolve=>{
-        setTimeout(resolve,ms);
-    });
+    return new Promise(
+        resolve => {
+
+            setTimeout(
+                resolve,
+                ms
+            );
+
+        }
+    );
 
 }
 
 
-/* =========================
-   STARS
-========================= */
+
+/* =========================================================
+   TREE STARS
+========================================================= */
 
 function createStars(){
 
-    for(let i=0;i<80;i++){
+    const existing =
+        document.querySelectorAll(
+            "#treePage .star"
+        );
 
-        const star=document.createElement("div");
 
-        star.className="star";
+    if(
+        existing.length > 0
+    ){
 
-        star.style.left=Math.random()*100+"%";
+        return;
 
-        star.style.top=Math.random()*85+"%";
+    }
 
-        star.style.animationDelay=
-            Math.random()*3+"s";
 
-        star.style.opacity=
-            .3+Math.random()*.7;
+    for(
+        let i = 0;
+        i < 90;
+        i++
+    ){
+
+        const star =
+            document.createElement(
+                "div"
+            );
+
+
+        star.className =
+            "star";
+
+
+        star.style.left =
+            Math.random() *
+            100 +
+            "%";
+
+
+        star.style.top =
+            Math.random() *
+            90 +
+            "%";
+
+
+        star.style.animationDelay =
+            Math.random() *
+            3 +
+            "s";
+
+
+        star.style.opacity =
+            .2 +
+            Math.random() *
+            .8;
+
 
         document
-            .getElementById("treePage")
-            .appendChild(star);
+            .getElementById(
+                "treePage"
+            )
+            .appendChild(
+                star
+            );
 
     }
 
 }
 
 
-/* =========================
+
+/* =========================================================
    CONFETTI
-========================= */
+========================================================= */
 
 function createConfetti(){
 
-    for(let i=0;i<70;i++){
+    for(
+        let i = 0;
+        i < 90;
+        i++
+    ){
 
-        const c=document.createElement("div");
+        const c =
+            document.createElement(
+                "div"
+            );
 
-        c.className="confetti";
 
-        c.style.left=Math.random()*100+"%";
+        c.className =
+            "confetti";
 
-        c.style.animationDuration=
-            (3+Math.random()*5)+"s";
 
-        c.style.animationDelay=
-            Math.random()*4+"s";
+        c.style.left =
+            Math.random() *
+            100 +
+            "%";
 
-        c.style.transform=
-            `rotate(${Math.random()*360}deg)`;
+
+        c.style.animationDuration =
+            (
+                3 +
+                Math.random() * 5
+            ) +
+            "s";
+
+
+        c.style.animationDelay =
+            Math.random() *
+            4 +
+            "s";
+
+
+        c.style.background =
+            [
+                "#ff65ac",
+                "#ffd56a",
+                "#72ddff",
+                "#a277ff",
+                "#ffffff"
+            ][
+                Math.floor(
+                    Math.random() * 5
+                )
+            ];
+
+
+        c.style.transform =
+            `rotate(
+                ${Math.random()*360}deg
+            )`;
+
 
         document
-            .getElementById("treePage")
-            .appendChild(c);
+            .getElementById(
+                "treePage"
+            )
+            .appendChild(
+                c
+            );
 
     }
 
 }
 
 
-/* =========================
+
+/* =========================================================
    HANDWRITING
-========================= */
+========================================================= */
 
 async function startHandwriting(){
 
-    const box=document.getElementById("handwriting");
+    const box =
+        document.getElementById(
+            "handwriting"
+        );
 
-    const lines=[
+
+    const lines = [
 
         "Happy Birthday too youu.. ❤️",
 
@@ -1371,250 +3356,574 @@ async function startHandwriting(){
     ];
 
 
-    for(const line of lines){
+    for(
+        const line of lines
+    ){
 
-        await writeHandLine(box,line);
+        await writeHandLine(
+            box,
+            line
+        );
 
-        await wait(500);
+
+        await wait(
+            550
+        );
 
     }
 
 
-    /* after the handwriting finishes,
-       open the photo/music page */
+    /*
+       LITTLE PAUSE
+       THEN PHOTO PAGE
+    */
 
-    await wait(2500);
+    await wait(
+        2800
+    );
+
 
     openPhotoPage();
 
 }
 
 
-/* =========================
+
+/* =========================================================
    HANDWRITING LINE
-========================= */
+========================================================= */
 
-function writeHandLine(box,text){
+function writeHandLine(
+    box,
+    text
+){
 
-    return new Promise(resolve=>{
+    return new Promise(
+        resolve => {
 
-        const line=document.createElement("div");
-
-        box.appendChild(line);
-
-        const cursor=document.createElement("span");
-
-        cursor.className="pen";
-
-        line.appendChild(cursor);
+            const line =
+                document.createElement(
+                    "div"
+                );
 
 
-        let i=0;
+            box.appendChild(
+                line
+            );
 
-        function write(){
 
-            if(i<text.length){
+            const cursor =
+                document.createElement(
+                    "span"
+                );
 
-                cursor.remove();
 
-                line.innerHTML+=text.charAt(i);
+            cursor.className =
+                "pen";
 
-                line.appendChild(cursor);
 
-                i++;
+            line.appendChild(
+                cursor
+            );
 
-                setTimeout(write,65);
 
-            }else{
+            let i = 0;
 
-                setTimeout(()=>{
+
+            function write(){
+
+                if(
+                    i <
+                    text.length
+                ){
 
                     cursor.remove();
 
-                    resolve();
 
-                },500);
+                    line.innerHTML +=
+                        text.charAt(i);
+
+
+                    line.appendChild(
+                        cursor
+                    );
+
+
+                    i++;
+
+
+                    setTimeout(
+                        write,
+                        65
+                    );
+
+                }
+
+                else{
+
+                    setTimeout(
+
+                        () => {
+
+                            cursor.remove();
+
+                            resolve();
+
+                        },
+
+                        500
+
+                    );
+
+                }
+
+            }
+
+
+            write();
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   HEART LEAF CLICK
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(e){
+
+        if(
+            e.target.classList.contains(
+                "heart-leaf"
+            )
+        ){
+
+            for(
+                let i = 0;
+                i < 10;
+                i++
+            ){
+
+                const heart =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                heart.innerHTML =
+                    [
+                        "💗",
+                        "💕",
+                        "✨"
+                    ][
+                        Math.floor(
+                            Math.random()*3
+                        )
+                    ];
+
+
+                heart.style.position =
+                    "fixed";
+
+
+                heart.style.left =
+                    e.clientX +
+                    "px";
+
+
+                heart.style.top =
+                    e.clientY +
+                    "px";
+
+
+                heart.style.pointerEvents =
+                    "none";
+
+
+                heart.style.zIndex =
+                    "999";
+
+
+                heart.style.fontSize =
+                    (
+                        12 +
+                        Math.random()*16
+                    ) +
+                    "px";
+
+
+                document.body
+                    .appendChild(
+                        heart
+                    );
+
+
+                const x =
+                    (
+                        Math.random() -
+                        .5
+                    ) * 130;
+
+
+                const y =
+                    (
+                        Math.random() -
+                        .5
+                    ) * 130;
+
+
+                heart.animate(
+
+                    [
+
+                        {
+                            transform:
+                                "translate(0,0) scale(1)",
+
+                            opacity:1
+                        },
+
+                        {
+
+                            transform:
+                                `translate(
+                                    ${x}px,
+                                    ${y}px
+                                )
+                                scale(0)`,
+
+                            opacity:0
+                        }
+
+                    ],
+
+                    {
+
+                        duration:
+                            900 +
+                            Math.random()*400,
+
+                        easing:
+                            "ease-out"
+
+                    }
+
+                );
+
+
+                setTimeout(
+
+                    () => {
+
+                        heart.remove();
+
+                    },
+
+                    1300
+
+                );
 
             }
 
         }
 
-        write();
-
-    });
-
-}
+    }
+);
 
 
-/* =========================
-   HEART LEAF CLICK EFFECT
-========================= */
 
-document.addEventListener("click",function(e){
+/* =========================================================
+   MOUSE HEART TRAIL
+========================================================= */
 
-    if(
-        e.target.classList.contains("heart-leaf")
-    ){
+document.addEventListener(
+    "mousemove",
+    function(e){
 
-        for(let i=0;i<8;i++){
-
-            const h=document.createElement("div");
-
-            h.innerHTML="💗";
-
-            h.style.position="fixed";
-
-            h.style.left=e.clientX+"px";
-
-            h.style.top=e.clientY+"px";
-
-            h.style.pointerEvents="none";
-
-            h.style.zIndex="999";
-
-            h.style.fontSize=
-                (12+Math.random()*14)+"px";
-
-            document.body.appendChild(h);
-
-            const x=(Math.random()-.5)*100;
-
-            const y=(Math.random()-.5)*100;
-
-            h.animate(
-
-                [
-                    {
-                        transform:"translate(0,0) scale(1)",
-                        opacity:1
-                    },
-                    {
-                        transform:
-                            `translate(${x}px,${y}px) scale(0)`,
-                        opacity:0
-                    }
-                ],
-
-                {
-                    duration:900,
-                    easing:"ease-out"
-                }
-
+        const tree =
+            document.getElementById(
+                "treePage"
             );
 
-            setTimeout(()=>{
-                h.remove();
-            },900);
+
+        if(
+            tree.classList.contains(
+                "active"
+            )
+        ){
+
+            if(
+                Math.random() > .86
+            ){
+
+                const heart =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                heart.className =
+                    "mouse-heart";
+
+
+                heart.innerHTML =
+                    "♥";
+
+
+                heart.style.left =
+                    e.clientX +
+                    "px";
+
+
+                heart.style.top =
+                    e.clientY +
+                    "px";
+
+
+                document.body
+                    .appendChild(
+                        heart
+                    );
+
+
+                setTimeout(
+
+                    () => {
+
+                        heart.remove();
+
+                    },
+
+                    900
+
+                );
+
+            }
 
         }
 
     }
-
-});
-
-
-/* =========================
-   MOUSE HEART TRAIL
-========================= */
-
-document.addEventListener("mousemove",function(e){
-
-    if(
-        document
-        .getElementById("treePage")
-        .classList.contains("active")
-    ){
-
-        if(Math.random()>.88){
-
-            const heart=document.createElement("div");
-
-            heart.className="mouse-heart";
-
-            heart.innerHTML="♥";
-
-            heart.style.left=e.clientX+"px";
-
-            heart.style.top=e.clientY+"px";
-
-            document.body.appendChild(heart);
-
-            setTimeout(()=>{
-                heart.remove();
-            },900);
-
-        }
-
-    }
-
-});
+);
 
 
-/* =========================
+
+/* =========================================================
    PHOTO PAGE
-========================= */
+========================================================= */
 
 function openPhotoPage(){
 
-    const earrings=
-        document.getElementById("birthdayMusic");
+    const earrings =
+        document.getElementById(
+            "birthdayMusic"
+        );
 
-    const tum=
-        document.getElementById("tumMusic");
+
+    const tum =
+        document.getElementById(
+            "tumMusic"
+        );
 
 
-    /* old song OFF */
+    /*
+       OLD SONG OFF
+    */
 
     earrings.pause();
 
-    earrings.currentTime=0;
+    earrings.currentTime = 0;
 
 
-    /* new song ON */
+    /*
+       NEW SONG ON
+    */
 
-    tum.currentTime=0;
+    tum.currentTime = 0;
 
-    tum.volume=.8;
-
-    tum.play().catch(()=>{});
+    tum.volume = .8;
 
 
-    showPage("photoPage");
+    tum
+        .play()
+        .catch(
+            () => {}
+        );
+
+
+    showPage(
+        "photoPage"
+    );
+
 
     createPhotoStars();
+
+    createPhotoHearts();
 
 }
 
 
-/* =========================
+
+/* =========================================================
    PHOTO PAGE STARS
-========================= */
+========================================================= */
 
 function createPhotoStars(){
 
-    const container=
-        document.getElementById("photoStars");
+    const container =
+        document.getElementById(
+            "photoStars"
+        );
 
-    for(let i=0;i<65;i++){
 
-        const star=document.createElement("div");
+    if(
+        container.children.length > 0
+    ){
 
-        star.className="star";
+        return;
 
-        star.style.left=Math.random()*100+"%";
+    }
 
-        star.style.top=Math.random()*100+"%";
 
-        star.style.animationDelay=
-            Math.random()*3+"s";
+    for(
+        let i = 0;
+        i < 75;
+        i++
+    ){
 
-        container.appendChild(star);
+        const star =
+            document.createElement(
+                "div"
+            );
+
+
+        star.className =
+            "star";
+
+
+        star.style.left =
+            Math.random() *
+            100 +
+            "%";
+
+
+        star.style.top =
+            Math.random() *
+            100 +
+            "%";
+
+
+        star.style.animationDelay =
+            Math.random() *
+            3 +
+            "s";
+
+
+        container.appendChild(
+            star
+        );
 
     }
 
 }
+
+
+
+/* =========================================================
+   PHOTO PAGE FLOATING HEARTS
+========================================================= */
+
+function createPhotoHearts(){
+
+    for(
+        let i = 0;
+        i < 18;
+        i++
+    ){
+
+        const heart =
+            document.createElement(
+                "div"
+            );
+
+
+        heart.className =
+            "photo-heart";
+
+
+        heart.innerHTML =
+            [
+                "♡",
+                "♥",
+                "✦"
+            ][
+                Math.floor(
+                    Math.random()*3
+                )
+            ];
+
+
+        heart.style.left =
+            Math.random() *
+            100 +
+            "%";
+
+
+        heart.style.animationDuration =
+            (
+                5 +
+                Math.random()*6
+            ) +
+            "s";
+
+
+        heart.style.animationDelay =
+            Math.random()*5 +
+            "s";
+
+
+        document
+            .getElementById(
+                "photoPage"
+            )
+            .appendChild(
+                heart
+            );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   PREVENT ACCIDENTAL DRAGGING
+========================================================= */
+
+document
+    .querySelectorAll("img")
+    .forEach(
+        img => {
+
+            img.addEventListener(
+                "dragstart",
+                e => {
+
+                    e.preventDefault();
+
+                }
+            );
+
+        }
+    );
+
 
 </script>
 
 </body>
+
 </html>
