@@ -1,452 +1,936 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Something Special ❤️</title>
+<title>Something Special ❤️</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+}
 
-      font-family: Georgia, "Times New Roman", serif;
+/* =====================================================
+   LOCK SCREEN
+===================================================== */
 
-      /* Cute pink grid background */
-      background-color: #ffe8ee;
-      background-image:
+.lock-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ffe8ee;
+    background-image:
         linear-gradient(#f8c8d4 1px, transparent 1px),
         linear-gradient(90deg, #f8c8d4 1px, transparent 1px);
-      background-size: 32px 32px;
 
-      overflow: hidden;
-    }
+    background-size: 32px 32px;
+}
 
-    /* Soft floating hearts */
-    .heart {
-      position: fixed;
-      color: rgba(255, 77, 109, 0.25);
-      font-size: 25px;
-      animation: float 7s linear infinite;
-      pointer-events: none;
-    }
+.lock-card {
+    width: min(90%, 390px);
+    padding: 40px 30px;
 
-    .heart:nth-child(1) {
-      left: 10%;
-      animation-delay: 0s;
-    }
+    text-align: center;
 
-    .heart:nth-child(2) {
-      left: 30%;
-      animation-delay: 2s;
-    }
+    background: white;
 
-    .heart:nth-child(3) {
-      left: 55%;
-      animation-delay: 4s;
-    }
+    border: 4px solid #111;
+    border-radius: 28px;
 
-    .heart:nth-child(4) {
-      left: 80%;
-      animation-delay: 1s;
-    }
+    box-shadow: 10px 10px 0 #111;
 
-    @keyframes float {
-      0% {
-        bottom: -50px;
+    animation: cardIn .8s ease;
+}
+
+@keyframes cardIn {
+    from {
         opacity: 0;
-        transform: translateX(0) rotate(0deg);
-      }
+        transform: scale(.8) translateY(30px);
+    }
 
-      20% {
+    to {
         opacity: 1;
-      }
+        transform: scale(1) translateY(0);
+    }
+}
 
-      100% {
-        bottom: 110vh;
+.lock-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.lock-card h1 {
+    color: #ff4168;
+    font-size: 29px;
+    margin-bottom: 12px;
+}
+
+.lock-card p {
+    font-family: Arial, sans-serif;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.unlock-btn {
+    padding: 14px 32px;
+
+    border: 3px solid #111;
+    border-radius: 50px;
+
+    background: #ff4d70;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 4px 5px 0 #111;
+
+    transition: .2s;
+}
+
+.unlock-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 8px 0 #111;
+}
+
+
+/* =====================================================
+   PASSWORD MODAL
+===================================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(7px);
+}
+
+.modal.show {
+    display: flex;
+}
+
+.password-box {
+    width: min(90%, 400px);
+
+    background: white;
+
+    padding: 30px;
+
+    border: 4px solid #111;
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow: 8px 8px 0 #111;
+
+    animation: modalIn .3s ease;
+}
+
+@keyframes modalIn {
+    from {
+        transform: scale(.8);
         opacity: 0;
-        transform: translateX(70px) rotate(180deg);
-      }
     }
 
-    /* Lock card */
-    .lock-card {
-      width: min(90%, 390px);
-      background: white;
-
-      border: 4px solid #111;
-      border-radius: 28px;
-
-      padding: 38px 30px 34px;
-
-      text-align: center;
-
-      box-shadow: 10px 10px 0 #111;
-
-      animation: cardAppear 0.8s ease;
-    }
-
-    @keyframes cardAppear {
-      from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.9);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .lock-icon {
-      font-size: 48px;
-      margin-bottom: 10px;
-
-      animation: lockShake 2.5s infinite;
-    }
-
-    @keyframes lockShake {
-      0%, 85%, 100% {
-        transform: rotate(0);
-      }
-
-      88% {
-        transform: rotate(-8deg);
-      }
-
-      91% {
-        transform: rotate(8deg);
-      }
-
-      94% {
-        transform: rotate(-5deg);
-      }
-
-      97% {
-        transform: rotate(5deg);
-      }
-    }
-
-    h1 {
-      color: #ff4168;
-      font-size: 29px;
-      margin-bottom: 13px;
-    }
-
-    .subtitle {
-      color: #555;
-      font-family: Arial, sans-serif;
-      font-size: 15px;
-      line-height: 1.5;
-      margin-bottom: 25px;
-    }
-
-    /* Unlock button */
-    .unlock-btn {
-      border: 3px solid #111;
-      background: #ff4d70;
-      color: white;
-
-      font-size: 17px;
-      font-weight: bold;
-
-      padding: 14px 32px;
-
-      border-radius: 50px;
-      cursor: pointer;
-
-      box-shadow: 4px 5px 0 #111;
-
-      transition: 0.2s ease;
-    }
-
-    .unlock-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 4px 8px 0 #111;
-      background: #ff365e;
-    }
-
-    .unlock-btn:active {
-      transform: translateY(3px);
-      box-shadow: 2px 2px 0 #111;
-    }
-
-    /* Password modal */
-    .modal {
-      position: fixed;
-      inset: 0;
-
-      display: none;
-      justify-content: center;
-      align-items: center;
-
-      background: rgba(0, 0, 0, 0.55);
-
-      backdrop-filter: blur(5px);
-
-      padding: 20px;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .password-box {
-      width: min(90%, 400px);
-
-      background: white;
-      border: 4px solid #111;
-      border-radius: 25px;
-
-      padding: 30px;
-
-      text-align: center;
-
-      box-shadow: 8px 8px 0 #111;
-
-      animation: modalIn 0.3s ease;
-    }
-
-    @keyframes modalIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-
-      to {
+    to {
         transform: scale(1);
         opacity: 1;
-      }
+    }
+}
+
+.password-box h2 {
+    color: #ff4168;
+    margin-bottom: 8px;
+}
+
+.password-box p {
+    font-family: Arial, sans-serif;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#passwordInput {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 3px solid #222;
+    border-radius: 12px;
+
+    outline: none;
+
+    text-align: center;
+    font-size: 16px;
+
+    margin-bottom: 15px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 10px 22px;
+
+    border: 3px solid #111;
+    border-radius: 30px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.enter-btn {
+    background: #ff4d70;
+    color: white;
+}
+
+.cancel-btn {
+    background: white;
+}
+
+#errorMessage {
+    min-height: 18px;
+    margin-top: 12px;
+
+    color: #e6395b;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   BIRTHDAY PAGE
+===================================================== */
+
+.birthday-page {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 50% 40%,
+        rgba(255,255,255,.18),
+        transparent 35%),
+        linear-gradient(
+            135deg,
+            #16001f,
+            #41002e,
+            #8b174f,
+            #26003c
+        );
+
+    color: white;
+}
+
+.birthday-page.active {
+    display: flex;
+}
+
+
+/* glowing background circles */
+
+.glow {
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 80, 160, .13);
+
+    filter: blur(80px);
+
+    animation: glowMove 8s infinite alternate ease-in-out;
+}
+
+.glow.one {
+    top: -150px;
+    left: -100px;
+}
+
+.glow.two {
+    right: -120px;
+    bottom: -150px;
+
+    background: rgba(100, 80, 255, .15);
+
+    animation-delay: 2s;
+}
+
+@keyframes glowMove {
+    from {
+        transform: translate(0,0) scale(1);
     }
 
-    .password-box h2 {
-      color: #ff4168;
-      margin-bottom: 8px;
+    to {
+        transform: translate(100px,60px) scale(1.3);
+    }
+}
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+.stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    background: white;
+    border-radius: 50%;
+
+    opacity: .7;
+
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: .2;
+        transform: scale(.7);
     }
 
-    .password-box p {
-      font-family: Arial, sans-serif;
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 20px;
+    to {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+
+/* =====================================================
+   BALLOONS
+===================================================== */
+
+.balloon {
+    position: absolute;
+
+    bottom: -180px;
+
+    width: 65px;
+    height: 82px;
+
+    border-radius: 50% 50% 48% 48%;
+
+    opacity: .85;
+
+    animation: balloonUp linear infinite;
+}
+
+.balloon::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 80px;
+
+    width: 1px;
+    height: 130px;
+
+    background: rgba(255,255,255,.5);
+}
+
+.balloon::before {
+    content: "";
+
+    position: absolute;
+
+    bottom: -7px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid currentColor;
+}
+
+@keyframes balloonUp {
+    from {
+        transform: translateY(0) rotate(-4deg);
     }
 
-    #passwordInput {
-      width: 100%;
+    to {
+        transform: translateY(-125vh) rotate(8deg);
+    }
+}
 
-      padding: 14px 16px;
+.balloon.b1 {
+    left: 7%;
+    background: #ff477e;
+    color: #ff477e;
+    animation-duration: 12s;
+}
 
-      border: 3px solid #222;
-      border-radius: 12px;
+.balloon.b2 {
+    left: 22%;
+    background: #ffcf56;
+    color: #ffcf56;
+    animation-duration: 15s;
+    animation-delay: 2s;
+}
 
-      outline: none;
+.balloon.b3 {
+    right: 18%;
+    background: #8d72ff;
+    color: #8d72ff;
+    animation-duration: 13s;
+    animation-delay: 4s;
+}
 
-      font-size: 16px;
-      text-align: center;
+.balloon.b4 {
+    right: 5%;
+    background: #ff719c;
+    color: #ff719c;
+    animation-duration: 16s;
+    animation-delay: 1s;
+}
 
-      margin-bottom: 14px;
+
+/* =====================================================
+   MAIN BIRTHDAY CARD
+===================================================== */
+
+.birthday-card {
+    position: relative;
+    z-index: 10;
+
+    width: min(90%, 760px);
+
+    padding: 55px 35px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.09);
+
+    border: 1px solid rgba(255,255,255,.22);
+
+    border-radius: 35px;
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.2);
+
+    animation: birthdayAppear 1.3s ease;
+}
+
+@keyframes birthdayAppear {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.95);
     }
 
-    #passwordInput:focus {
-      border-color: #ff4d70;
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.small-title {
+    font-family: Arial, sans-serif;
+
+    letter-spacing: 5px;
+
+    font-size: 13px;
+
+    color: rgba(255,255,255,.75);
+
+    margin-bottom: 18px;
+}
+
+.cake {
+    font-size: 65px;
+
+    margin-bottom: 12px;
+
+    animation: cakeBounce 2s infinite ease-in-out;
+}
+
+@keyframes cakeBounce {
+    0%,100% {
+        transform: translateY(0);
     }
 
-    .modal-buttons {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+#typewriter {
+    min-height: 130px;
+
+    font-size: clamp(27px, 5vw, 48px);
+
+    line-height: 1.25;
+
+    font-weight: bold;
+
+    color: white;
+
+    text-shadow:
+        0 0 15px rgba(255,100,180,.7),
+        0 3px 10px rgba(0,0,0,.3);
+}
+
+.cursor {
+    display: inline-block;
+
+    width: 3px;
+    height: 1em;
+
+    background: #fff;
+
+    margin-left: 5px;
+
+    vertical-align: middle;
+
+    animation: blink .7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.divider {
+    width: 100px;
+    height: 2px;
+
+    margin: 25px auto;
+
+    background: rgba(255,255,255,.5);
+}
+
+.from-text {
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,.7);
+}
+
+
+/* =====================================================
+   SECOND PRANK PAGE
+===================================================== */
+
+.prank-page {
+    position: fixed;
+    inset: 0;
+
+    z-index: 500;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ff4e8a,
+            #6e174f 45%,
+            #17001e
+        );
+
+    color: white;
+}
+
+.prank-page.show {
+    display: flex;
+
+    animation: prankReveal 1.2s ease;
+}
+
+@keyframes prankReveal {
+    from {
+        opacity: 0;
+        transform: scale(1.08);
     }
 
-    .modal-btn {
-      border: 3px solid #111;
-      border-radius: 30px;
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
-      padding: 10px 22px;
+.prank-content {
+    width: min(90%, 700px);
 
-      font-weight: bold;
-      cursor: pointer;
+    padding: 45px 25px;
+}
+
+.prank-emoji {
+    font-size: 75px;
+
+    margin-bottom: 15px;
+
+    animation: shocked 1.2s infinite alternate;
+}
+
+@keyframes shocked {
+    from {
+        transform: rotate(-5deg) scale(1);
     }
 
-    .enter-btn {
-      background: #ff4d70;
-      color: white;
+    to {
+        transform: rotate(5deg) scale(1.08);
+    }
+}
+
+.prank-content h1 {
+    font-size: clamp(38px, 8vw, 75px);
+
+    line-height: 1.05;
+
+    text-shadow: 0 5px 20px rgba(0,0,0,.3);
+
+    margin-bottom: 20px;
+}
+
+.prank-content p {
+    font-family: Arial, sans-serif;
+
+    font-size: 18px;
+
+    color: rgba(255,255,255,.8);
+
+    margin-bottom: 30px;
+}
+
+.wait-button {
+    padding: 14px 30px;
+
+    border: 2px solid rgba(255,255,255,.7);
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.12);
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    transition: .25s;
+}
+
+.wait-button:hover {
+    background: white;
+    color: #8b174f;
+
+    transform: translateY(-3px) scale(1.04);
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+.confetti {
+    position: fixed;
+
+    width: 8px;
+    height: 14px;
+
+    top: -20px;
+
+    z-index: 100;
+
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width: 600px) {
+
+    .birthday-card {
+        padding: 40px 20px;
     }
 
-    .cancel-btn {
-      background: white;
-      color: #111;
+    .cake {
+        font-size: 50px;
     }
 
-    #errorMessage {
-      color: #e6395b;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-
-      min-height: 18px;
-      margin-top: 12px;
+    #typewriter {
+        min-height: 160px;
     }
 
-    /* Hidden main page for now */
-    #mainContent {
-      display: none;
+    .balloon {
+        width: 45px;
+        height: 60px;
     }
 
-    /* Mobile */
-    @media (max-width: 500px) {
-      .lock-card {
-        padding: 32px 22px;
-      }
-
-      h1 {
-        font-size: 25px;
-      }
-
-      .lock-icon {
-        font-size: 42px;
-      }
+    .prank-content h1 {
+        font-size: 43px;
     }
-  </style>
+}
+</style>
 </head>
+
 
 <body>
 
-  <!-- Floating hearts -->
-  <div class="heart">♥</div>
-  <div class="heart">♡</div>
-  <div class="heart">♥</div>
-  <div class="heart">♡</div>
 
+<!-- =====================================================
+     LOCK SCREEN
+===================================================== -->
 
-  <!-- LOCK SCREEN -->
-  <div class="lock-card" id="lockScreen">
+<div class="lock-screen" id="lockScreen">
 
-    <div class="lock-icon">🔒</div>
+    <div class="lock-card">
 
-    <h1>Site Locked</h1>
+        <div class="lock-icon">🔒</div>
 
-    <p class="subtitle">
-      This little surprise is only for you. ❤️<br>
-      Enter the password to unlock the magic.
-    </p>
+        <h1>Site Locked</h1>
 
-    <button class="unlock-btn" onclick="openPassword()">
-      Unlock Now
-    </button>
+        <p>
+            This little surprise is only for you. ❤️<br>
+            Enter the password to unlock the magic.
+        </p>
 
-  </div>
-
-
-  <!-- PASSWORD MODAL -->
-  <div class="modal" id="passwordModal">
-
-    <div class="password-box">
-
-      <h2>🔐 Secret Access</h2>
-
-      <p>
-        Only someone special knows the password. ❤️
-      </p>
-
-      <input
-        type="password"
-        id="passwordInput"
-        placeholder="Enter password..."
-        autocomplete="off"
-      >
-
-      <div class="modal-buttons">
-
-        <button
-          class="modal-btn cancel-btn"
-          onclick="closePassword()">
-          Cancel
+        <button class="unlock-btn" onclick="openPassword()">
+            Unlock Now
         </button>
-
-        <button
-          class="modal-btn enter-btn"
-          onclick="checkPassword()">
-          Enter ❤️
-        </button>
-
-      </div>
-
-      <div id="errorMessage"></div>
 
     </div>
 
-  </div>
+</div>
 
 
-  <!-- MAIN WEBSITE -->
-  <!-- We'll build this part next -->
-  <div id="mainContent">
-    <h1>Welcome ❤️</h1>
-  </div>
+<!-- =====================================================
+     PASSWORD MODAL
+===================================================== -->
+
+<div class="modal" id="passwordModal">
+
+    <div class="password-box">
+
+        <h2>🔐 Secret Access</h2>
+
+        <p>
+            Only someone special knows the password. ❤️
+        </p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="Enter password..."
+        >
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn cancel-btn"
+                onclick="closePassword()">
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn enter-btn"
+                onclick="checkPassword()">
+                Enter ❤️
+            </button>
+
+        </div>
+
+        <div id="errorMessage"></div>
+
+    </div>
+
+</div>
 
 
-  <script>
+<!-- =====================================================
+     FIRST BIRTHDAY PAGE
+===================================================== -->
 
-    /* =========================
-       PASSWORD
-       ========================= */
+<div class="birthday-page" id="birthdayPage">
 
-    const correctPassword = "11111111";
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <!-- Stars -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Balloons -->
+    <div class="balloon b1"></div>
+    <div class="balloon b2"></div>
+    <div class="balloon b3"></div>
+    <div class="balloon b4"></div>
 
 
-    /* Open password box */
-    function openPassword() {
+    <div class="birthday-card">
 
-      document
+        <div class="small-title">
+            A LITTLE SOMETHING FOR YOU
+        </div>
+
+        <div class="cake">
+            🎂
+        </div>
+
+        <div id="typewriter"></div>
+
+        <div class="divider"></div>
+
+        <div class="from-text">
+            MADE WITH LOVE & A LITTLE BIT OF CHAOS ❤️
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PRANK REVEAL
+===================================================== -->
+
+<div class="prank-page" id="prankPage">
+
+    <div class="prank-content">
+
+        <div class="prank-emoji">
+            😭
+        </div>
+
+        <h1>
+            OHHH...<br>
+            YOU THOUGHT<br>
+            THAT'S IT?!
+        </h1>
+
+        <p>
+            You really thought I made all this just for that? 💀
+        </p>
+
+        <button class="wait-button" onclick="continueSurprise()">
+            Wait... WHAT? 👀
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+const correctPassword = "saba123";
+
+
+function openPassword() {
+
+    document
         .getElementById("passwordModal")
         .classList.add("show");
 
-      setTimeout(() => {
+    setTimeout(() => {
+
         document
-          .getElementById("passwordInput")
-          .focus();
-      }, 200);
-    }
+            .getElementById("passwordInput")
+            .focus();
+
+    }, 200);
+}
 
 
-    /* Close password box */
-    function closePassword() {
+function closePassword() {
 
-      document
+    document
         .getElementById("passwordModal")
         .classList.remove("show");
 
-      document
+    document
         .getElementById("passwordInput")
         .value = "";
 
-      document
+    document
         .getElementById("errorMessage")
         .textContent = "";
-    }
+}
 
 
-    /* Check password */
-    function checkPassword() {
+function checkPassword() {
 
-      const enteredPassword =
-        document
-          .getElementById("passwordInput")
-          .value;
+    const input =
+        document.getElementById("passwordInput");
 
-      const error =
+    const error =
         document.getElementById("errorMessage");
 
 
-      if (enteredPassword === correctPassword) {
+    if (input.value === correctPassword) {
 
         error.style.color = "#16a34a";
         error.textContent = "Access granted! ❤️";
@@ -454,69 +938,242 @@
 
         setTimeout(() => {
 
-          document
-            .getElementById("lockScreen")
-            .style.display = "none";
+            document
+                .getElementById("lockScreen")
+                .style.display = "none";
 
-          document
-            .getElementById("passwordModal")
-            .classList.remove("show");
-
-          /*
-             MAIN WEBSITE WILL APPEAR HERE
-             IN THE NEXT STEP.
-          */
-
-          document
-            .getElementById("mainContent")
-            .style.display = "block";
-
-        }, 700);
+            document
+                .getElementById("passwordModal")
+                .classList.remove("show");
 
 
-      } else {
+            startBirthday();
+
+        }, 600);
+
+
+    } else {
 
         error.style.color = "#e6395b";
-        error.textContent = "Wrong password! Try again. 🔒";
 
-        const input =
-          document.getElementById("passwordInput");
+        error.textContent =
+            "Wrong password! Try again. 🔒";
 
         input.value = "";
         input.focus();
 
-      }
     }
+}
 
 
-    /* Press Enter = submit password */
-    document
-      .getElementById("passwordInput")
-      .addEventListener("keydown", function(event) {
+document
+    .getElementById("passwordInput")
+    .addEventListener("keydown", function(event) {
 
         if (event.key === "Enter") {
-          checkPassword();
+            checkPassword();
         }
 
         if (event.key === "Escape") {
-          closePassword();
+            closePassword();
         }
 
-      });
+    });
 
 
-    /* Click outside modal = close */
+/* =====================================================
+   CREATE STARS
+===================================================== */
+
+function createStars() {
+
+    const container =
+        document.getElementById("stars");
+
+
+    for (let i = 0; i < 90; i++) {
+
+        const star =
+            document.createElement("div");
+
+        star.className = "star";
+
+        star.style.left =
+            Math.random() * 100 + "%";
+
+        star.style.top =
+            Math.random() * 100 + "%";
+
+        star.style.animationDelay =
+            Math.random() * 3 + "s";
+
+        star.style.animationDuration =
+            (1 + Math.random() * 2) + "s";
+
+        container.appendChild(star);
+    }
+}
+
+
+/* =====================================================
+   START BIRTHDAY
+===================================================== */
+
+function startBirthday() {
+
     document
-      .getElementById("passwordModal")
-      .addEventListener("click", function(event) {
+        .getElementById("birthdayPage")
+        .classList.add("active");
 
-        if (event.target === this) {
-          closePassword();
+    createStars();
+
+    startTypewriter();
+
+    createConfetti();
+
+}
+
+
+/* =====================================================
+   TYPEWRITER
+===================================================== */
+
+const message =
+    "Happy Birthday to youu 🎂❤️\nThank you soo muchhh for coming into my lifeee. Happy birthday again! 🥹✨";
+
+
+function startTypewriter() {
+
+    const target =
+        document.getElementById("typewriter");
+
+    let index = 0;
+
+
+    function type() {
+
+        if (index < message.length) {
+
+            const character =
+                message[index];
+
+
+            if (character === "\n") {
+
+                target.innerHTML += "<br><br>";
+
+            } else {
+
+                target.innerHTML +=
+                    character
+                    .replace(/ /g, "&nbsp;");
+
+            }
+
+            index++;
+
+            setTimeout(type, 55);
+
+        } else {
+
+            target.innerHTML +=
+                '<span class="cursor"></span>';
+
+            /*
+                Wait 10 seconds AFTER
+                the typewriter finishes.
+            */
+
+            setTimeout(showPrank, 10000);
         }
+    }
 
-      });
 
-  </script>
+    type();
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function createConfetti() {
+
+    for (let i = 0; i < 70; i++) {
+
+        setTimeout(() => {
+
+            const piece =
+                document.createElement("div");
+
+            piece.className = "confetti";
+
+            piece.style.left =
+                Math.random() * 100 + "vw";
+
+            piece.style.animationDuration =
+                (3 + Math.random() * 4) + "s";
+
+            piece.style.transform =
+                `rotate(${Math.random() * 360}deg)`;
+
+            piece.style.background =
+                [
+                    "#ff4d70",
+                    "#ffd166",
+                    "#ffffff",
+                    "#c77dff",
+                    "#70e1f5"
+                ][
+                    Math.floor(Math.random() * 5)
+                ];
+
+            document.body.appendChild(piece);
+
+
+            setTimeout(() => {
+                piece.remove();
+            }, 7000);
+
+        }, i * 45);
+
+    }
+}
+
+
+/* =====================================================
+   SHOW PRANK PAGE
+===================================================== */
+
+function showPrank() {
+
+    document
+        .getElementById("prankPage")
+        .classList.add("show");
+
+    createConfetti();
+
+}
+
+
+/* =====================================================
+   NEXT SURPRISE
+===================================================== */
+
+function continueSurprise() {
+
+    /*
+       NEXT STAGE WILL GO HERE.
+
+       We will replace this with
+       the actual birthday surprise.
+    */
+
+    alert("WAITTT 😭 The real surprise is coming...");
+
+}
+
+</script>
 
 </body>
 </html>
